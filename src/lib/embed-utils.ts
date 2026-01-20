@@ -3,7 +3,6 @@ import { defaultVariables } from "@/types/embeds";
 export const parseSpecialFormatting = (text: string): string => {
   if (!text) return text;
 
-  // Replace channel mentions with formatted text
   text = text.replace(/<#(\d+)>/g, (_, channelId) => {
     return `#channel-${channelId.substring(0, 4)}`;
   });

@@ -112,7 +112,7 @@ export default function StatusPage() {
           <button
             onClick={fetchHealth}
             disabled={loading}
-            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-white text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={loading ? 'animate-spin' : ''}>
               <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
@@ -137,19 +137,10 @@ export default function StatusPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-[#ccccff]/70 text-xs font-medium">Guilds</h3>
+                <h3 className="text-[#ccccff]/70 text-xs font-medium">Total Guilds</h3>
               </div>
               <p className="text-lg font-light text-[#ccccff]">
                 {healthData.guilds.toLocaleString()}
-              </p>
-            </div>
-
-            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
-              <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-[#ccccff]/70 text-xs font-medium">Clusters</h3>
-              </div>
-              <p className="text-lg font-light text-[#ccccff]">
-                {Object.keys(healthData.clusters).length}
               </p>
             </div>
 
@@ -163,8 +154,17 @@ export default function StatusPage() {
             </div>
 
             <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="text-[#ccccff]/70 text-xs font-medium">Total Clusters</h3>
+                </div>
+                <p className="text-lg font-light text-[#ccccff]">
+                  {Object.keys(healthData.clusters).length}
+                </p>
+              </div>
+
+            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-[#ccccff]/70 text-xs font-medium">Latency</h3>
+                <h3 className="text-[#ccccff]/70 text-xs font-medium">Average Latency</h3>
               </div>
               <p className="text-lg font-light text-[#ccccff]">
                 {formatLatency(getAverageLatency())}
@@ -256,7 +256,7 @@ export default function StatusPage() {
                                 <span className="text-[#ccccff]/80">{shard.users.toLocaleString()}</span>
                               </div>
                               <div className="flex justify-between">
-                                <span>Guilds:</span>
+                                <span>Total Guilds:</span>
                                 <span className="text-[#ccccff]/80">{shard.guilds}</span>
                               </div>
                             </div>

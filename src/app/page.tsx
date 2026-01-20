@@ -23,7 +23,6 @@ interface HealthData {
 export default function Home() {
   const [stats, setStats] = useState({ guilds: 0, users: 0 });
 
-  // Fetch health data
   useFetch<HealthData>(API_ENDPOINTS.HEALTH, {
     onSuccess: (data) => {
       setStats({ guilds: data.guilds || 0, users: data.users || 0 });
@@ -31,7 +30,6 @@ export default function Home() {
     cacheControl: 'no-store',
   });
 
-  // Animate stats counter
   const animatedStats = useStatsAnimation(stats);
 
   return (
