@@ -118,8 +118,8 @@ export const EmbedBuilder = ({
     <div className="bg-black border border-[#ccccff]/20 rounded-2xl shadow-md overflow-hidden">
       <div className="border-b border-[#ccccff]/10 px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
-          <div className="p-1.5 rounded-md bg-evict-primary/10 mr-2">
-            <MdCreateNewFolder className="w-4 h-4 text-evict-primary/80" />
+          <div className="p-1.5 rounded-md bg-alina-primary/10 mr-2">
+            <MdCreateNewFolder className="w-4 h-4 text-alina-primary/80" />
           </div>
           <h2 className="text-lg font-semibold text-[#ccccff]">
             Embed Builder
@@ -159,7 +159,7 @@ export const EmbedBuilder = ({
             value={content}
             onChange={(e) => onContentChange(e.target.value)}
             className="w-full bg-[#ccccff]/5 border border-[#ccccff]/20 rounded-md px-3 py-2 text-[#ccccff] focus:outline-none focus:border-[#ccccff]/50 transition-colors"
-            placeholder="Hey, welcome to evict!"
+            placeholder="Hey, welcome to alina!"
             rows={2}
           />
         </div>

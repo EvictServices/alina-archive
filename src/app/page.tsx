@@ -97,15 +97,15 @@ export default function Home() {
 
           <div className="opacity-0 animate-fade-in-up w-full max-w-md space-y-3 px-4" style={{ animationDelay: "0.4s" }}>
             <div className="grid grid-cols-3 gap-2">
-              <Link href="/commands" className="evict-button py-2 px-3 text-xs flex items-center justify-center gap-1">
+              <Link href="/commands" className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1">
                 <MdKeyboardCommandKey size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Commands</span>
               </Link>
-              <Link href="/status" className="evict-button py-2 px-3 text-xs flex items-center justify-center gap-1">
+              <Link href="/status" className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1">
                 <SiStatuspage size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Status</span>
               </Link>
-              <Link href="/embed" className="evict-button py-2 px-3 text-xs flex items-center justify-center gap-1">
+              <Link href="/embed" className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1">
                 <ImEmbed size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Embeds</span>
               </Link>
@@ -116,7 +116,7 @@ export default function Home() {
                 href="https://discordapp.com/oauth2/authorize?client_id=1203514684326805524&scope=bot+applications.commands&permissions=8"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="evict-button py-2 px-3 text-xs flex items-center justify-center gap-1"
+                className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
               >
                 <SlEnvolope size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Invite</span>
@@ -125,7 +125,7 @@ export default function Home() {
                 href="https://discord.gg/evict"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="evict-button py-2 px-3 text-xs flex items-center justify-center gap-1"
+                className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
               >
                 <FaDiscord size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Discord</span>
@@ -134,7 +134,7 @@ export default function Home() {
                 href="https://docs.evict.bot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="evict-button py-2 px-3 text-xs flex items-center justify-center gap-1"
+                className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
               >
                 <SiDocsdotrs size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Docs</span>

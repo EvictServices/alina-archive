@@ -7,10 +7,10 @@ export const Footer = () => {
   const [shouldRender, setShouldRender] = useState(true);
 
   useEffect(() => {
-    const existingFooter = document.getElementById("evict-footer");
+    const existingFooter = document.getElementById("alina-footer");
     if (
       existingFooter &&
-      document.querySelectorAll("#evict-footer").length > 1
+      document.querySelectorAll("#alina-footer").length > 1
     ) {
       setShouldRender(false);
     }
@@ -20,7 +20,7 @@ export const Footer = () => {
 
   return (
     <footer
-      id="evict-footer"
+      id="alina-footer"
       className="border-t border-white/10 backdrop-blur-xl bg-black/30 w-full relative z-10 font-sans mt-auto"
     >
       <div className="container mx-auto px-4 py-6">
@@ -51,7 +51,7 @@ export const Footer = () => {
                 Documentation
               </Link>
               <Link
-                href="https://discord.gg/evict"
+                href="https://discord.gg/alina"
                 className="text-neutral-400 text-sm font-medium hover:text-white transition-colors"
               >
                 Support

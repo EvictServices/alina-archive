@@ -42,8 +42,8 @@ export const EmbedPreview = ({ embed, content, script }: EmbedPreviewProps) => (
   <div className="bg-black border border-[#ccccff]/20 rounded-2xl shadow-md overflow-hidden">
     <div className="border-b border-[#ccccff]/10 px-4 py-3">
       <div className="flex items-center">
-        <div className="p-1.5 rounded-md bg-evict-primary/10 mr-2">
-          <FiEye className="w-4 h-4 text-evict-primary/80" />
+        <div className="p-1.5 rounded-md bg-alina-primary/10 mr-2">
+          <FiEye className="w-4 h-4 text-alina-primary/80" />
         </div>
         <h2 className="text-lg font-semibold text-[#ccccff]">Preview</h2>
       </div>

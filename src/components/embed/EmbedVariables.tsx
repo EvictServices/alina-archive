@@ -6,8 +6,8 @@ export const EmbedVariables = () => (
   <div className="bg-black border border-[#ccccff]/20 rounded-2xl shadow-md overflow-hidden mb-16">
     <div className="border-b border-[#ccccff]/10 px-4 py-3">
       <div className="flex items-center">
-        <div className="p-1.5 rounded-md bg-evict-primary/10 mr-2">
-          <FaSquareRootVariable className="w-4 h-4 text-evict-primary/80" />
+        <div className="p-1.5 rounded-md bg-alina-primary/10 mr-2">
+          <FaSquareRootVariable className="w-4 h-4 text-alina-primary/80" />
         </div>
         <h2 className="text-lg font-semibold text-[#ccccff]">Variables</h2>
       </div>
@@ -21,31 +21,31 @@ export const EmbedVariables = () => (
           </h3>
           <div className="space-y-1 text-xs" style={{ color: "#CCCCFF" }}>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{user}"}
               </code>{" "}
               - User#Tag
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{user.id}"}
               </code>{" "}
               - User ID
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{user.name}"}
               </code>{" "}
               - Username
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{user.mention}"}
               </code>{" "}
               - User mention
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{user.avatar}"}
               </code>{" "}
               - User avatar URL
@@ -59,31 +59,31 @@ export const EmbedVariables = () => (
           </h3>
           <div className="space-y-1 text-xs" style={{ color: "#CCCCFF" }}>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{guild.name}"}
               </code>{" "}
               - Server name
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{guild.id}"}
               </code>{" "}
               - Server ID
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{guild.count}"}
               </code>{" "}
               - Member count
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{guild.icon}"}
               </code>{" "}
               - Server icon URL
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{guild.boost_count}"}
               </code>{" "}
               - Boost count
@@ -97,31 +97,31 @@ export const EmbedVariables = () => (
           </h3>
           <div className="space-y-1 text-xs" style={{ color: "#CCCCFF" }}>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{channel}"}
               </code>{" "}
               - Channel mention
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{channel.name}"}
               </code>{" "}
               - Channel name
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{channel.id}"}
               </code>{" "}
               - Channel ID
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{channel.topic}"}
               </code>{" "}
               - Channel topic
             </div>
             <div>
-              <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+              <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
                 {"{channel.position}"}
               </code>{" "}
               - Channel position
@@ -135,49 +135,49 @@ export const EmbedVariables = () => (
         </p>
         <ul className="list-disc pl-5 space-y-1 text-xs">
           <li>
-            <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+            <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
               {"{content: Hello {user.name}!}"}
             </code>{" "}
             - Set message content with variable
           </li>
           <li>
-            <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+            <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
               {"{embed}"}
             </code>{" "}
             - Start a new embed
           </li>
           <li>
-            <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+            <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
               {"{title: Welcome to {guild.name}!}"}
             </code>{" "}
             - Set embed title with variable
           </li>
           <li>
-            <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+            <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
               {"{field: Stats && Members: {guild.count} && inline}"}
             </code>{" "}
             - Add inline field
           </li>
           <li>
-            <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+            <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
               {"{timestamp}"}
             </code>{" "}
             - Add current timestamp
           </li>
           <li>
-            <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+            <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
               {"{button: link && Visit Site && https://evict.bot}"}
             </code>{" "}
             - Add link button
           </li>
           <li>
-            <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+            <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
               {"{button: primary && Click Me && custom_id && 🎮}"}
             </code>{" "}
             - Add primary button with emoji
           </li>
           <li>
-            <code className="bg-evict-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
+            <code className="bg-alina-400 px-1 py-0.5 rounded" style={{ color: "#CCCCFF" }}>
               $v
             </code>{" "}
             - Separator between commands (or use newlines)

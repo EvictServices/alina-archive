@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 import { usePathname } from "next/navigation";
-import evict from "../../public/evict/evict.webp";
+import alina from "../../public/evict/evict.webp";
 import { NavigationMenu } from "radix-ui";
 
 const HoverCard = HoverCardPrimitive;
@@ -57,10 +57,10 @@ export function MainNav() {
           `}
           >
             <Image
-              src={evict.src}
+              src={alina.src}
               width={16}
               height={16}
-              alt="Evict"
+              alt="alina"
               className="w-6 h-6 sm:w-7 sm:h-7 rounded-full ring-2 ring-[#D4BCD2]/20"
             />
           </div>
@@ -166,7 +166,7 @@ export function MainNav() {
             <HoverCard.Root openDelay={100} closeDelay={100}>
               <HoverCard.Trigger asChild>
                 <Link
-                  href="https://discord.gg/evict"
+                  href="https://discord.gg/alina"
                   className={`
                     relative inline-flex items-center justify-center
                     bg-[#ccccff] text-[#1b1919]
@@ -246,7 +246,7 @@ export function MainNav() {
                       Join our community
                     </h4>
                     <p className="text-xs sm:text-sm text-muted-foreground">
-                      Get help, stay updated, and connect with other Evict
+                      Get help, stay updated, and connect with other alina
                       users.
                     </p>
                   </div>

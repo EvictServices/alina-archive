@@ -17,7 +17,7 @@ export const FooterTab = ({ embed, onChange }: FooterTabProps) => (
       <VariableInput
         value={embed.footer.text}
         onChange={(value) => onChange("footer", "text", value)}
-        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
         placeholder="Footer text"
       />
     </div>
@@ -29,7 +29,7 @@ export const FooterTab = ({ embed, onChange }: FooterTabProps) => (
       <VariableInput
         value={embed.footer.icon_url}
         onChange={(value) => onChange("footer", "icon_url", value)}
-        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
         placeholder="https://example.com/icon.png"
       />
     </div>

@@ -17,7 +17,7 @@ export const AuthorTab = ({ embed, onChange }: AuthorTabProps) => (
       <VariableInput
         value={embed.author.name}
         onChange={(value) => onChange("author", "name", value)}
-        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
         placeholder="Author name"
       />
     </div>
@@ -29,7 +29,7 @@ export const AuthorTab = ({ embed, onChange }: AuthorTabProps) => (
       <VariableInput
         value={embed.author.url}
         onChange={(value) => onChange("author", "url", value)}
-        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
         placeholder="https://evict.bot"
       />
     </div>
@@ -41,7 +41,7 @@ export const AuthorTab = ({ embed, onChange }: AuthorTabProps) => (
       <VariableInput
         value={embed.author.icon_url}
         onChange={(value) => onChange("author", "icon_url", value)}
-        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
         placeholder="https://example.com/icon.png"
       />
     </div>

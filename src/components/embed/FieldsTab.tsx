@@ -45,7 +45,7 @@ export const FieldsTab = ({
             <VariableInput
               value={field.name}
               onChange={(value) => onUpdate(index, "name", value)}
-              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors text-sm"
+              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors text-sm"
             />
           </div>
 
@@ -57,7 +57,7 @@ export const FieldsTab = ({
               type="textarea"
               value={field.value}
               onChange={(value) => onUpdate(index, "value", value)}
-              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors text-sm"
+              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors text-sm"
               rows={2}
             />
           </div>
@@ -68,7 +68,7 @@ export const FieldsTab = ({
               id={`inline-${index}`}
               checked={field.inline}
               onChange={(e) => onUpdate(index, "inline", e.target.checked)}
-              className="mr-2 h-4 w-4 rounded border-white/30 text-evict-primary focus:ring-evict-primary/20"
+              className="mr-2 h-4 w-4 rounded border-white/30 text-alina-primary focus:ring-alina-primary/20"
             />
             <label
               htmlFor={`inline-${index}`}

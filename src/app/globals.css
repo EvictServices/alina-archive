@@ -191,7 +191,7 @@ body {
   animation: fade-in-up 0.8s ease-out forwards;
 }
 
-.evict-button {
+.alina-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,14 +208,14 @@ body {
   backdrop-filter: blur(4px);
 }
 
-.evict-button:hover {
+.alina-button:hover {
   background-color: rgba(204, 204, 255, 0.35);
   border-color: rgba(204, 204, 255, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(204, 204, 255, 0.15);
 }
 
-.evict-button span {
+.alina-button span {
   display: flex;
   align-items: center;
 }

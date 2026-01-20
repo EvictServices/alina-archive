@@ -32,7 +32,7 @@ export const VariableAutocomplete = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: -3 }}
           transition={{ duration: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="select-none fixed z-50 bg-evict-200/95 backdrop-blur-sm border border-white/15 rounded-lg shadow-2xl overflow-hidden overflow-y-auto max-h-40 min-w-44 scroll-smooth"
+          className="select-none fixed z-50 bg-alina-200/95 backdrop-blur-sm border border-white/15 rounded-lg shadow-2xl overflow-hidden overflow-y-auto max-h-40 min-w-44 scroll-smooth"
           style={{
             left: position.x,
             top: position.y + 2,
@@ -48,7 +48,7 @@ export const VariableAutocomplete = ({
                 transition={{ delay: index * 0.015 }}
                 className={`px-2.5 py-1.5 cursor-pointer transition-all duration-100 ${
                   index === selectedIndex
-                    ? "bg-evict-primary/12 text-evict-primary border-l border-evict-primary"
+                    ? "bg-alina-primary/12 text-alina-primary border-l border-alina-primary"
                     : "text-white/75 hover:bg-white/[0.03] hover:text-white/90"
                 }`}
                 onClick={() => onSelect(variable)}

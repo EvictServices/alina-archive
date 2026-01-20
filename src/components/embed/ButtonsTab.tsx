@@ -45,7 +45,7 @@ export const ButtonsTab = ({
             <select
               value={button.style}
               onChange={(e) => onUpdate(index, "style", e.target.value)}
-              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors text-sm"
+              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors text-sm"
             >
               <option value="link">Link</option>
               <option value="primary">Primary</option>
@@ -62,7 +62,7 @@ export const ButtonsTab = ({
             <VariableInput
               value={button.label}
               onChange={(value) => onUpdate(index, "label", value)}
-              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors text-sm"
+              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors text-sm"
               placeholder="Button text"
             />
           </div>
@@ -74,7 +74,7 @@ export const ButtonsTab = ({
             <VariableInput
               value={button.url}
               onChange={(value) => onUpdate(index, "url", value)}
-              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors text-sm"
+              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors text-sm"
               placeholder={
                 button.style === "link" ? "https://evict.bot" : "custom_id"
               }
@@ -88,7 +88,7 @@ export const ButtonsTab = ({
             <VariableInput
               value={button.emoji}
               onChange={(value) => onUpdate(index, "emoji", value)}
-              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors text-sm"
+              className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors text-sm"
               placeholder="🎮"
             />
           </div>
@@ -99,7 +99,7 @@ export const ButtonsTab = ({
               id={`disabled-${index}`}
               checked={button.disabled}
               onChange={(e) => onUpdate(index, "disabled", e.target.checked)}
-              className="mr-2 h-4 w-4 rounded border-white/30 text-evict-primary focus:ring-evict-primary/20"
+              className="mr-2 h-4 w-4 rounded border-white/30 text-alina-primary focus:ring-alina-primary/20"
             />
             <label
               htmlFor={`disabled-${index}`}

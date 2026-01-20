@@ -17,7 +17,7 @@ export const GeneralTab = ({ embed, onChange }: GeneralTabProps) => (
       <VariableInput
         value={embed.title}
         onChange={(value) => onChange("title", value)}
-        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
         placeholder="Embed title"
       />
     </div>
@@ -29,7 +29,7 @@ export const GeneralTab = ({ embed, onChange }: GeneralTabProps) => (
       <VariableInput
         value={embed.url}
         onChange={(value) => onChange("url", value)}
-        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
         placeholder="https://evict.bot/"
       />
     </div>
@@ -42,7 +42,7 @@ export const GeneralTab = ({ embed, onChange }: GeneralTabProps) => (
         type="textarea"
         value={embed.description}
         onChange={(value) => onChange("description", value)}
-        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
         placeholder="Embed description"
         rows={3}
       />
@@ -63,7 +63,7 @@ export const GeneralTab = ({ embed, onChange }: GeneralTabProps) => (
           type="text"
           value={embed.color || "#CCCCFF"}
           onChange={(e) => onChange("color", e.target.value)}
-          className="flex-1 bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+          className="flex-1 bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
           placeholder="#CCCCFF"
         />
       </div>
@@ -76,7 +76,7 @@ export const GeneralTab = ({ embed, onChange }: GeneralTabProps) => (
       <VariableInput
         value={embed.thumbnail}
         onChange={(value) => onChange("thumbnail", value)}
-        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
         placeholder="https://example.com/image.png"
       />
     </div>
@@ -88,7 +88,7 @@ export const GeneralTab = ({ embed, onChange }: GeneralTabProps) => (
       <VariableInput
         value={embed.image}
         onChange={(value) => onChange("image", value)}
-        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-evict-primary/50 transition-colors"
+        className="w-full bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
         placeholder="https://example.com/image.png"
       />
     </div>
@@ -99,7 +99,7 @@ export const GeneralTab = ({ embed, onChange }: GeneralTabProps) => (
         id="timestamp"
         checked={embed.timestamp}
         onChange={(e) => onChange("timestamp", e.target.checked)}
-        className="h-4 w-4 rounded border-white/30 text-evict-primary focus:ring-evict-primary/20"
+        className="h-4 w-4 rounded border-white/30 text-alina-primary focus:ring-alina-primary/20"
       />
       <label htmlFor="timestamp" className="block text-white/70 text-sm">
         Include timestamp

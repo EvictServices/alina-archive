@@ -34,7 +34,7 @@ export default function NotFound() {
         <p className="text-xs text-white/40">
           Redirecting to home in {countdown} seconds...
         </p>
-        <Link href="/" className="evict-button">
+        <Link href="/" className="alina-button">
           Home
           <FaHouse className="w-4 h-4" />
         </Link>

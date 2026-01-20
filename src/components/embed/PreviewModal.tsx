@@ -271,7 +271,7 @@ export const PreviewModal = ({
               </button>
               <button
                 onClick={onClose}
-                className="px-3 py-1.5 bg-evict-primary/10 hover:bg-evict-primary/20 text-evict-primary/80 text-xs rounded-md transition-colors"
+                className="px-3 py-1.5 bg-alina-primary/10 hover:bg-alina-primary/20 text-alina-primary/80 text-xs rounded-md transition-colors"
               >
                 Close
               </button>

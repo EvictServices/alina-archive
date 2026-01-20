@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "evict-new-dev",
+      name: "alina-new-dev",
       script: "bun",
       args: "start",
       env: {
