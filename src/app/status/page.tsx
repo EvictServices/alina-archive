@@ -121,7 +121,7 @@ export default function StatusPage() {
           </button>
         </div>
 
-        <div className="mb-6 bg-black border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-sm">
+        <div className="mb-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
           <div className="flex items-center gap-2 mb-2">
             <div className={`w-2.5 h-2.5 rounded-full ${loading ? 'bg-yellow-500' : error ? 'bg-red-500' : allClustersOperational ? 'bg-green-500' : 'bg-orange-500'} animate-pulse`} />
             <h2 className="text-lg font-light text-[#ccccff]">
@@ -135,7 +135,7 @@ export default function StatusPage() {
 
         {healthData && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-            <div className="bg-black border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-sm">
+            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="text-[#ccccff]/70 text-xs font-medium">Guilds</h3>
               </div>
@@ -144,7 +144,7 @@ export default function StatusPage() {
               </p>
             </div>
 
-            <div className="bg-black border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-sm">
+            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="text-[#ccccff]/70 text-xs font-medium">Clusters</h3>
               </div>
@@ -153,7 +153,7 @@ export default function StatusPage() {
               </p>
             </div>
 
-            <div className="bg-black border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-sm">
+            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="text-[#ccccff]/70 text-xs font-medium">Total Users</h3>
               </div>
@@ -162,7 +162,7 @@ export default function StatusPage() {
               </p>
             </div>
 
-            <div className="bg-black border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-sm">
+            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="text-[#ccccff]/70 text-xs font-medium">Latency</h3>
               </div>
@@ -182,14 +182,14 @@ export default function StatusPage() {
               return (
                 <div 
                   key={clusterId}
-                  className="bg-black border border-[#ccccff]/20 rounded-2xl backdrop-blur-sm overflow-hidden"
+                  className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl backdrop-blur-md overflow-hidden"
                 >
                   <button
                     onClick={() => toggleCluster(index)}
                     className="w-full p-4 flex items-center justify-between hover:border-[#ccccff]/40 transition-colors"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center text-[#ccccff]">
+                      <div className="w-10 h-10 rounded-xl bg-white/[0.05] flex items-center justify-center text-[#ccccff]">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
                           <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
@@ -272,7 +272,7 @@ export default function StatusPage() {
         )}
 
         {topCommands.length > 0 && (
-          <div className="mt-6 bg-black border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-sm">
+          <div className="mt-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

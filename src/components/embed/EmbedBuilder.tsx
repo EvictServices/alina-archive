@@ -115,7 +115,7 @@ export const EmbedBuilder = ({
   };
 
   return (
-    <div className="bg-black border border-[#ccccff]/20 rounded-2xl shadow-md overflow-hidden">
+    <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl shadow-md overflow-hidden backdrop-blur-md">
       <div className="border-b border-[#ccccff]/10 px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <div className="p-1.5 rounded-md bg-alina-primary/10 mr-2">

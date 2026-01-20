@@ -192,7 +192,7 @@ export default function EmbedPage() {
         <div className="max-w-7xl mx-auto pt-20">
           <EmbedHeader />
 
-          <div className="mb-6 bg-black border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-sm">
+          <div className="mb-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
             <div className="flex items-center gap-2 mb-2">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
@@ -216,7 +216,7 @@ export default function EmbedPage() {
                 type="text"
                 value={webhookUrl}
                 onChange={(e) => setWebhookUrl(e.target.value)}
-                className="flex-1 bg-black border border-[#ccccff]/20 rounded-full px-4 py-3 text-[#ccccff] focus:outline-none focus:border-[#ccccff]/50 transition-colors"
+                className="flex-1 bg-white/[0.02] border border-[#ccccff]/20 rounded-full px-4 py-3 text-[#ccccff] focus:outline-none focus:border-[#ccccff]/50 transition-colors backdrop-blur-md"
                 placeholder="https://discord.com/api/webhooks/..."
               />
               <button

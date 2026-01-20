@@ -106,7 +106,7 @@ export default function CommandsPage() {
           </h1>
         </div>
 
-        <div className="mb-6 bg-black border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-sm">
+        <div className="mb-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
           <div className="flex items-center gap-2 mb-2">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="4 17 10 11 4 5" />
@@ -190,7 +190,7 @@ export default function CommandsPage() {
                   placeholder="Search commands..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-black border border-[#ccccff]/20 rounded-full pl-12 pr-4 py-3 text-[#ccccff] placeholder-[#ccccff]/40 focus:outline-none focus:border-[#ccccff]/50 transition-colors"
+                  className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-full pl-12 pr-4 py-3 text-[#ccccff] placeholder-[#ccccff]/40 focus:outline-none focus:border-[#ccccff]/50 transition-colors backdrop-blur-md"
                 />
               </div>
             </div>
@@ -200,7 +200,7 @@ export default function CommandsPage() {
                 {displayedCommands.map((command) => (
                   <div
                     key={command.qualified_name}
-                    className="bg-black border border-[#ccccff]/20 rounded-2xl p-4 hover:border-[#ccccff]/40 transition-colors"
+                    className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 hover:border-[#ccccff]/40 transition-colors backdrop-blur-md"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <h3 className="text-[#ccccff] font-medium bg-[#ccccff]/10 px-3 py-1 rounded-full">{command.is_subcommand ? command.qualified_name : command.name}</h3>
@@ -281,7 +281,7 @@ export default function CommandsPage() {
           onClick={() => setSelectedCommand(null)}
         >
           <div 
-            className="bg-black border border-[#ccccff]/30 rounded-xl max-w-md w-full p-6 shadow-2xl"
+            className="bg-white/[0.02] border border-[#ccccff]/30 rounded-xl max-w-md w-full p-6 shadow-2xl backdrop-blur-md"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
