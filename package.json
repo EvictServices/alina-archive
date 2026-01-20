@@ -1,27 +1,29 @@
 {
-  "name": "nextjs-tailwind",
+  "name": "alina",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0 --turbopack",
+    "dev": "next dev --turbopack",
     "build": "next build",
+    "format": "prettier --write .",
+    "mangle": "bunx tsx scripts/mangle.ts",
+    "build:prod": "bunx tw-patch install && bunx tw-patch extract && bun run build && bun run mangle",
+    "format:check": "prettier --check .",
     "start": "next start",
-    "lint": "bunx tsc --noEmit && next lint",
-    "format": "bunx biome format --write"
+    "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-hover-card": "^1.1.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.27.1",
     "lucide-react": "^0.475.0",
-    "next": "^15.5.9",
+    "next": "^16.1.0",
     "pg": "^8.17.1",
-    "radix-ui": "^1.4.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
     "rough-notation": "^0.5.1",
-    "same-runtime": "^0.0.1",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7"
   },

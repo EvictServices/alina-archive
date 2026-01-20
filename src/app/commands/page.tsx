@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react';
 import type { Command, CommandsData } from '@/types/commands';
 import { processCommands } from '@/lib/commands';
+
+const EXTERNAL_API_URL = 'https://elara.evict.bot';
+const COPY_FEEDBACK_DURATION = 2000;
 import { MdSecurity, MdBuild, MdSettings, MdInfo, MdSportsEsports, MdWavingHand, MdAutoAwesome, MdList } from 'react-icons/md';
 import type { IconType } from 'react-icons';
 import { FaLastfm } from "react-icons/fa6";
@@ -33,7 +36,7 @@ export default function CommandsPage() {
   const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('https://elara.evict.bot/commands')
+    fetch(`${EXTERNAL_API_URL}/commands`)
       .then(res => res.json())
       .then(data => {
         const rawCommands = data?.data?.commands || data?.commands || data;
@@ -46,8 +49,7 @@ export default function CommandsPage() {
         setCommands(processedData);
         setLoading(false);
       })
-      .catch(err => {
-        console.error('Failed to fetch commands:', err);
+      .catch(() => {
         setLoading(false);
       });
   }, []);
@@ -64,7 +66,7 @@ export default function CommandsPage() {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     setCopiedCommand(text);
-    setTimeout(() => setCopiedCommand(null), 2000);
+    setTimeout(() => setCopiedCommand(null), COPY_FEEDBACK_DURATION);
   };
 
   const getFilteredCommands = () => {

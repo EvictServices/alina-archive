@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { MdKeyboardCommandKey } from "react-icons/md";
 import { SiStatuspage } from "react-icons/si";
@@ -11,56 +11,38 @@ import { SlEnvolope } from "react-icons/sl";
 import { FaDiscord } from "react-icons/fa";
 import { SiDocsdotrs } from "react-icons/si";
 
+import { useFetch } from "@/hooks/useFetch";
+import { useStatsAnimation } from "@/hooks/useStatsAnimation";
+import { API_ENDPOINTS, EXTERNAL_LINKS, APP_INFO } from "@/lib/constants";
+
+interface HealthData {
+  guilds: number;
+  users: number;
+}
+
 export default function Home() {
   const [stats, setStats] = useState({ guilds: 0, users: 0 });
-  const [animatedStats, setAnimatedStats] = useState({ guilds: 0, users: 0 });
 
-  useEffect(() => {
-    fetch('https://elara.evict.bot/health')
-      .then(res => res.json())
-      .then(data => {
-        setStats({ guilds: data.guilds, users: data.users });
-      })
-      .catch(err => console.error('Failed to fetch stats:', err));
-  }, []);
+  // Fetch health data
+  useFetch<HealthData>(API_ENDPOINTS.HEALTH, {
+    onSuccess: (data) => {
+      setStats({ guilds: data.guilds || 0, users: data.users || 0 });
+    },
+    cacheControl: 'no-store',
+  });
 
-  useEffect(() => {
-    if (stats.users === 0 && stats.guilds === 0) return;
-
-    const duration = 1800;
-    const startTime = Date.now();
-    
-    const animate = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = progress < 0.5 
-        ? 4 * progress * progress * progress 
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-      
-      setAnimatedStats({
-        users: Math.floor(stats.users * eased),
-        guilds: Math.floor(stats.guilds * eased)
-      });
-      
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        setAnimatedStats({ users: stats.users, guilds: stats.guilds });
-      }
-    };
-    
-    requestAnimationFrame(animate);
-  }, [stats]);
+  // Animate stats counter
+  const animatedStats = useStatsAnimation(stats);
 
   return (
-    <main className="relative min-h-screen flex items-center justify-center px-4 py-12" style={{ zIndex: 1 }}>
+    <main className="relative min-h-screen flex items-center justify-center px-4 py-12 z-[1]">
       <div className="w-full max-w-2xl mx-auto">
         <div className="flex flex-col items-center text-center space-y-10">
           
-          <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+          <div className="opacity-0 animate-fade-in-up [animation-delay:0.1s]">
             <Image
-              src="/evict/evict.webp"
-              alt="evict logo"
+              src={APP_INFO.LOGO}
+              alt={`${APP_INFO.NAME} logo`}
               width={160}
               height={160}
               className="w-32 h-32 md:w-40 md:h-40 rounded-2xl"
@@ -69,9 +51,9 @@ export default function Home() {
             />
           </div>
 
-          <div className="opacity-0 animate-fade-in-up space-y-4" style={{ animationDelay: "0.2s" }}>
+          <div className="opacity-0 animate-fade-in-up space-y-4 [animation-delay:0.2s]">
             <h1 className="text-5xl md:text-6xl font-extralight tracking-tight text-white">
-              <span className="shimmer-text">evict</span>
+              <span className="shimmer-text">{APP_INFO.NAME}</span>
             </h1>
             
             <div className="flex items-center justify-center gap-6 text-sm md:text-base">
@@ -91,11 +73,15 @@ export default function Home() {
             </div>
           </div>
 
-          <p className="opacity-0 animate-fade-in-up text-base md:text-lg text-white/60 max-w-lg leading-relaxed px-4" style={{ animationDelay: "0.3s" }}>
-            Advanced Discord bot with comprehensive <span className="text-white/90">moderation</span>, robust <span className="text-white/90">antinuke</span> protection, and versatile <span className="text-white/90">utility</span> tools.
+          <p className="opacity-0 animate-fade-in-up text-base md:text-lg text-white/60 max-w-lg leading-relaxed px-4 [animation-delay:0.3s]">
+            {APP_INFO.DESCRIPTION.split(/\b(moderation|antinuke|utility)\b/).map((part, i) => 
+              ['moderation', 'antinuke', 'utility'].includes(part.toLowerCase()) 
+                ? <span key={i} className="text-white/90">{part}</span> 
+                : part
+            )}
           </p>
 
-          <div className="opacity-0 animate-fade-in-up w-full max-w-md space-y-3 px-4" style={{ animationDelay: "0.4s" }}>
+          <div className="opacity-0 animate-fade-in-up w-full max-w-md space-y-3 px-4 [animation-delay:0.4s]">
             <div className="grid grid-cols-3 gap-2">
               <Link href="/commands" className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1">
                 <MdKeyboardCommandKey size={14} className="flex-shrink-0" />
@@ -113,7 +99,7 @@ export default function Home() {
             
             <div className="grid grid-cols-3 gap-2">
               <a
-                href="https://discordapp.com/oauth2/authorize?client_id=1203514684326805524&scope=bot+applications.commands&permissions=8"
+                href={EXTERNAL_LINKS.INVITE}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
@@ -122,7 +108,7 @@ export default function Home() {
                 <span className="whitespace-nowrap">Invite</span>
               </a>
               <a
-                href="https://discord.gg/evict"
+                href={EXTERNAL_LINKS.DISCORD}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
@@ -131,7 +117,7 @@ export default function Home() {
                 <span className="whitespace-nowrap">Discord</span>
               </a>
               <a
-                href="https://docs.evict.bot"
+                href={EXTERNAL_LINKS.DOCS}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"

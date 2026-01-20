@@ -51,7 +51,7 @@ export const Footer = () => {
                 Documentation
               </Link>
               <Link
-                href="https://discord.gg/alina"
+                href="https://discord.gg/evict"
                 className="text-neutral-400 text-sm font-medium hover:text-white transition-colors"
               >
                 Support

@@ -4,6 +4,10 @@ import { useEffect, useState } from "react"
 import type { HealthData } from "@/types/status"
 import { solvePow } from "@/lib/pow"
 import type { PowChallenge } from "@/lib/pow"
+import { API_ENDPOINTS } from "@/lib/constants"
+
+const EXTERNAL_API_URL = 'https://elara.evict.bot';
+const REFRESH_INTERVAL = 30000;
 
 interface TopCommand {
   command_name: string
@@ -26,13 +30,12 @@ export default function StatusPage() {
   const fetchHealth = async () => {
     try {
       setLoading(true)
-      const res = await fetch('https://elara.evict.bot/health')
+      const res = await fetch(`${EXTERNAL_API_URL}/health`)
       if (!res.ok) throw new Error('Failed to fetch')
       const data = await res.json()
       setHealthData(data)
       setError(false)
     } catch (err) {
-      console.error('Failed to fetch health data:', err)
       setError(true)
     } finally {
       setLoading(false)
@@ -43,7 +46,7 @@ export default function StatusPage() {
     try {
       setCommandsLoading(true)
       
-      const challengeRes = await fetch('/api/pow/challenge')
+      const challengeRes = await fetch(API_ENDPOINTS.POW_CHALLENGE)
       if (!challengeRes.ok) throw new Error('Failed to get challenge')
       const challengeData = await challengeRes.json()
       
@@ -55,7 +58,7 @@ export default function StatusPage() {
         throw new Error('Failed to solve POW')
       }
       
-      const res = await fetch('/api/top-commands', {
+      const res = await fetch(API_ENDPOINTS.TOP_COMMANDS, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ solution: result.sol }),
@@ -68,7 +71,6 @@ export default function StatusPage() {
         setTopCommands(data.data)
       }
     } catch (err) {
-      console.error('Failed to fetch top commands:', err)
     } finally {
       setCommandsLoading(false)
     }
@@ -80,7 +82,7 @@ export default function StatusPage() {
     const interval = setInterval(() => {
       fetchHealth()
       fetchTopCommands()
-    }, 30000)
+    }, REFRESH_INTERVAL)
 
     return () => clearInterval(interval)
   }, [])
@@ -135,10 +137,10 @@ export default function StatusPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             <div className="bg-black border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-sm">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-[#ccccff]/70 text-xs font-medium">Status</h3>
+                <h3 className="text-[#ccccff]/70 text-xs font-medium">Guilds</h3>
               </div>
               <p className="text-lg font-light text-[#ccccff]">
-                {allClustersOperational ? 'Operational' : 'Degraded'}
+                {healthData.guilds.toLocaleString()}
               </p>
             </div>
 

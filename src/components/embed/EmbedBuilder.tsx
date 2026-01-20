@@ -159,7 +159,7 @@ export const EmbedBuilder = ({
             value={content}
             onChange={(e) => onContentChange(e.target.value)}
             className="w-full bg-[#ccccff]/5 border border-[#ccccff]/20 rounded-md px-3 py-2 text-[#ccccff] focus:outline-none focus:border-[#ccccff]/50 transition-colors"
-            placeholder="Hey, welcome to alina!"
+            placeholder="Hey, welcome to evict!"
             rows={2}
           />
         </div>

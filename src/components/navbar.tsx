@@ -4,8 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 import { usePathname } from "next/navigation";
-import alina from "../../public/evict/evict.webp";
-import { NavigationMenu } from "radix-ui";
 
 const HoverCard = HoverCardPrimitive;
 
@@ -23,8 +21,8 @@ export function MainNav() {
 
   return (
     <div className="fixed top-0 left-0 right-0 flex justify-center py-2 sm:py-4 px-2 sm:px-4 z-50">
-      <NavigationMenu.Root>
-        <NavigationMenu.List
+      <nav>
+        <ul
           className={`
             dynamic-island relative flex items-center gap-1 px-2 overflow-hidden
             transition-all duration-500 ease-spring
@@ -57,10 +55,10 @@ export function MainNav() {
           `}
           >
             <Image
-              src={alina.src}
+              src="/evict/evict.webp"
               width={16}
               height={16}
-              alt="alina"
+              alt="evict"
               className="w-6 h-6 sm:w-7 sm:h-7 rounded-full ring-2 ring-[#D4BCD2]/20"
             />
           </div>
@@ -71,7 +69,7 @@ export function MainNav() {
             ${isScrolled ? "ml-9 sm:ml-10" : "ml-0"}
           `}
           >
-            <NavigationMenu.Item className="flex items-center h-10 sm:h-11">
+            <li className="flex items-center h-10 sm:h-11">
               <Link
                 href="/"
                 className={`
@@ -89,9 +87,9 @@ export function MainNav() {
                 )}
                 <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-accent/5 transition-opacity" />
               </Link>
-            </NavigationMenu.Item>
+            </li>
 
-            <NavigationMenu.Item className="flex items-center h-10 sm:h-11">
+            <li className="flex items-center h-10 sm:h-11">
               <Link
                 href="/commands"
                 className={`
@@ -109,9 +107,9 @@ export function MainNav() {
                 )}
                 <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-accent/5 transition-opacity" />
               </Link>
-            </NavigationMenu.Item>
+            </li>
 
-            <NavigationMenu.Item className="flex items-center h-10 sm:h-11">
+            <li className="flex items-center h-10 sm:h-11">
               <Link
                 href="/embed"
                 className={`
@@ -129,9 +127,9 @@ export function MainNav() {
                 )}
                 <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-accent/5 transition-opacity" />
               </Link>
-            </NavigationMenu.Item>
+            </li>
 
-            <NavigationMenu.Item className="flex items-center h-10 sm:h-11">
+            <li className="flex items-center h-10 sm:h-11">
               <Link
                 href="/status"
                 className={`
@@ -159,14 +157,14 @@ export function MainNav() {
                 </span>
                 <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
-            </NavigationMenu.Item>
+            </li>
           </div>
 
-          <NavigationMenu.Item className="ml-auto flex items-center">
+          <li className="ml-auto flex items-center">
             <HoverCard.Root openDelay={100} closeDelay={100}>
               <HoverCard.Trigger asChild>
                 <Link
-                  href="https://discord.gg/alina"
+                  href="https://discord.gg/evict"
                   className={`
                     relative inline-flex items-center justify-center
                     bg-[#ccccff] text-[#1b1919]
@@ -246,7 +244,7 @@ export function MainNav() {
                       Join our community
                     </h4>
                     <p className="text-xs sm:text-sm text-muted-foreground">
-                      Get help, stay updated, and connect with other alina
+                      Get help, stay updated, and connect with other Evict
                       users.
                     </p>
                   </div>
@@ -254,9 +252,9 @@ export function MainNav() {
                 </HoverCard.Content>
               </HoverCard.Portal>
             </HoverCard.Root>
-          </NavigationMenu.Item>
-        </NavigationMenu.List>
-      </NavigationMenu.Root>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }

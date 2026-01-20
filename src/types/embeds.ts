@@ -43,7 +43,7 @@ export const defaultVariables: Record<string, string> = {
   "user.bot": "false",
   "user.created_at": "2024-01-01",
   "guild.id": "987654321098765432",
-  "guild.name": "alina Server",
+  "guild.name": "Evict Server",
   "guild.member_count": "1000",
   "guild.icon": "https://cdn.discordapp.com/icons/server/icon.png",
   "guild.owner_id": "123456789012345678",
@@ -56,8 +56,8 @@ export const defaultVariables: Record<string, string> = {
 };
 
 export const initialEmbed: EmbedData = {
-  title: "alina",
-  description: "Welcome to the alina embed builder! Create beautiful embeds with ease.",
+  title: "evict",
+  description: "Welcome to the evict embed builder! Create beautiful embeds with ease.",
   url: "",
   color: "#ccccff",
   timestamp: false,
