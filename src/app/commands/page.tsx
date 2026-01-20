@@ -1,0 +1,348 @@
+'use client'
+
+import { useEffect, useState } from 'react';
+import type { Command, CommandsData } from '@/types/commands';
+import { processCommands } from '@/lib/commands';
+import { MdSecurity, MdBuild, MdSettings, MdInfo, MdSportsEsports, MdWavingHand, MdAutoAwesome, MdList } from 'react-icons/md';
+import type { IconType } from 'react-icons';
+import { FaLastfm } from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
+import { MdOutlineFileCopy } from "react-icons/md";
+import { TbInfoSquareRounded } from "react-icons/tb";
+
+const getCategoryIcon = (category: string): IconType => {
+  const iconMap: Record<string, IconType> = {
+    'All': MdList,
+    'Config': MdSettings,
+    'Fun': MdWavingHand,
+    'Information': MdInfo,
+    'Lastfm': FaLastfm,
+    'Moderation': MdSecurity,
+    'Socials': MdSportsEsports,
+    'Utility': MdBuild,
+  };
+  return iconMap[category] || MdAutoAwesome;
+};
+
+export default function CommandsPage() {
+  const [commands, setCommands] = useState<CommandsData>({});
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCommand, setSelectedCommand] = useState<Command | null>(null);
+  const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch('https://elara.evict.bot/commands')
+      .then(res => res.json())
+      .then(data => {
+        const rawCommands = data?.data?.commands || data?.commands || data;
+        const processedData: CommandsData = {};
+        
+        for (const [category, cmds] of Object.entries(rawCommands)) {
+          processedData[category] = processCommands(cmds as Command[]);
+        }
+        
+        setCommands(processedData);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to fetch commands:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  const categories = ['All', ...Object.keys(commands).filter(cat => cat !== 'No Category' && cat !== 'Developer').sort()];
+  const totalCommands = Object.values(commands).reduce((acc, cmds) => acc + cmds.length, 0);
+
+  useEffect(() => {
+    if (categories.length > 0 && !selectedCategory) {
+      setSelectedCategory(categories[0]);
+    }
+  }, [categories, selectedCategory]);
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedCommand(text);
+    setTimeout(() => setCopiedCommand(null), 2000);
+  };
+
+  const getFilteredCommands = () => {
+    if (!selectedCategory) return [];
+    
+    let categoryCommands: Command[] = [];
+    if (selectedCategory === 'All') {
+      categoryCommands = Object.values(commands).flat();
+    } else {
+      categoryCommands = commands[selectedCategory] || [];
+    }
+    
+    if (!searchQuery) return categoryCommands;
+    return categoryCommands.filter(cmd =>
+      cmd.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cmd.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      cmd.aliases.some(alias => alias.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
+  };
+
+  const displayedCommands = getFilteredCommands();
+
+  if (loading) {
+    return (
+      <main className="min-h-screen flex items-center justify-center bg-transparent">
+        <div className="text-[#ccccff]/60 text-lg">Loading commands...</div>
+      </main>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto pt-20">
+        <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <h1 className="text-3xl sm:text-4xl font-light text-[#ccccff]">
+            <span className="shimmer-text">Commands</span>
+          </h1>
+        </div>
+
+        <div className="mb-6 bg-black border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-sm">
+          <div className="flex items-center gap-2 mb-2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="4 17 10 11 4 5" />
+              <line x1="12" y1="19" x2="20" y2="19" />
+            </svg>
+            <h2 className="text-lg font-light text-[#ccccff]">
+              {totalCommands} commands available
+            </h2>
+          </div>
+          <p className="text-[#ccccff]/60 text-xs">
+            Browse all available commands for Evict
+          </p>
+        </div>
+
+        <div className="flex gap-6">
+          <aside className="w-64 flex-shrink-0 hidden lg:block">
+            <div className="sticky top-24 space-y-2">
+              <h3 className="text-[#ccccff]/60 text-sm font-medium mb-3 px-3">Categories</h3>
+              {categories.map(category => {
+                const Icon = getCategoryIcon(category);
+                const isActive = selectedCategory === category;
+                const categoryCommands = category === 'All' 
+                  ? Object.values(commands).flat() 
+                  : commands[category] || [];
+                
+                return (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-full transition-colors ${
+                      isActive 
+                        ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-[#ccccff]' 
+                        : 'hover:bg-[#ccccff]/5 text-[#ccccff]/70 hover:text-[#ccccff] border border-transparent'
+                    }`}
+                  >
+                    <Icon size={20} className={isActive ? 'text-[#ccccff]' : 'text-[#ccccff]/70'} />
+                    <div className="flex-1 text-left">
+                      <div className="text-sm font-medium bg-[#ccccff]/10 px-2 py-0.5 rounded-full inline-block">{category}</div>
+                      <div className={`text-xs ${isActive ? 'text-[#ccccff]/80' : 'text-[#ccccff]/40'}`}>
+                        {categoryCommands.length} commands
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </aside>
+
+          <div className="flex-1 min-w-0">
+            <div className="mb-6 lg:hidden">
+              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                {categories.map(category => {
+                  const Icon = getCategoryIcon(category);
+                  const isActive = selectedCategory === category;
+                  
+                  return (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors flex-shrink-0 ${
+                        isActive 
+                          ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-[#ccccff]' 
+                          : 'bg-[#ccccff]/5 text-[#ccccff]/70 hover:text-[#ccccff] border border-transparent'
+                      }`}
+                    >
+                      <Icon size={16} className={isActive ? 'text-[#ccccff]' : 'text-[#ccccff]/70'} />
+                      <span className="text-sm font-medium">{category}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-[#ccccff]/40">
+                  <FaSearch />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search commands..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-black border border-[#ccccff]/20 rounded-full pl-12 pr-4 py-3 text-[#ccccff] placeholder-[#ccccff]/40 focus:outline-none focus:border-[#ccccff]/50 transition-colors"
+                />
+              </div>
+            </div>
+
+            {selectedCategory && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {displayedCommands.map((command) => (
+                  <div
+                    key={command.qualified_name}
+                    className="bg-black border border-[#ccccff]/20 rounded-2xl p-4 hover:border-[#ccccff]/40 transition-colors"
+                  >
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-[#ccccff] font-medium bg-[#ccccff]/10 px-3 py-1 rounded-full">{command.is_subcommand ? command.qualified_name : command.name}</h3>
+                      <div className="flex items-center gap-2 text-[#ccccff]">
+                        <div className="relative">
+                          <button
+                            onClick={() => copyToClipboard(command.is_subcommand ? command.qualified_name : command.name)}
+                            className="p-1 hover:bg-[#ccccff]/20 rounded transition-colors"
+                            title="Copy command"
+                          >
+                            < MdOutlineFileCopy />
+                          </button>
+                          {copiedCommand === (command.is_subcommand ? command.qualified_name : command.name) && (
+                            <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#ccccff] text-black text-xs px-2 py-1 rounded whitespace-nowrap animate-fade-in">
+                              Copied!
+                            </div>
+                          )}
+                        </div>
+                        <button
+                          onClick={() => setSelectedCommand(command)}
+                          className="p-1 hover:bg-[#ccccff]/20 rounded transition-colors"
+                          title="Command info"
+                        >
+                          <TbInfoSquareRounded />
+                        </button>
+                      </div>
+                    </div>
+
+                    <p className="text-[#ccccff]/70 text-sm mb-3 line-clamp-2">
+                      {command.description}
+                    </p>
+
+                    <div className="space-y-2 text-xs">
+                      {command.signature && (
+                        <div>
+                          <span className="text-[#ccccff]/60">Arguments: </span>
+                          <span className="text-[#ccccff]/80">{command.signature}</span>
+                        </div>
+                      )}
+                      {command.permissions.length > 0 && (
+                        <div>
+                          <span className="text-[#ccccff]/60">Permissions: </span>
+                          <span className="text-[#ccccff]/80">{command.permissions.join(', ')}</span>
+                        </div>
+                      )}
+                      {command.signature && (
+                        <div>
+                          <span className="text-[#ccccff]/60">Syntax: </span>
+                          <code className="text-[#ccccff]/80 bg-[#ccccff]/10 px-1 rounded">
+                            {command.is_subcommand ? command.qualified_name : command.name} {command.signature}
+                          </code>
+                        </div>
+                      )}
+                      {command.aliases.length > 0 && (
+                        <div>
+                          <span className="text-[#ccccff]/60">Aliases: </span>
+                          <span className="text-[#ccccff]/80">{command.aliases.join(', ')}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+
+                {displayedCommands.length === 0 && (
+                  <div className="col-span-2 text-center py-12 text-[#ccccff]/50">
+                    {searchQuery ? `No commands found matching "${searchQuery}"` : 'No commands in this category'}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {selectedCommand && (
+        <div 
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          onClick={() => setSelectedCommand(null)}
+        >
+          <div 
+            className="bg-black border border-[#ccccff]/30 rounded-xl max-w-md w-full p-6 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#ccccff] rounded-full" />
+                <h2 className="text-[#ccccff] font-semibold">Command Information</h2>
+              </div>
+              <button
+                onClick={() => setSelectedCommand(null)}
+                className="text-[#ccccff]/60 hover:text-[#ccccff] transition-colors"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <p className="text-[#ccccff]/60 text-xs uppercase mb-1">Command</p>
+                <p className="text-[#ccccff] font-medium">{selectedCommand.is_subcommand ? selectedCommand.qualified_name : selectedCommand.name}</p>
+              </div>
+
+              {selectedCommand.aliases.length > 0 && (
+                <div>
+                  <p className="text-[#ccccff]/60 text-xs uppercase mb-1">Aliases</p>
+                  <p className="text-[#ccccff]">{selectedCommand.aliases.join(', ')}</p>
+                </div>
+              )}
+
+              {selectedCommand.permissions.length > 0 && (
+                <div>
+                  <p className="text-[#ccccff]/60 text-xs uppercase mb-2">Permissions Required</p>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedCommand.permissions.map(perm => (
+                      <span
+                        key={perm}
+                        className="bg-[#ccccff]/20 text-[#ccccff] px-3 py-1 rounded-full text-sm"
+                      >
+                        {perm}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div>
+                <p className="text-[#ccccff]/60 text-xs uppercase mb-1">Description</p>
+                <p className="text-[#ccccff]/80 text-sm">{selectedCommand.description}</p>
+              </div>
+
+              {selectedCommand.signature && (
+                <div>
+                  <p className="text-[#ccccff]/60 text-xs uppercase mb-1">Syntax</p>
+                  <code className="text-[#ccccff]/80 bg-[#ccccff]/10 px-3 py-2 rounded block text-sm">
+                    {selectedCommand.is_subcommand ? selectedCommand.qualified_name : selectedCommand.name} {selectedCommand.signature}
+                  </code>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </main>
+  );
+}
