@@ -1,14 +1,45 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import "@/app/globals.css";
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import Head from "next/head";
 import { GradientBackground } from "@/components/gradient-background";
 import { MainNav } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+export const viewport: Viewport = {
+  themeColor: "#E3E3ED",
+  colorScheme: "dark",
+};
+
 export const metadata: Metadata = {
-  title: "evict",
-  description: "The all-in-one solution for seamless server management — powerful, polished, and visually refined.",
-  icons: {
-    icon: "/evict/evict.webp",
+  metadataBase: new URL("https://evict.bot"),
+  title: "Evict",
+  description:
+    "The all-in-one solution for seamless server management — powerful, polished, and visually refined.",
+  twitter: {
+    site: "https://evict.bot/",
+    card: "player",
+  },
+  openGraph: {
+    url: "https://evict.bot/",
+    type: "website",
+    title: "evict",
+    // siteName: "evict.bot",
+    description:
+      "The all-in-one solution for seamless server management — powerful, polished, and visually refined.",
+    images: [
+      {
+        url: "https://r2.evict.bot/evict.jpeg",
+        width: 500,
+        height: 500,
+        alt: "evict",
+      },
+    ],
   },
 };
 
@@ -18,14 +49,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased" style={{ position: "relative", backgroundColor: "#000" }}>
+    <html lang="en" suppressHydrationWarning>
+      <Head>
+        <meta property="theme-color" content="#E3E3ED" />
+      </Head>
+      <body
+        className={`bg-evict-100 ${inter.className} font-inter leading-line37 tracking-tighterCustom1Point2 flex flex-col min-h-screen justify-between dark font-light`}
+      >
         <GradientBackground />
-        <MainNav />
-        <div className="min-h-screen flex flex-col">
-          {children}
-        </div>
-        <Footer />
+        {children}
       </body>
     </html>
   );

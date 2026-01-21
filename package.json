@@ -10,7 +10,7 @@
     "build:prod": "bunx tw-patch install && bunx tw-patch extract && bun run build && bun run mangle",
     "format:check": "prettier --check .",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@radix-ui/react-hover-card": "^1.1.5",
@@ -29,7 +29,6 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
     "@eslint/eslintrc": "^3.3.3",
     "@types/ioredis": "^5.0.0",
     "@types/node": "^20.19.30",
