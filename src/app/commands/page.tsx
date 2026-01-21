@@ -30,6 +30,7 @@ const getCategoryIcon = (category: string): IconType => {
 export default function CommandsPage() {
   const [commands, setCommands] = useState<CommandsData>({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedCommand, setSelectedCommand] = useState<Command | null>(null);
@@ -37,7 +38,10 @@ export default function CommandsPage() {
 
   useEffect(() => {
     fetch(`${EXTERNAL_API_URL}/commands`)
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch');
+        return res.json();
+      })
       .then(data => {
         const rawCommands = data?.data?.commands || data?.commands || data;
         const processedData: CommandsData = {};
@@ -47,14 +51,18 @@ export default function CommandsPage() {
         }
         
         setCommands(processedData);
+        setError(false);
         setLoading(false);
       })
       .catch(() => {
+        setError(true);
         setLoading(false);
       });
   }, []);
 
-  const categories = ['All', ...Object.keys(commands).filter(cat => cat !== 'No Category' && cat !== 'Developer').sort()];
+  const categories = error 
+    ? Object.keys(commands).filter(cat => cat !== 'No Category' && cat !== 'Developer').sort()
+    : ['All', ...Object.keys(commands).filter(cat => cat !== 'No Category' && cat !== 'Developer').sort()];
   const totalCommands = Object.values(commands).reduce((acc, cmds) => acc + cmds.length, 0);
 
   useEffect(() => {
@@ -108,18 +116,40 @@ export default function CommandsPage() {
 
         <div className="mb-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
           <div className="flex items-center gap-2 mb-2">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="4 17 10 11 4 5" />
-              <line x1="12" y1="19" x2="20" y2="19" />
-            </svg>
+            {error ? (
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
+            )}
             <h2 className="text-lg font-light text-[#ccccff]">
-              {totalCommands} commands available
+              {error ? 'Service Unavailable' : `${totalCommands} commands available`}
             </h2>
           </div>
           <p className="text-[#ccccff]/60 text-xs">
-            Browse all available commands for Evict
+            {error ? 'Unable to fetch commands. Please try again later.' : 'Browse all available commands for Evict'}
           </p>
         </div>
+
+        {error && (
+          <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 backdrop-blur-sm mb-6">
+            <div className="flex items-start gap-3">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-400 flex-shrink-0 mt-0.5">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              <div>
+                <p className="text-red-400 font-medium mb-1">Commands API Unavailable</p>
+                <p className="text-red-400/70 text-sm">
+                  We're currently unable to fetch the commands list. This may be due to scheduled maintenance or a temporary service outage. Please check back later.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="flex gap-6">
           <aside className="w-64 flex-shrink-0 hidden lg:block">

@@ -2,14 +2,18 @@ import { NextResponse } from 'next/server';
 import { Pool } from 'pg';
 import { powManager } from '@/lib/pow';
 import type { PowSolution } from '@/lib/pow';
+import { getCached, setCached } from '@/lib/redis';
 
 const pool = new Pool({
-  host: 'localhost',
-  database: 'elara',
-  user: 'postgres',
-  password: 'admin',
-  port: 5432,
+  host: process.env.POSTGRES_HOST || 'localhost',
+  database: process.env.POSTGRES_DB || 'elara',
+  user: process.env.POSTGRES_USER || 'postgres',
+  password: process.env.POSTGRES_PASSWORD,
+  port: Number(process.env.POSTGRES_PORT) || 5432,
 });
+
+const CACHE_KEY = 'top_commands_24h';
+const CACHE_EXPIRATION = 300; // 5 minutes in seconds
 
 export async function POST(request: Request) {
   try {
@@ -32,6 +36,17 @@ export async function POST(request: Request) {
       );
     }
 
+    const cachedData = await getCached<{ rows: any[]; timestamp: string }>(CACHE_KEY);
+    
+    if (cachedData) {
+      return NextResponse.json({
+        success: true,
+        data: cachedData.rows,
+        timestamp: cachedData.timestamp,
+        cached: true,
+      });
+    }
+
     const query = `
       SELECT 
         command_name,
@@ -46,11 +61,15 @@ export async function POST(request: Request) {
     `;
 
     const result = await pool.query(query);
+    const timestamp = new Date().toISOString();
+    
+    await setCached(CACHE_KEY, { rows: result.rows, timestamp }, CACHE_EXPIRATION);
     
     return NextResponse.json({
       success: true,
       data: result.rows,
-      timestamp: new Date().toISOString(),
+      timestamp,
+      cached: false,
     });
   } catch (error) {
     console.error('Database error:', error);

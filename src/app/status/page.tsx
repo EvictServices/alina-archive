@@ -133,6 +133,14 @@ export default function StatusPage() {
           </p>
         </div>
 
+        {error && (
+          <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 backdrop-blur-sm mb-6">
+            <p className="text-red-400">
+              Unable to fetch status information. Please try again later.
+            </p>
+          </div>
+        )}
+
         {healthData && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
@@ -310,14 +318,6 @@ export default function StatusPage() {
                 </div>
               ))}
             </div>
-          </div>
-        )}
-
-        {error && (
-          <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-6 backdrop-blur-sm">
-            <p className="text-red-400">
-              Unable to fetch status information. Please try again later.
-            </p>
           </div>
         )}
       </div>
