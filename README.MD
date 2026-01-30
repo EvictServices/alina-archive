@@ -1,15 +1,16 @@
 # Evict Bot Website
 
-Modern, high-performance website for the Evict Discord bot featuring real-time status monitoring, command documentation, and an interactive embed builder.
+Modern, high-performance website for the Evict Discord bot featuring real-time status monitoring, command documentation, an interactive embed builder, and a stunning animated gradient background.
 
 ## Features
 
+- **Animated Gradient Background** - WebGL-powered gradient mesh with smooth color transitions
 - **Real-time Status Dashboard** - Live cluster and shard monitoring with health metrics
-- **Command Browser** - Searchable, categorized command documentation
-- **Embed Builder** - Interactive Discord embed creator with live preview
+- **Command Browser** - Searchable, categorized command documentation with 190+ commands
+- **Embed Builder** - Interactive Discord embed creator with live preview and webhook support
 - **POW Protection** - Client-side proof-of-work system for API rate limiting
-- **Responsive Design** - Optimized for all screen sizes
-- **Animated UI** - Smooth transitions and counter animations
+- **Responsive Design** - Optimized for all screen sizes with glassmorphism effects
+- **Smooth Animations** - Framer Motion transitions and counter animations
 
 ## Tech Stack
 
@@ -18,6 +19,7 @@ Modern, high-performance website for the Evict Discord bot featuring real-time s
 - **Language**: TypeScript 5
 - **Styling**: Tailwind CSS 3.4
 - **Animations**: Framer Motion 12.27
+- **Graphics**: Custom WebGL gradient shader
 - **Package Manager**: Bun
 - **Process Manager**: PM2
 
@@ -30,13 +32,18 @@ src/
 │   │   ├── health/           # Health status proxy
 │   │   ├── pow/              # POW challenge generation
 │   │   └── top-commands/     # Protected command stats
+│   ├── (legal)/              # Legal pages (terms, privacy)
 │   ├── commands/             # Command documentation page
 │   ├── embed/                # Embed builder page
 │   ├── status/               # Status dashboard page
-│   └── layout.tsx            # Root layout
+│   ├── globals.css           # Global styles and animations
+│   └── layout.tsx            # Root layout with gradient
 ├── components/               # React components
 │   ├── embed/                # Embed builder components
-│   └── ui/                   # Reusable UI components
+│   ├── global/               # Global layout components
+│   ├── ui/                   # Reusable UI components
+│   ├── gradient.js           # WebGL gradient implementation
+│   └── navbar.tsx            # Navigation component
 ├── hooks/                    # Custom React hooks
 │   ├── useFetch.ts           # Data fetching hook
 │   ├── useStatsAnimation.ts  # Counter animation hook
@@ -44,12 +51,15 @@ src/
 ├── lib/                      # Utilities and helpers
 │   ├── constants.ts          # App-wide constants
 │   ├── embed-utils.ts        # Embed processing utilities
+│   ├── commands.ts           # Command processing
+│   ├── obfuscate.ts          # Content obfuscation
 │   ├── pow/                  # Proof-of-work system
 │   └── utils.tsx             # General utilities
 └── types/                    # TypeScript definitions
     ├── commands.ts
     ├── embeds.ts
-    └── status.ts
+    ├── status.ts
+    └── ui.ts
 ```
 
 ## Getting Started
@@ -209,6 +219,20 @@ Real-time monitoring with:
 - **Animation Hooks**: Custom hooks prevent re-renders
 - **Memoization**: Strategic use of React optimization
 - **POW Caching**: Challenge reuse within time window
+- **WebGL Gradient**: Hardware-accelerated background animations
+- **CSS Variables**: Dynamic theming without re-renders
+
+## Design System
+
+### Color Palette
+- Primary gradient: `#8b7a9f → #7a6a8e → #6a5a7e → #5a4a6e`
+- Text colors: White with opacity variants for hierarchy
+- Accent colors: Lavender-based with glassmorphism effects
+
+### Typography
+- Font family: Outfit (100-700 weights)
+- Responsive scaling with Tailwind utilities
+- Custom text animations and shimmer effects
 
 ## Scripts
 
@@ -228,17 +252,34 @@ bun run lint         # Run linter
 
 ## Database Schema
 
-The PostgreSQL database tracks command usage:
+PostgreSQL database for command usage analytics:
 
 ```sql
 CREATE TABLE command_stats (
   id SERIAL PRIMARY KEY,
-  command_name VARCHAR(255),
-  invoke_count INTEGER,
+  command_name VARCHAR(255) NOT NULL,
+  invoke_count INTEGER DEFAULT 0,
   last_invoked TIMESTAMP,
-  created_at TIMESTAMP DEFAULT NOW()
+  created_at TIMESTAMP DEFAULT NOW(),
+  INDEX idx_command_name (command_name),
+  INDEX idx_invoke_count (invoke_count DESC)
 );
 ```
+
+## Architecture Highlights
+
+### WebGL Gradient System
+- Custom shader implementation for smooth color transitions
+- Based on Stripe's gradient animation
+- Hardware-accelerated rendering
+- Configurable via CSS variables
+
+### Proof-of-Work Flow
+1. Client requests challenge from `/api/pow/challenge`
+2. SHA-256-based computational puzzle
+3. Difficulty-adjusted based on load
+4. Solution validated server-side
+5. Rate limiting enforced per solution
 
 ## Contributing
 
@@ -269,6 +310,6 @@ This project is proprietary. All rights reserved.
 
 ---
 
-**Last Updated**: January 2026  
-**Version**: 2.0.0  
+**Last Updated**: January 30, 2026  
+**Version**: 2.1.0  
 **Maintained by**: Evict Development Team
