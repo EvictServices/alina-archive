@@ -121,28 +121,28 @@ export const EmbedBuilder = ({
           <div className="p-1.5 rounded-md bg-alina-primary/10 mr-2">
             <MdCreateNewFolder className="w-4 h-4 text-alina-primary/80" />
           </div>
-          <h2 className="text-lg font-semibold text-[#ccccff]">
+          <h2 className="text-lg font-semibold text-white">
             Embed Builder
           </h2>
         </div>
         <div className="flex gap-2">
           <button
             onClick={onPreviewOpen}
-            className="p-1.5 text-[#ccccff]/70 hover:text-[#ccccff] hover:bg-[#ccccff]/5 rounded-md transition-colors"
+            className="p-1.5 text-white/70 hover:text-white hover:bg-[#ccccff]/5 rounded-md transition-colors"
             title="Preview"
           >
             <FiEye className="w-4 h-4" />
           </button>
           <button
             onClick={onCopyToClipboard}
-            className="p-1.5 text-[#ccccff]/70 hover:text-[#ccccff] hover:bg-[#ccccff]/5 rounded-md transition-colors"
+            className="p-1.5 text-white/70 hover:text-white hover:bg-[#ccccff]/5 rounded-md transition-colors"
             title="Copy to clipboard"
           >
             <FiCopy className="w-4 h-4" />
           </button>
           <button
             onClick={onDownloadScript}
-            className="p-1.5 text-[#ccccff]/70 hover:text-[#ccccff] hover:bg-[#ccccff]/5 rounded-md transition-colors"
+            className="p-1.5 text-white/70 hover:text-white hover:bg-[#ccccff]/5 rounded-md transition-colors"
             title="Download script"
           >
             <FiDownload className="w-4 h-4" />
@@ -152,13 +152,13 @@ export const EmbedBuilder = ({
 
       <div className="p-4">
         <div className="mb-4">
-          <label className="block text-[#ccccff]/60 text-[11px] leading-none mb-1">
+          <label className="block text-white/60 text-[11px] leading-none mb-1">
             Message Content
           </label>
           <textarea
             value={content}
             onChange={(e) => onContentChange(e.target.value)}
-            className="w-full bg-[#ccccff]/5 border border-[#ccccff]/20 rounded-md px-3 py-2 text-[#ccccff] focus:outline-none focus:border-[#ccccff]/50 transition-colors"
+            className="w-full bg-[#ccccff]/5 border border-[#ccccff]/20 rounded-md px-3 py-2 text-white focus:outline-none focus:border-[#ccccff]/50 transition-colors"
             placeholder="Hey, welcome to evict!"
             rows={2}
           />
@@ -174,8 +174,8 @@ export const EmbedBuilder = ({
                   key={tab}
                   className={`px-4 py-2 text-xs transition-colors ${
                     activeTab === tab
-                      ? "text-[#ccccff] border-b-2 border-[#ccccff]"
-                      : "text-[#ccccff]/70 hover:text-[#ccccff]/90"
+                      ? "text-white border-b-2 border-[#ccccff]"
+                      : "text-white/70 hover:text-white/90"
                   } ${isDisabled ? "opacity-30 cursor-not-allowed" : ""}`}
                   onClick={() => !isDisabled && onTabChange(tab)}
                   title={isDisabled ? "Buttons are not supported with webhooks" : ""}
@@ -205,7 +205,7 @@ export const EmbedBuilder = ({
             )}
             {activeTab === "buttons" && (
               webhookUrl ? (
-                <div className="text-center py-8 text-[#ccccff]/40">
+                <div className="text-center py-8 text-white/40">
                   <p className="text-sm">Buttons are not supported with Discord webhooks.</p>
                   <p className="text-xs mt-2">Remove the webhook URL to enable buttons.</p>
                 </div>

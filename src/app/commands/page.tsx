@@ -100,7 +100,7 @@ export default function CommandsPage() {
   if (loading) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-transparent">
-        <div className="text-[#ccccff]/60 text-lg">Loading commands...</div>
+        <div className="text-white/60 text-lg">Loading commands...</div>
       </main>
     );
   }
@@ -109,7 +109,7 @@ export default function CommandsPage() {
     <main className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto pt-20">
         <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-          <h1 className="text-3xl sm:text-4xl font-light text-[#ccccff]">
+          <h1 className="text-3xl sm:text-4xl font-light text-white">
             <span className="shimmer-text">Commands</span>
           </h1>
         </div>
@@ -124,11 +124,11 @@ export default function CommandsPage() {
                 <line x1="12" y1="19" x2="20" y2="19" />
               </svg>
             )}
-            <h2 className="text-lg font-light text-[#ccccff]">
+            <h2 className="text-lg font-light text-white">
               {error ? 'Service Unavailable' : `${totalCommands} commands available`}
             </h2>
           </div>
-          <p className="text-[#ccccff]/60 text-xs">
+          <p className="text-white/60 text-xs">
             {error ? 'Unable to fetch commands. Please try again later.' : 'Browse all available commands for Evict'}
           </p>
         </div>
@@ -154,7 +154,7 @@ export default function CommandsPage() {
         <div className="flex gap-6">
           <aside className="w-64 flex-shrink-0 hidden lg:block">
             <div className="sticky top-24 space-y-2">
-              <h3 className="text-[#ccccff]/60 text-sm font-medium mb-3 px-3">Categories</h3>
+              <h3 className="text-white/60 text-sm font-medium mb-3 px-3">Categories</h3>
               {categories.map(category => {
                 const Icon = getCategoryIcon(category);
                 const isActive = selectedCategory === category;
@@ -168,14 +168,14 @@ export default function CommandsPage() {
                     onClick={() => setSelectedCategory(category)}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-full transition-colors ${
                       isActive 
-                        ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-[#ccccff]' 
-                        : 'hover:bg-[#ccccff]/5 text-[#ccccff]/70 hover:text-[#ccccff] border border-transparent'
+                        ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-white' 
+                        : 'hover:bg-[#ccccff]/5 text-white/70 hover:text-white border border-transparent'
                     }`}
                   >
-                    <Icon size={20} className={isActive ? 'text-[#ccccff]' : 'text-[#ccccff]/70'} />
+                    <Icon size={20} className={isActive ? 'text-white' : 'text-white/70'} />
                     <div className="flex-1 text-left">
                       <div className="text-sm font-medium bg-[#ccccff]/10 px-2 py-0.5 rounded-full inline-block">{category}</div>
-                      <div className={`text-xs ${isActive ? 'text-[#ccccff]/80' : 'text-[#ccccff]/40'}`}>
+                      <div className={`text-xs ${isActive ? 'text-white/80' : 'text-white/40'}`}>
                         {categoryCommands.length} commands
                       </div>
                     </div>
@@ -198,11 +198,11 @@ export default function CommandsPage() {
                       onClick={() => setSelectedCategory(category)}
                       className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors flex-shrink-0 ${
                         isActive 
-                          ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-[#ccccff]' 
-                          : 'bg-[#ccccff]/5 text-[#ccccff]/70 hover:text-[#ccccff] border border-transparent'
+                          ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-white' 
+                          : 'bg-[#ccccff]/5 text-white/70 hover:text-white border border-transparent'
                       }`}
                     >
-                      <Icon size={16} className={isActive ? 'text-[#ccccff]' : 'text-[#ccccff]/70'} />
+                      <Icon size={16} className={isActive ? 'text-white' : 'text-white/70'} />
                       <span className="text-sm font-medium">{category}</span>
                     </button>
                   );
@@ -212,7 +212,7 @@ export default function CommandsPage() {
 
             <div className="mb-6">
               <div className="relative">
-                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-[#ccccff]/40">
+                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-white/40">
                   <FaSearch />
                 </div>
                 <input
@@ -220,7 +220,7 @@ export default function CommandsPage() {
                   placeholder="Search commands..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-full pl-12 pr-4 py-3 text-[#ccccff] placeholder-[#ccccff]/40 focus:outline-none focus:border-[#ccccff]/50 transition-colors backdrop-blur-md"
+                  className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-full pl-12 pr-4 py-3 text-white placeholder-[#ccccff]/40 focus:outline-none focus:border-[#ccccff]/50 transition-colors backdrop-blur-md"
                 />
               </div>
             </div>
@@ -233,8 +233,8 @@ export default function CommandsPage() {
                     className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 hover:border-[#ccccff]/40 transition-colors backdrop-blur-md"
                   >
                     <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-[#ccccff] font-medium bg-[#ccccff]/10 px-3 py-1 rounded-full">{command.is_subcommand ? command.qualified_name : command.name}</h3>
-                      <div className="flex items-center gap-2 text-[#ccccff]">
+                      <h3 className="text-white font-medium bg-[#ccccff]/10 px-3 py-1 rounded-full">{command.is_subcommand ? command.qualified_name : command.name}</h3>
+                      <div className="flex items-center gap-2 text-white">
                         <div className="relative">
                           <button
                             onClick={() => copyToClipboard(command.is_subcommand ? command.qualified_name : command.name)}
@@ -259,35 +259,35 @@ export default function CommandsPage() {
                       </div>
                     </div>
 
-                    <p className="text-[#ccccff]/70 text-sm mb-3 line-clamp-2">
+                    <p className="text-white/70 text-sm mb-3 line-clamp-2">
                       {command.description}
                     </p>
 
                     <div className="space-y-2 text-xs">
                       {command.signature && (
                         <div>
-                          <span className="text-[#ccccff]/60">Arguments: </span>
-                          <span className="text-[#ccccff]/80">{command.signature}</span>
+                          <span className="text-white/60">Arguments: </span>
+                          <span className="text-white/80">{command.signature}</span>
                         </div>
                       )}
                       {command.permissions.length > 0 && (
                         <div>
-                          <span className="text-[#ccccff]/60">Permissions: </span>
-                          <span className="text-[#ccccff]/80">{command.permissions.join(', ')}</span>
+                          <span className="text-white/60">Permissions: </span>
+                          <span className="text-white/80">{command.permissions.join(', ')}</span>
                         </div>
                       )}
                       {command.signature && (
                         <div>
-                          <span className="text-[#ccccff]/60">Syntax: </span>
-                          <code className="text-[#ccccff]/80 bg-[#ccccff]/10 px-1 rounded">
+                          <span className="text-white/60">Syntax: </span>
+                          <code className="text-white/80 bg-[#ccccff]/10 px-1 rounded">
                             {command.is_subcommand ? command.qualified_name : command.name} {command.signature}
                           </code>
                         </div>
                       )}
                       {command.aliases.length > 0 && (
                         <div>
-                          <span className="text-[#ccccff]/60">Aliases: </span>
-                          <span className="text-[#ccccff]/80">{command.aliases.join(', ')}</span>
+                          <span className="text-white/60">Aliases: </span>
+                          <span className="text-white/80">{command.aliases.join(', ')}</span>
                         </div>
                       )}
                     </div>
@@ -295,7 +295,7 @@ export default function CommandsPage() {
                 ))}
 
                 {displayedCommands.length === 0 && (
-                  <div className="col-span-2 text-center py-12 text-[#ccccff]/50">
+                  <div className="col-span-2 text-center py-12 text-white/50">
                     {searchQuery ? `No commands found matching "${searchQuery}"` : 'No commands in this category'}
                   </div>
                 )}
@@ -317,11 +317,11 @@ export default function CommandsPage() {
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[#ccccff] rounded-full" />
-                <h2 className="text-[#ccccff] font-semibold">Command Information</h2>
+                <h2 className="text-white font-semibold">Command Information</h2>
               </div>
               <button
                 onClick={() => setSelectedCommand(null)}
-                className="text-[#ccccff]/60 hover:text-[#ccccff] transition-colors"
+                className="text-white/60 hover:text-white transition-colors"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M18 6 6 18M6 6l12 12" />
@@ -331,25 +331,25 @@ export default function CommandsPage() {
 
             <div className="space-y-4">
               <div>
-                <p className="text-[#ccccff]/60 text-xs uppercase mb-1">Command</p>
-                <p className="text-[#ccccff] font-medium">{selectedCommand.is_subcommand ? selectedCommand.qualified_name : selectedCommand.name}</p>
+                <p className="text-white/60 text-xs uppercase mb-1">Command</p>
+                <p className="text-white font-medium">{selectedCommand.is_subcommand ? selectedCommand.qualified_name : selectedCommand.name}</p>
               </div>
 
               {selectedCommand.aliases.length > 0 && (
                 <div>
-                  <p className="text-[#ccccff]/60 text-xs uppercase mb-1">Aliases</p>
-                  <p className="text-[#ccccff]">{selectedCommand.aliases.join(', ')}</p>
+                  <p className="text-white/60 text-xs uppercase mb-1">Aliases</p>
+                  <p className="text-white">{selectedCommand.aliases.join(', ')}</p>
                 </div>
               )}
 
               {selectedCommand.permissions.length > 0 && (
                 <div>
-                  <p className="text-[#ccccff]/60 text-xs uppercase mb-2">Permissions Required</p>
+                  <p className="text-white/60 text-xs uppercase mb-2">Permissions Required</p>
                   <div className="flex flex-wrap gap-2">
                     {selectedCommand.permissions.map(perm => (
                       <span
                         key={perm}
-                        className="bg-[#ccccff]/20 text-[#ccccff] px-3 py-1 rounded-full text-sm"
+                        className="bg-[#ccccff]/20 text-white px-3 py-1 rounded-full text-sm"
                       >
                         {perm}
                       </span>
@@ -359,14 +359,14 @@ export default function CommandsPage() {
               )}
 
               <div>
-                <p className="text-[#ccccff]/60 text-xs uppercase mb-1">Description</p>
-                <p className="text-[#ccccff]/80 text-sm">{selectedCommand.description}</p>
+                <p className="text-white/60 text-xs uppercase mb-1">Description</p>
+                <p className="text-white/80 text-sm">{selectedCommand.description}</p>
               </div>
 
               {selectedCommand.signature && (
                 <div>
-                  <p className="text-[#ccccff]/60 text-xs uppercase mb-1">Syntax</p>
-                  <code className="text-[#ccccff]/80 bg-[#ccccff]/10 px-3 py-2 rounded block text-sm">
+                  <p className="text-white/60 text-xs uppercase mb-1">Syntax</p>
+                  <code className="text-white/80 bg-[#ccccff]/10 px-3 py-2 rounded block text-sm">
                     {selectedCommand.is_subcommand ? selectedCommand.qualified_name : selectedCommand.name} {selectedCommand.signature}
                   </code>
                 </div>

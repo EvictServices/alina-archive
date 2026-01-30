@@ -196,17 +196,17 @@ export default function EmbedPage() {
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
               </svg>
-              <h2 className="text-lg font-light text-[#ccccff]">
+              <h2 className="text-lg font-light text-white">
                 Create custom Discord embeds
               </h2>
             </div>
-            <p className="text-[#ccccff]/60 text-xs">
+            <p className="text-white/60 text-xs">
               Design beautiful embeds with variables and send them via webhooks or generate scripts
             </p>
           </div>
 
           <div className="mb-6">
-            <label className="block text-[#ccccff]/60 text-sm mb-2">
+            <label className="block text-white/60 text-sm mb-2">
               Discord Webhook URL (Optional)
             </label>
             <div className="flex gap-2">
@@ -214,7 +214,7 @@ export default function EmbedPage() {
                 type="text"
                 value={webhookUrl}
                 onChange={(e) => setWebhookUrl(e.target.value)}
-                className="flex-1 bg-white/[0.02] border border-[#ccccff]/20 rounded-full px-4 py-3 text-[#ccccff] focus:outline-none focus:border-[#ccccff]/50 transition-colors backdrop-blur-md"
+                className="flex-1 bg-white/[0.02] border border-[#ccccff]/20 rounded-full px-4 py-3 text-white focus:outline-none focus:border-[#ccccff]/50 transition-colors backdrop-blur-md"
                 placeholder="https://discord.com/api/webhooks/..."
               />
               <button
@@ -222,12 +222,12 @@ export default function EmbedPage() {
                 disabled={!webhookUrl || sendStatus === "sending"}
                 className={`px-6 py-3 rounded-full font-medium transition-colors ${
                   !webhookUrl
-                    ? "bg-[#ccccff]/5 text-[#ccccff]/30 cursor-not-allowed border border-[#ccccff]/10"
+                    ? "bg-[#ccccff]/5 text-white/30 cursor-not-allowed border border-[#ccccff]/10"
                     : sendStatus === "success"
                     ? "bg-green-500/20 text-green-400 border border-green-500/30"
                     : sendStatus === "error"
                     ? "bg-red-500/20 text-red-400 border border-red-500/30"
-                    : "bg-[#ccccff]/10 hover:bg-[#ccccff]/20 text-[#ccccff] border border-[#ccccff]/30"
+                    : "bg-[#ccccff]/10 hover:bg-[#ccccff]/20 text-white border border-[#ccccff]/30"
                 }`}
               >
                 {sendStatus === "sending"
@@ -240,7 +240,7 @@ export default function EmbedPage() {
               </button>
             </div>
             {webhookUrl && (
-              <p className="mt-2 text-xs text-[#ccccff]/40">
+              <p className="mt-2 text-xs text-white/40">
                 Note: Buttons are not supported when using webhooks
               </p>
             )}

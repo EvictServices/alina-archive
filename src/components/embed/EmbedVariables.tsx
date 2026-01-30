@@ -9,7 +9,7 @@ export const EmbedVariables = () => (
         <div className="p-1.5 rounded-md bg-alina-primary/10 mr-2">
           <FaSquareRootVariable className="w-4 h-4 text-alina-primary/80" />
         </div>
-        <h2 className="text-lg font-semibold text-[#ccccff]">Variables</h2>
+        <h2 className="text-lg font-semibold text-white">Variables</h2>
       </div>
     </div>
 

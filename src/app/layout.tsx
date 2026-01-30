@@ -27,7 +27,6 @@ export const metadata: Metadata = {
     url: "https://evict.bot/",
     type: "website",
     title: "evict",
-    // siteName: "evict.bot",
     description:
       "The all-in-one solution for seamless server management — powerful, polished, and visually refined.",
     images: [

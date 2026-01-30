@@ -13,7 +13,7 @@ const pool = new Pool({
 });
 
 const CACHE_KEY = 'top_commands_24h';
-const CACHE_EXPIRATION = 300; // 5 minutes in seconds
+const CACHE_EXPIRATION = 300;
 
 export async function POST(request: Request) {
   try {
