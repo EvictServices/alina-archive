@@ -106,13 +106,13 @@ export default function StatusPage() {
     <main className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto pt-20">
         <div className="mb-6 flex items-center justify-between">
-          <h1 className="text-3xl sm:text-4xl font-light text-[#ccccff]">
+          <h1 className="text-3xl sm:text-4xl font-light text-[#3a2a4e]">
             <span className="shimmer-text">System Status</span>
           </h1>
           <button
             onClick={fetchHealth}
             disabled={loading}
-            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-[#3a2a4e] text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={loading ? 'animate-spin' : ''}>
               <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
@@ -124,11 +124,11 @@ export default function StatusPage() {
         <div className="mb-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
           <div className="flex items-center gap-2 mb-2">
             <div className={`w-2.5 h-2.5 rounded-full ${loading ? 'bg-yellow-500' : error ? 'bg-red-500' : allClustersOperational ? 'bg-green-500' : 'bg-orange-500'} animate-pulse`} />
-            <h2 className="text-lg font-light text-[#ccccff]">
+            <h2 className="text-lg font-light text-[#3a2a4e]">
               {loading ? 'Checking Status...' : error ? 'Service Unavailable' : allClustersOperational ? 'All Systems Operational' : 'Partial Outage'}
             </h2>
           </div>
-          <p className="text-[#ccccff]/60 text-xs">
+          <p className="text-[#3a2a4e]/60 text-xs">
             Last updated: {new Date().toLocaleString()}
           </p>
         </div>
@@ -145,36 +145,36 @@ export default function StatusPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-[#ccccff]/70 text-xs font-medium">Total Guilds</h3>
+                <h3 className="text-[#3a2a4e]/70 text-xs font-medium">Total Guilds</h3>
               </div>
-              <p className="text-lg font-light text-[#ccccff]">
+              <p className="text-lg font-light text-[#3a2a4e]">
                 {healthData.guilds.toLocaleString()}
               </p>
             </div>
 
             <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-[#ccccff]/70 text-xs font-medium">Total Users</h3>
+                <h3 className="text-[#3a2a4e]/70 text-xs font-medium">Total Users</h3>
               </div>
-              <p className="text-lg font-light text-[#ccccff]">
+              <p className="text-lg font-light text-[#3a2a4e]">
                 {healthData.users.toLocaleString()}
               </p>
             </div>
 
             <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-[#ccccff]/70 text-xs font-medium">Total Clusters</h3>
+                  <h3 className="text-[#3a2a4e]/70 text-xs font-medium">Total Clusters</h3>
                 </div>
-                <p className="text-lg font-light text-[#ccccff]">
+                <p className="text-lg font-light text-[#3a2a4e]">
                   {Object.keys(healthData.clusters).length}
                 </p>
               </div>
 
             <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="text-[#ccccff]/70 text-xs font-medium">Average Latency</h3>
+                <h3 className="text-[#3a2a4e]/70 text-xs font-medium">Average Latency</h3>
               </div>
-              <p className="text-lg font-light text-[#ccccff]">
+              <p className="text-lg font-light text-[#3a2a4e]">
                 {formatLatency(getAverageLatency())}
               </p>
             </div>
@@ -197,7 +197,7 @@ export default function StatusPage() {
                     className="w-full p-4 flex items-center justify-between hover:border-[#ccccff]/40 transition-colors"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-white/[0.05] flex items-center justify-center text-[#ccccff]">
+                      <div className="w-10 h-10 rounded-xl bg-white/[0.05] flex items-center justify-center text-[#3a2a4e]">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
                           <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
@@ -206,8 +206,8 @@ export default function StatusPage() {
                         </svg>
                       </div>
                       <div className="text-left">
-                        <div className="text-[#ccccff] font-medium text-base">Cluster {index}</div>
-                        <div className="text-[#ccccff]/60 text-sm">
+                        <div className="text-[#3a2a4e] font-medium text-base">Cluster {index}</div>
+                        <div className="text-[#3a2a4e]/60 text-sm">
                           {cluster.shards.length} shards • {totalServers.toLocaleString()} servers
                         </div>
                       </div>
@@ -215,12 +215,12 @@ export default function StatusPage() {
                     
                     <div className="flex items-center gap-8">
                       <div className="text-right hidden sm:block">
-                        <div className="text-[#ccccff]/60 text-xs mb-1">Users</div>
-                        <div className="text-[#ccccff] text-sm">{cluster.users.toLocaleString()}</div>
+                        <div className="text-[#3a2a4e]/60 text-xs mb-1">Users</div>
+                        <div className="text-[#3a2a4e] text-sm">{cluster.users.toLocaleString()}</div>
                       </div>
                       <div className="text-right hidden sm:block">
-                        <div className="text-[#ccccff]/60 text-xs mb-1">Latency</div>
-                        <div className="text-[#ccccff] text-sm">
+                        <div className="text-[#3a2a4e]/60 text-xs mb-1">Latency</div>
+                        <div className="text-[#3a2a4e] text-sm">
                           {formatLatency(cluster.shards.reduce((sum, s) => sum + s.latency, 0) / cluster.shards.length)}
                         </div>
                       </div>
@@ -233,7 +233,7 @@ export default function StatusPage() {
                         strokeWidth="2" 
                         strokeLinecap="round" 
                         strokeLinejoin="round"
-                        className={`text-[#ccccff] transition-transform ${isOpen ? 'rotate-90' : ''}`}
+                        className={`text-[#3a2a4e] transition-transform ${isOpen ? 'rotate-90' : ''}`}
                       >
                         <polyline points="9 18 15 12 9 6"/>
                       </svg>
@@ -253,19 +253,19 @@ export default function StatusPage() {
                             className="bg-[#ccccff]/10 border border-[#ccccff]/20 rounded-xl p-4"
                           >
                             <div className="flex items-center justify-between mb-2">
-                              <span className="text-[#ccccff]/80 text-sm">Shard {shard.id}</span>
-                              <span className="text-[#ccccff] text-xs font-medium">
+                              <span className="text-[#3a2a4e]/80 text-sm">Shard {shard.id}</span>
+                              <span className="text-[#3a2a4e] text-xs font-medium">
                                 {formatLatency(shard.latency)}
                               </span>
                             </div>
-                            <div className="space-y-1 text-xs text-[#ccccff]/60">
+                            <div className="space-y-1 text-xs text-[#3a2a4e]/60">
                               <div className="flex justify-between">
                                 <span>Users:</span>
-                                <span className="text-[#ccccff]/80">{shard.users.toLocaleString()}</span>
+                                <span className="text-[#3a2a4e]/80">{shard.users.toLocaleString()}</span>
                               </div>
                               <div className="flex justify-between">
                                 <span>Total Guilds:</span>
-                                <span className="text-[#ccccff]/80">{shard.guilds}</span>
+                                <span className="text-[#3a2a4e]/80">{shard.guilds}</span>
                               </div>
                             </div>
                           </div>
@@ -286,11 +286,11 @@ export default function StatusPage() {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
                 </svg>
-                <h2 className="text-lg font-light text-[#ccccff]">
+                <h2 className="text-lg font-light text-[#3a2a4e]">
                   Top Commands (24h)
                 </h2>
               </div>
-              <span className="text-[#ccccff]/60 text-xs">
+              <span className="text-[#3a2a4e]/60 text-xs">
                 {topCommands.reduce((sum, cmd) => sum + Number(cmd.invoke_count), 0).toLocaleString()} total invokes
               </span>
             </div>
@@ -303,17 +303,17 @@ export default function StatusPage() {
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-[#ccccff]/20 flex items-center justify-center text-[#ccccff] text-xs font-medium">
+                      <div className="w-6 h-6 rounded-full bg-[#ccccff]/20 flex items-center justify-center text-[#3a2a4e] text-xs font-medium">
                         {index + 1}
                       </div>
-                      <span className="text-[#ccccff] text-sm font-medium truncate">
+                      <span className="text-[#3a2a4e] text-sm font-medium truncate">
                         {cmd.command_name}
                       </span>
                     </div>
                   </div>
-                  <div className="text-[#ccccff]/80 text-lg font-light">
+                  <div className="text-[#3a2a4e]/80 text-lg font-light">
                     {Number(cmd.invoke_count).toLocaleString()}
-                    <span className="text-[#ccccff]/60 text-xs ml-1">uses</span>
+                    <span className="text-[#3a2a4e]/60 text-xs ml-1">uses</span>
                   </div>
                 </div>
               ))}

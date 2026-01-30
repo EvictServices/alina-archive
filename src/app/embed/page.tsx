@@ -8,7 +8,6 @@ import { EmbedBuilder } from "@/components/embed/EmbedBuilder";
 import { EmbedPreview } from "@/components/embed/EmbedPreview";
 import { EmbedVariables } from "@/components/embed/EmbedVariables";
 import { PreviewModal } from "@/components/embed/PreviewModal";
-import { GradientBackground } from "@/components/gradient-background";
 
 export default function EmbedPage() {
   const [embed, setEmbed] = useState<EmbedData>(initialEmbed);
@@ -187,7 +186,6 @@ export default function EmbedPage() {
 
   return (
     <>
-      <GradientBackground />
       <main className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto pt-20">
           <EmbedHeader />

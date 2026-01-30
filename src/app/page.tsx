@@ -71,7 +71,7 @@ export default function Home() {
             </div>
           </div>
 
-          <p className="opacity-0 animate-fade-in-up text-base md:text-lg text-white/60 max-w-lg leading-relaxed px-4 [animation-delay:0.3s]">
+          <p className="opacity-0 animate-fade-in-up text-base md:text-lg text-white/70 max-w-lg leading-relaxed px-4 [animation-delay:0.3s]">
             {APP_INFO.DESCRIPTION.split(/\b(moderation|antinuke|utility)\b/).map((part, i) => 
               ['moderation', 'antinuke', 'utility'].includes(part.toLowerCase()) 
                 ? <span key={i} className="text-white/90">{part}</span> 
