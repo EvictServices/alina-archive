@@ -35,6 +35,7 @@ export default function CommandsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedCommand, setSelectedCommand] = useState<Command | null>(null);
   const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
+  const [expandedCommands, setExpandedCommands] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetch(`${EXTERNAL_API_URL}/commands`)
@@ -55,8 +56,27 @@ export default function CommandsPage() {
         setLoading(false);
       })
       .catch(() => {
-        setError(true);
-        setLoading(false);
+        fetch('/commands.json')
+          .then(res => {
+            if (!res.ok) throw new Error('Failed to fetch backup');
+            return res.json();
+          })
+          .then(data => {
+            const rawCommands = data?.data?.commands || data?.commands || data;
+            const processedData: CommandsData = {};
+            
+            for (const [category, cmds] of Object.entries(rawCommands)) {
+              processedData[category] = processCommands(cmds as Command[]);
+            }
+            
+            setCommands(processedData);
+            setError(false);
+            setLoading(false);
+          })
+          .catch(() => {
+            setError(true);
+            setLoading(false);
+          });
       });
   }, []);
 
@@ -77,6 +97,18 @@ export default function CommandsPage() {
     setTimeout(() => setCopiedCommand(null), COPY_FEEDBACK_DURATION);
   };
 
+  const toggleExpanded = (commandName: string) => {
+    setExpandedCommands(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(commandName)) {
+        newSet.delete(commandName);
+      } else {
+        newSet.add(commandName);
+      }
+      return newSet;
+    });
+  };
+
   const getFilteredCommands = () => {
     if (!selectedCategory) return [];
     
@@ -87,7 +119,10 @@ export default function CommandsPage() {
       categoryCommands = commands[selectedCategory] || [];
     }
     
-    if (!searchQuery) return categoryCommands;
+    const topLevelCommands = categoryCommands.filter(cmd => !cmd.is_subcommand);
+    
+    if (!searchQuery) return topLevelCommands;
+    
     return categoryCommands.filter(cmd =>
       cmd.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       cmd.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -96,6 +131,121 @@ export default function CommandsPage() {
   };
 
   const displayedCommands = getFilteredCommands();
+
+  const CommandCard = ({ command, level = 0 }: { command: Command; level?: number }) => {
+    const hasSubcommands = command.is_group && command.subcommands && command.subcommands.length > 0;
+    const isExpanded = expandedCommands.has(command.qualified_name || command.name);
+    const commandKey = command.qualified_name || command.name;
+
+    return (
+      <div className={`${level > 0 ? 'ml-6 mt-3' : ''}`}>
+        <div
+          className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 hover:border-[#ccccff]/40 transition-colors backdrop-blur-md"
+        >
+          <div className="flex items-start justify-between mb-3">
+            <div className="flex items-center gap-2">
+              {hasSubcommands && (
+                <button
+                  onClick={() => toggleExpanded(commandKey)}
+                  className="text-white/60 hover:text-white transition-colors"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`transform transition-transform ${isExpanded ? 'rotate-90' : ''}`}
+                  >
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </button>
+              )}
+              <h3 className="text-white font-medium bg-[#ccccff]/10 px-3 py-1 rounded-full">
+                {command.is_subcommand ? command.qualified_name : command.name}
+                {hasSubcommands && (
+                  <span className="ml-2 text-xs text-white/60">
+                    ({command.subcommands!.length})
+                  </span>
+                )}
+              </h3>
+            </div>
+            <div className="flex items-center gap-2 text-white">
+              <div className="relative">
+                <button
+                  onClick={() => copyToClipboard(command.is_subcommand ? command.qualified_name : command.name)}
+                  className="p-1 hover:bg-[#ccccff]/20 rounded transition-colors"
+                  title="Copy command"
+                >
+                  <MdOutlineFileCopy />
+                </button>
+                {copiedCommand === (command.is_subcommand ? command.qualified_name : command.name) && (
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#ccccff] text-black text-xs px-2 py-1 rounded whitespace-nowrap animate-fade-in">
+                    Copied!
+                  </div>
+                )}
+              </div>
+              <button
+                onClick={() => setSelectedCommand(command)}
+                className="p-1 hover:bg-[#ccccff]/20 rounded transition-colors"
+                title="Command info"
+              >
+                <TbInfoSquareRounded />
+              </button>
+            </div>
+          </div>
+
+          <p className="text-white/70 text-sm mb-3 line-clamp-2">
+            {command.description}
+          </p>
+
+          <div className="space-y-2 text-xs">
+            {command.signature && (
+              <div>
+                <span className="text-white/60">Arguments: </span>
+                <span className="text-white/80">{command.signature}</span>
+              </div>
+            )}
+            {command.permissions.length > 0 && (
+              <div>
+                <span className="text-white/60">Permissions: </span>
+                <span className="text-white/80">{command.permissions.join(', ')}</span>
+              </div>
+            )}
+            {command.signature && (
+              <div>
+                <span className="text-white/60">Syntax: </span>
+                <code className="text-white/80 bg-[#ccccff]/10 px-1 rounded">
+                  {command.is_subcommand ? command.qualified_name : command.name} {command.signature}
+                </code>
+              </div>
+            )}
+            {command.aliases.length > 0 && (
+              <div>
+                <span className="text-white/60">Aliases: </span>
+                <span className="text-white/80">{command.aliases.join(', ')}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {hasSubcommands && isExpanded && (
+          <div className="space-y-3 mt-3">
+            {command.subcommands!.map((subcommand) => (
+              <CommandCard
+                key={subcommand.qualified_name || subcommand.name}
+                command={subcommand}
+                level={level + 1}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   if (loading) {
     return (
@@ -159,8 +309,8 @@ export default function CommandsPage() {
                 const Icon = getCategoryIcon(category);
                 const isActive = selectedCategory === category;
                 const categoryCommands = category === 'All' 
-                  ? Object.values(commands).flat() 
-                  : commands[category] || [];
+                  ? Object.values(commands).flat().filter(cmd => !cmd.is_subcommand)
+                  : (commands[category] || []).filter(cmd => !cmd.is_subcommand);
                 
                 return (
                   <button
@@ -226,76 +376,16 @@ export default function CommandsPage() {
             </div>
 
             {selectedCategory && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <div className="space-y-4">
                 {displayedCommands.map((command) => (
-                  <div
-                    key={command.qualified_name}
-                    className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 hover:border-[#ccccff]/40 transition-colors backdrop-blur-md"
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-white font-medium bg-[#ccccff]/10 px-3 py-1 rounded-full">{command.is_subcommand ? command.qualified_name : command.name}</h3>
-                      <div className="flex items-center gap-2 text-white">
-                        <div className="relative">
-                          <button
-                            onClick={() => copyToClipboard(command.is_subcommand ? command.qualified_name : command.name)}
-                            className="p-1 hover:bg-[#ccccff]/20 rounded transition-colors"
-                            title="Copy command"
-                          >
-                            < MdOutlineFileCopy />
-                          </button>
-                          {copiedCommand === (command.is_subcommand ? command.qualified_name : command.name) && (
-                            <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#ccccff] text-black text-xs px-2 py-1 rounded whitespace-nowrap animate-fade-in">
-                              Copied!
-                            </div>
-                          )}
-                        </div>
-                        <button
-                          onClick={() => setSelectedCommand(command)}
-                          className="p-1 hover:bg-[#ccccff]/20 rounded transition-colors"
-                          title="Command info"
-                        >
-                          <TbInfoSquareRounded />
-                        </button>
-                      </div>
-                    </div>
-
-                    <p className="text-white/70 text-sm mb-3 line-clamp-2">
-                      {command.description}
-                    </p>
-
-                    <div className="space-y-2 text-xs">
-                      {command.signature && (
-                        <div>
-                          <span className="text-white/60">Arguments: </span>
-                          <span className="text-white/80">{command.signature}</span>
-                        </div>
-                      )}
-                      {command.permissions.length > 0 && (
-                        <div>
-                          <span className="text-white/60">Permissions: </span>
-                          <span className="text-white/80">{command.permissions.join(', ')}</span>
-                        </div>
-                      )}
-                      {command.signature && (
-                        <div>
-                          <span className="text-white/60">Syntax: </span>
-                          <code className="text-white/80 bg-[#ccccff]/10 px-1 rounded">
-                            {command.is_subcommand ? command.qualified_name : command.name} {command.signature}
-                          </code>
-                        </div>
-                      )}
-                      {command.aliases.length > 0 && (
-                        <div>
-                          <span className="text-white/60">Aliases: </span>
-                          <span className="text-white/80">{command.aliases.join(', ')}</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                  <CommandCard
+                    key={command.qualified_name || command.name}
+                    command={command}
+                  />
                 ))}
 
                 {displayedCommands.length === 0 && (
-                  <div className="col-span-2 text-center py-12 text-white/50">
+                  <div className="text-center py-12 text-white/50">
                     {searchQuery ? `No commands found matching "${searchQuery}"` : 'No commands in this category'}
                   </div>
                 )}
