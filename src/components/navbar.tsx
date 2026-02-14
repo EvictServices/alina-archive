@@ -161,11 +161,14 @@ export function MainNav() {
           </div>
 
           <li className="ml-auto flex items-center gap-1.5 sm:gap-2">
-            <div className="px-1.5 sm:px-2 py-0.5 bg-[#ccccff]/10 border border-[#ccccff]/20 rounded-full">
-              <span className="text-[9px] sm:text-[10px] font-medium text-[#ccccff] tracking-wide">
-                v1.0.0
+            <Link
+              href="/updates"
+              className="w-8 sm:w-9 h-8 sm:h-9 rounded-full bg-[#ccccff]/10 border border-[#ccccff]/20 flex items-center justify-center hover:bg-[#ccccff]/20 transition-colors group"
+            >
+              <span className="text-[10px] sm:text-xs font-medium text-[#ccccff] group-hover:text-[#ccccff] transition-colors">
+                v5
               </span>
-            </div>
+            </Link>
             
             <HoverCard.Root openDelay={100} closeDelay={100}>
               <HoverCard.Trigger asChild>

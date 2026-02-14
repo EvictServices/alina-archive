@@ -105,8 +105,19 @@ export default function UpdatesContent() {
                       </svg>
                     </div>
                     <div className="flex-1 text-left min-w-0">
-                      <div className="text-sm font-medium text-white line-clamp-1 mb-0.5">
-                        {update.metadata.title}
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <div className="text-sm font-medium text-white line-clamp-1 flex-1">
+                          {update.metadata.title}
+                        </div>
+                        {update.metadata.version && (
+                          <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded-full flex-shrink-0 ${
+                            isActive 
+                              ? 'bg-[#ccccff]/20 text-[#ccccff]' 
+                              : 'bg-[#ccccff]/10 text-[#ccccff]/70'
+                          }`}>
+                            {update.metadata.version}
+                          </span>
+                        )}
                       </div>
                       <div className={`text-xs mb-1 line-clamp-2 ${isActive ? 'text-white/70' : 'text-white/50'}`}>
                         {update.metadata.description}
@@ -149,7 +160,7 @@ export default function UpdatesContent() {
               >
                 {filteredUpdates.map((update) => (
                   <option key={update.slug} value={update.slug} className="bg-[#1a1625] text-white">
-                    {update.metadata.title}
+                    {update.metadata.title} {update.metadata.version ? `(${update.metadata.version})` : ''}
                   </option>
                 ))}
               </select>
@@ -182,9 +193,18 @@ export default function UpdatesContent() {
           ) : selectedUpdate && MDXContent ? (
             <article className="max-w-4xl mx-auto px-2 sm:px-4 lg:px-12">
               <header className="mb-6 lg:mb-8 pb-6 border-b border-white/10">
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white mb-3 lg:mb-4">
-                  <span className="shimmer-text">{selectedUpdate.metadata.title}</span>
-                </h1>
+                <div className="flex flex-wrap items-center gap-3 mb-3 lg:mb-4">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white">
+                    <span className="shimmer-text">{selectedUpdate.metadata.title}</span>
+                  </h1>
+                  {selectedUpdate.metadata.version && (
+                    <div className="px-2 sm:px-2.5 py-1 bg-[#ccccff]/10 border border-[#ccccff]/20 rounded-full">
+                      <span className="text-xs sm:text-sm font-medium text-[#ccccff]">
+                        {selectedUpdate.metadata.version}
+                      </span>
+                    </div>
+                  )}
+                </div>
                 <div className="flex flex-wrap items-center gap-2 lg:gap-4 text-xs lg:text-sm text-white/50">
                   <div className="flex items-center gap-2">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

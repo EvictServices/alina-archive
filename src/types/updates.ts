@@ -3,6 +3,7 @@ export interface UpdateMetadata {
   date: string
   author: string
   description: string
+  version?: string
 }
 
 export interface Update {

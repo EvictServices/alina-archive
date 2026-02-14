@@ -8,7 +8,8 @@ export async function getUpdates(): Promise<Update[]> {
         title: 'Search Improvements',
         date: '2026-02-14',
         author: 'Evict Team',
-        description: 'Enhanced command search functionality with partial matching and description search'
+        description: 'Enhanced command search functionality with partial matching and description search',
+        version: 'v1.2.0'
       }
     },
     {
@@ -17,7 +18,8 @@ export async function getUpdates(): Promise<Update[]> {
         title: 'Website Launch',
         date: '2026-02-01',
         author: 'Evict Team',
-        description: 'Official launch of the new Evict website with enhanced features'
+        description: 'Official launch of the new Evict website with enhanced features',
+        version: 'v1.0.0'
       }
     }
   ]
