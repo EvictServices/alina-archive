@@ -62,13 +62,14 @@ export default function UpdatesContent() {
   const selectedUpdate = updates.find(u => u.slug === selectedSlug)
 
   return (
-    <main className="min-h-screen bg-transparent pt-20">
-      <div className="h-[calc(100vh-5rem)] flex relative max-w-[1600px] mx-auto">
+    <main className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto pt-20">
+        <div className="flex relative gap-6 items-start">
         <aside className={`${
           showSidebar ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 absolute lg:relative z-10 w-80 h-full border-r border-white/10 flex flex-col backdrop-blur-sm bg-[#1a1625]/95 lg:bg-white/[0.01] transition-transform duration-300`}>
-          <div className="p-4 border-b border-white/10">
-            <div className="flex items-center justify-between mb-3 lg:hidden">
+        } lg:translate-x-0 absolute lg:relative z-10 w-80 lg:sticky lg:top-24 border-r lg:border-r-0 border-white/10 flex flex-col backdrop-blur-sm bg-[#1a1625]/95 lg:bg-transparent transition-transform duration-300 max-h-[calc(100vh-8rem)] lg:h-auto`}>
+          <div className="p-2 border-b border-white/10">
+            <div className="flex items-center justify-between mb-3 lg:hidden px-2">
               <h2 className="text-sm font-medium text-white">Updates</h2>
               <button
                 onClick={() => setShowSidebar(false)}
@@ -79,7 +80,7 @@ export default function UpdatesContent() {
                 </svg>
               </button>
             </div>
-            <div className="relative">
+            <div className="relative mb-2">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-white/40">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="11" cy="11" r="8"/>
@@ -91,45 +92,49 @@ export default function UpdatesContent() {
                 placeholder="Search updates..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-lg pl-10 pr-4 py-2 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#ccccff]/40 transition-colors"
+                className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-full pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#ccccff]/40 transition-colors"
               />
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+          <div className="scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent max-h-[calc(100vh-16rem)] overflow-y-auto">
             <div className="p-2">
-              {filteredUpdates.map((update) => (
-                <button
-                  key={update.slug}
-                  onClick={() => handleUpdateClick(update.slug)}
-                  className={`w-full text-left p-3 rounded-lg mb-1 transition-all group ${
-                    selectedSlug === update.slug
-                      ? 'bg-[#ccccff]/10 border border-[#ccccff]/30'
-                      : 'hover:bg-white/[0.02] border border-transparent'
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-2 mb-1">
-                    <h3 className={`text-sm font-medium line-clamp-2 ${
-                      selectedSlug === update.slug ? 'text-white' : 'text-white/80 group-hover:text-white'
-                    }`}>
-                      {update.metadata.title}
-                    </h3>
-                    {selectedSlug === update.slug && (
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#ccccff] flex-shrink-0 mt-1.5" />
-                    )}
-                  </div>
-                  <p className="text-xs text-white/50 line-clamp-2 mb-2">
-                    {update.metadata.description}
-                  </p>
-                  <time className="text-xs text-white/40">
-                    {new Date(update.metadata.date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric'
-                    })}
-                  </time>
-                </button>
-              ))}
+              {filteredUpdates.map((update) => {
+                const isActive = selectedSlug === update.slug
+                return (
+                  <button
+                    key={update.slug}
+                    onClick={() => handleUpdateClick(update.slug)}
+                    className={`w-full flex items-start gap-3 px-3 py-2.5 rounded-full mb-2 transition-colors ${
+                      isActive
+                        ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-white'
+                        : 'hover:bg-[#ccccff]/5 text-white/70 hover:text-white border border-transparent'
+                    }`}
+                  >
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#ccccff]/10 flex-shrink-0 mt-0.5">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={isActive ? 'text-white' : 'text-white/60'}>
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1 text-left min-w-0">
+                      <div className="text-sm font-medium text-white line-clamp-1 mb-0.5">
+                        {update.metadata.title}
+                      </div>
+                      <div className={`text-xs mb-1 line-clamp-2 ${isActive ? 'text-white/70' : 'text-white/50'}`}>
+                        {update.metadata.description}
+                      </div>
+                      <time className={`text-xs ${isActive ? 'text-white/60' : 'text-white/40'}`}>
+                        {new Date(update.metadata.date).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </time>
+                    </div>
+                  </button>
+                )
+              })}
 
               {filteredUpdates.length === 0 && (
                 <div className="text-center py-8 text-white/50 text-sm">
@@ -140,8 +145,8 @@ export default function UpdatesContent() {
           </div>
         </aside>
 
-        <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-          <div className="lg:hidden sticky top-0 z-10 backdrop-blur-sm bg-[#1a1625]/80 border-b border-white/10 px-4 py-3">
+        <div className="flex-1 lg:min-h-0">
+          <div className="lg:hidden sticky top-20 z-10 backdrop-blur-sm bg-[#1a1625]/80 border-b border-white/10 px-4 py-3 -mx-4">
             <button
               onClick={() => setShowSidebar(true)}
               className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
@@ -154,11 +159,11 @@ export default function UpdatesContent() {
           </div>
 
           {loading ? (
-            <div className="flex items-center justify-center h-full">
+            <div className="flex items-center justify-center py-20">
               <div className="text-white/50">Loading...</div>
             </div>
           ) : selectedUpdate && MDXContent ? (
-            <article className="max-w-4xl mx-auto px-6 lg:px-12 py-8">
+            <article className="max-w-4xl mx-auto px-6 lg:px-12">
               <header className="mb-8 pb-6 border-b border-white/10">
                 <h1 className="text-3xl lg:text-4xl font-light text-white mb-4">
                   <span className="shimmer-text">{selectedUpdate.metadata.title}</span>
@@ -194,7 +199,7 @@ export default function UpdatesContent() {
               </div>
             </article>
           ) : (
-            <div className="flex items-center justify-center h-full">
+            <div className="flex items-center justify-center py-20">
               <div className="text-center px-4">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-4 text-white/20">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -207,6 +212,7 @@ export default function UpdatesContent() {
             </div>
           )}
         </div>
+      </div>
       </div>
     </main>
   )
