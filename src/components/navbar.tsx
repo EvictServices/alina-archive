@@ -39,8 +39,8 @@ export function MainNav() {
             after:pointer-events-none
             ${
               isScrolled
-                ? "w-[340px] sm:w-[405px] h-10 sm:h-11"
-                : "w-[360px] sm:w-[515px] h-11 sm:h-12"
+                ? "w-[340px] sm:w-[480px] h-10 sm:h-11"
+                : "w-[360px] sm:w-[615px] h-11 sm:h-12"
             }
           `}
         >
@@ -123,6 +123,26 @@ export function MainNav() {
               >
                 <span className="relative z-10">Embeds</span>
                 {pathname === "/embed" && (
+                  <span className="absolute inset-0 bg-accent/10 rounded-full" />
+                )}
+                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-accent/5 transition-opacity" />
+              </Link>
+            </li>
+
+            <li className="flex items-center h-10 sm:h-11">
+              <Link
+                href="/updates"
+                className={`
+                  relative px-2 sm:px-4 py-1.5 text-xs sm:text-sm transition-colors group flex items-center
+                  ${
+                    pathname?.startsWith("/updates")
+                      ? "text-foreground"
+                      : "text-foreground/60 hover:text-foreground/80"
+                  }
+                `}
+              >
+                <span className="relative z-10">Updates</span>
+                {pathname?.startsWith("/updates") && (
                   <span className="absolute inset-0 bg-accent/10 rounded-full" />
                 )}
                 <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-accent/5 transition-opacity" />

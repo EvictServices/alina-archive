@@ -1,0 +1,26 @@
+export const metadata = {
+  title: 'Search Improvements',
+  date: '2026-02-14',
+  author: 'Evict Team',
+  description: 'Enhanced command search functionality with partial matching and description search'
+}
+
+# Search Improvements
+
+We've significantly improved the command search functionality on the commands page.
+
+## What's New
+
+- **Partial Matching**: Search now works with partial text matches anywhere in the command name, not just at the beginning
+- **Description Search**: You can now search within command descriptions to find what you're looking for
+- **Alias Search**: Search includes command aliases for better discoverability
+
+## Bug Fixes
+
+- Fixed duplicate command entries in the command list
+- Resolved React key conflicts causing rendering issues
+- Added proper null checks for command properties
+
+## Cache Logging
+
+Added server-side logging for cached API responses to improve debugging and monitoring.

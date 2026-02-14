@@ -51,6 +51,12 @@ export const Footer = () => {
                 Documentation
               </Link>
               <Link
+                href="/updates"
+                className="text-sm font-medium hover:text-white transition-colors"
+              >
+                Updates
+              </Link>
+              <Link
                 href="https://discord.gg/evict"
                 className="text-sm font-medium hover:text-white transition-colors"
               >

@@ -1,9 +1,11 @@
 import { execSync } from "child_process";
+import createMDX from '@next/mdx';
 
 const EPOCH = BigInt("1420070400000");
 const snowflakeId = ((BigInt(Date.now()) - EPOCH) << BigInt(22) | BigInt(Math.floor(Math.random() * 4096))).toString();
 
 const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   productionBrowserSourceMaps: false,
   poweredByHeader: false,
   generateBuildId: async () => snowflakeId,
@@ -77,4 +79,11 @@ const nextConfig = {
   ],
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
+export default withMDX(nextConfig);
