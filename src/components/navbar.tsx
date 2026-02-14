@@ -39,8 +39,8 @@ export function MainNav() {
             after:pointer-events-none
             ${
               isScrolled
-                ? "w-[340px] sm:w-[480px] h-10 sm:h-11"
-                : "w-[360px] sm:w-[615px] h-11 sm:h-12"
+                ? "w-[390px] sm:w-[540px] h-10 sm:h-11"
+                : "w-[360px] sm:w-[680px] h-11 sm:h-12"
             }
           `}
         >
@@ -131,26 +131,6 @@ export function MainNav() {
 
             <li className="flex items-center h-10 sm:h-11">
               <Link
-                href="/updates"
-                className={`
-                  relative px-2 sm:px-4 py-1.5 text-xs sm:text-sm transition-colors group flex items-center
-                  ${
-                    pathname?.startsWith("/updates")
-                      ? "text-foreground"
-                      : "text-foreground/60 hover:text-foreground/80"
-                  }
-                `}
-              >
-                <span className="relative z-10">Updates</span>
-                {pathname?.startsWith("/updates") && (
-                  <span className="absolute inset-0 bg-accent/10 rounded-full" />
-                )}
-                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-accent/5 transition-opacity" />
-              </Link>
-            </li>
-
-            <li className="flex items-center h-10 sm:h-11">
-              <Link
                 href="/status"
                 className={`
                   relative text-xs sm:text-sm transition-colors group flex items-center
@@ -180,7 +160,13 @@ export function MainNav() {
             </li>
           </div>
 
-          <li className="ml-auto flex items-center">
+          <li className="ml-auto flex items-center gap-1.5 sm:gap-2">
+            <div className="px-1.5 sm:px-2 py-0.5 bg-[#ccccff]/10 border border-[#ccccff]/20 rounded-full">
+              <span className="text-[9px] sm:text-[10px] font-medium text-[#ccccff] tracking-wide">
+                v1.0.0
+              </span>
+            </div>
+            
             <HoverCard.Root openDelay={100} closeDelay={100}>
               <HoverCard.Trigger asChild>
                 <Link

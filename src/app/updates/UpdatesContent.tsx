@@ -11,7 +11,7 @@ export default function UpdatesContent() {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
   const [MDXContent, setMDXContent] = useState<any>(null)
   const [loading, setLoading] = useState(false)
-  const [showSidebar, setShowSidebar] = useState(true)
+  const [showSidebar, setShowSidebar] = useState(false)
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -63,23 +63,10 @@ export default function UpdatesContent() {
 
   return (
     <main className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[1600px] mx-auto pt-20">
+      <div className="max-w-[1600px] mx-auto pt-12 lg:pt-20">
         <div className="flex relative gap-6 items-start">
-        <aside className={`${
-          showSidebar ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 absolute lg:relative z-10 w-80 lg:sticky lg:top-24 border-r lg:border-r-0 border-white/10 flex flex-col backdrop-blur-sm bg-[#1a1625]/95 lg:bg-transparent transition-transform duration-300 max-h-[calc(100vh-8rem)] lg:h-auto`}>
+        <aside className="hidden lg:flex w-80 lg:sticky lg:top-24 flex-col max-h-[calc(100vh-8rem)]">
           <div className="p-2 border-b border-white/10">
-            <div className="flex items-center justify-between mb-3 lg:hidden px-2">
-              <h2 className="text-sm font-medium text-white">Updates</h2>
-              <button
-                onClick={() => setShowSidebar(false)}
-                className="p-2 hover:bg-white/5 rounded-lg transition-colors"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/60">
-                  <path d="M18 6 6 18M6 6l12 12"/>
-                </svg>
-              </button>
-            </div>
             <div className="relative mb-2">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-white/40">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -145,17 +132,47 @@ export default function UpdatesContent() {
           </div>
         </aside>
 
-        <div className="flex-1 lg:min-h-0">
-          <div className="lg:hidden sticky top-20 z-10 backdrop-blur-sm bg-[#1a1625]/80 border-b border-white/10 px-4 py-3 -mx-4">
-            <button
-              onClick={() => setShowSidebar(true)}
-              className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M3 12h18M3 6h18M3 18h18"/>
-              </svg>
-              <span className="text-sm">All Updates</span>
-            </button>
+        <div className="flex-1 lg:min-h-0 w-full">
+          <div className="lg:hidden max-w-2xl mx-auto space-y-3 mb-6">
+            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4">
+              <label className="block text-xs font-medium text-white/60 mb-2">Select Update</label>
+              <select
+                value={selectedSlug || ''}
+                onChange={(e) => handleUpdateClick(e.target.value)}
+                className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-full px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#ccccff]/40 transition-colors appearance-none"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4l4 4 4-4' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 1rem center',
+                  paddingRight: '2.5rem'
+                }}
+              >
+                {filteredUpdates.map((update) => (
+                  <option key={update.slug} value={update.slug} className="bg-[#1a1625] text-white">
+                    {update.metadata.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4">
+              <label className="block text-xs font-medium text-white/60 mb-2">Search Updates</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-white/40">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search updates..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-full pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#ccccff]/40 transition-colors"
+                />
+              </div>
+            </div>
           </div>
 
           {loading ? (
@@ -163,12 +180,12 @@ export default function UpdatesContent() {
               <div className="text-white/50">Loading...</div>
             </div>
           ) : selectedUpdate && MDXContent ? (
-            <article className="max-w-4xl mx-auto px-6 lg:px-12">
-              <header className="mb-8 pb-6 border-b border-white/10">
-                <h1 className="text-3xl lg:text-4xl font-light text-white mb-4">
+            <article className="max-w-4xl mx-auto px-2 sm:px-4 lg:px-12">
+              <header className="mb-6 lg:mb-8 pb-6 border-b border-white/10">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white mb-3 lg:mb-4">
                   <span className="shimmer-text">{selectedUpdate.metadata.title}</span>
                 </h1>
-                <div className="flex flex-wrap items-center gap-3 lg:gap-4 text-xs lg:text-sm text-white/50">
+                <div className="flex flex-wrap items-center gap-2 lg:gap-4 text-xs lg:text-sm text-white/50">
                   <div className="flex items-center gap-2">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
