@@ -18,7 +18,7 @@ export interface Command {
   help: string
   brief: string | null
   hidden: boolean
-  permissions: string[]
+  permissions: Record<string, boolean>[] | string[]
   is_subcommand?: boolean
   parent?: string
   is_group?: boolean

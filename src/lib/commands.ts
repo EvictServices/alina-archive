@@ -1,5 +1,22 @@
 import { Command } from "@/types/commands";
 
+function formatPermissions(
+  permissions: Record<string, boolean>[] | string[]
+): string[] {
+  if (!Array.isArray(permissions)) return [];
+
+  return permissions
+    .map((perm) => {
+      if (typeof perm === "string") return perm;
+      if (typeof perm === "object") {
+        const key = Object.keys(perm)[0];
+        return key ? key.replace(/_/g, " ") : "";
+      }
+      return "";
+    })
+    .filter(Boolean);
+}
+
 export function processParams(command: Command): Command {
   if (!command.params || command.params.length === 0) return command;
 
@@ -52,7 +69,10 @@ export function processCommands(commands: Command[]): Command[] {
     const key = cmd.qualified_name || cmd.name;
     if (processedMap.has(key)) continue;
 
-    const processed = processParams(cmd);
+    const processed = {
+      ...processParams(cmd),
+      permissions: formatPermissions(cmd.permissions),
+    };
     processedMap.set(key, processed);
     allCommands.push(processed);
 
