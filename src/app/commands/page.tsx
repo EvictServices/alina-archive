@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import type { Command, CommandsData } from '@/types/commands';
+import type { Command, CommandsData, RawCommand } from '@/types/commands';
 import { processCommands } from '@/lib/commands';
 
 const COPY_FEEDBACK_DURATION = 2000;
@@ -46,7 +46,7 @@ export default function CommandsPage() {
         const processedData: CommandsData = {};
         
         for (const [category, cmds] of Object.entries(rawCommands)) {
-          processedData[category] = processCommands(cmds as Command[]);
+          processedData[category] = processCommands(cmds as RawCommand[]);
         }
         
         setCommands(processedData);
@@ -64,7 +64,7 @@ export default function CommandsPage() {
             const processedData: CommandsData = {};
             
             for (const [category, cmds] of Object.entries(rawCommands)) {
-              processedData[category] = processCommands(cmds as Command[]);
+              processedData[category] = processCommands(cmds as RawCommand[]);
             }
             
             setCommands(processedData);
@@ -93,15 +93,6 @@ export default function CommandsPage() {
     navigator.clipboard.writeText(text);
     setCopiedCommand(text);
     setTimeout(() => setCopiedCommand(null), COPY_FEEDBACK_DURATION);
-  };
-
-  const formatPermission = (perm: string | Record<string, boolean>): string => {
-    if (typeof perm === 'string') return perm;
-    if (typeof perm === 'object') {
-      const key = Object.keys(perm)[0];
-      return key ? key.replace(/_/g, ' ') : '';
-    }
-    return '';
   };
 
   const flattenCommands = (commands: Command[]): Command[] => {
@@ -201,7 +192,7 @@ export default function CommandsPage() {
           {command.permissions && command.permissions.length > 0 && (
             <div>
               <span className="text-white/60">Permissions: </span>
-              <span className="text-white/80">{command.permissions.map(formatPermission).join(', ')}</span>
+              <span className="text-white/80">{command.permissions.join(', ')}</span>
             </div>
           )}
           {command.signature && (
@@ -414,17 +405,14 @@ export default function CommandsPage() {
                 <p className="text-white/60 text-xs uppercase mb-2">Permissions Required</p>
                 {selectedCommand.permissions && selectedCommand.permissions.length > 0 ? (
                   <div className="flex flex-wrap gap-2">
-                    {selectedCommand.permissions.map((perm, idx) => {
-                      const formattedPerm = formatPermission(perm);
-                      return (
-                        <span
-                          key={`${formattedPerm}-${idx}`}
-                          className="bg-[#ccccff]/20 text-white px-3 py-1 rounded-full text-sm"
-                        >
-                          {formattedPerm}
-                        </span>
-                      );
-                    })}
+                    {selectedCommand.permissions.map((perm, idx) => (
+                      <span
+                        key={`${perm}-${idx}`}
+                        className="bg-[#ccccff]/20 text-white px-3 py-1 rounded-full text-sm"
+                      >
+                        {perm}
+                      </span>
+                    ))}
                   </div>
                 ) : (
                   <p className="text-white/80 text-sm">None</p>

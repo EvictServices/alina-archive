@@ -8,7 +8,7 @@ export interface CommandParam {
   displayed_default: string | null
 }
 
-export interface Command {
+export interface RawCommand {
   name: string
   qualified_name: string
   description: string
@@ -19,6 +19,24 @@ export interface Command {
   brief: string | null
   hidden: boolean
   permissions: Record<string, boolean>[] | string[]
+  is_subcommand?: boolean
+  parent?: string
+  is_group?: boolean
+  category?: string
+  subcommands?: RawCommand[]
+}
+
+export interface Command {
+  name: string
+  qualified_name: string
+  description: string
+  params: CommandParam[]
+  aliases: string[]
+  signature: string
+  help: string
+  brief: string | null
+  hidden: boolean
+  permissions: string[]
   is_subcommand?: boolean
   parent?: string
   is_group?: boolean

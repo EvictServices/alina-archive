@@ -1,4 +1,4 @@
-import { Command } from "@/types/commands";
+import { Command, RawCommand } from "@/types/commands";
 
 function formatPermissions(
   permissions: Record<string, boolean>[] | string[]
@@ -17,7 +17,7 @@ function formatPermissions(
     .filter(Boolean);
 }
 
-export function processParams(command: Command): Command {
+export function processParams(command: RawCommand): Command {
   if (!command.params || command.params.length === 0) return command;
 
   return {
@@ -58,7 +58,7 @@ export function processParams(command: Command): Command {
   };
 }
 
-export function processCommands(commands: Command[]): Command[] {
+export function processCommands(commands: RawCommand[]): Command[] {
   if (!commands.length) return [];
 
   const processedMap = new Map<string, Command>();
@@ -69,7 +69,7 @@ export function processCommands(commands: Command[]): Command[] {
     const key = cmd.qualified_name || cmd.name;
     if (processedMap.has(key)) continue;
 
-    const processed = {
+    const processed: Command = {
       ...processParams(cmd),
       permissions: formatPermissions(cmd.permissions),
     };
