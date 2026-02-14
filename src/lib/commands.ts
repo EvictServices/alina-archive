@@ -18,10 +18,15 @@ function formatPermissions(
 }
 
 export function processParams(command: RawCommand): Command {
-  if (!command.params || command.params.length === 0) return command;
+  const baseCommand: Command = {
+    ...command,
+    permissions: formatPermissions(command.permissions),
+  };
+
+  if (!command.params || command.params.length === 0) return baseCommand;
 
   return {
-    ...command,
+    ...baseCommand,
     params: command.params.map((param) => {
       let type = param.type;
 
@@ -69,10 +74,7 @@ export function processCommands(commands: RawCommand[]): Command[] {
     const key = cmd.qualified_name || cmd.name;
     if (processedMap.has(key)) continue;
 
-    const processed: Command = {
-      ...processParams(cmd),
-      permissions: formatPermissions(cmd.permissions),
-    };
+    const processed: Command = processParams(cmd);
     processedMap.set(key, processed);
     allCommands.push(processed);
 
