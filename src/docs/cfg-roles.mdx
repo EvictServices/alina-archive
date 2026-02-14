@@ -1,0 +1,329 @@
+---
+title: Role Management
+description: Autoroles, booster roles, reaction roles, and button roles
+category: Configuration
+order: 10
+lastUpdated: 2026-02-14
+---
+
+# Role Management
+
+Comprehensive role automation and assignment features.
+
+## Auto Roles
+
+Automatically assign roles to members when they join your server.
+
+### View Settings
+
+\`\`\`
+;autorole
+\`\`\`
+
+### Add Auto Role
+
+\`\`\`
+;autorole add (role) [--action add|remove] [--delay seconds]
+\`\`\`
+
+**Requires:** Manage Roles
+
+**Flags:**
+- `--action` - Whether to add or remove the role (default: add)
+- `--delay` - Seconds to wait before assigning (default: instant)
+
+**Example:**
+\`\`\`
+;autorole add @Member --delay 60
+\`\`\`
+
+### Remove Auto Role
+
+\`\`\`
+;autorole remove (role)
+\`\`\`
+
+**Requires:** Manage Roles
+
+### List Auto Roles
+
+\`\`\`
+;autorole list
+\`\`\`
+
+**Requires:** Manage Roles
+
+### Clear All Auto Roles
+
+\`\`\`
+;autorole clear
+\`\`\`
+
+**Requires:** Manage Roles
+
+### Role Reassignment
+
+Automatically reassign roles when members rejoin:
+
+\`\`\`
+;autorole reassign [enabled]
+\`\`\`
+
+**Requires:** Manage Roles
+
+Enable or disable role reassignment for returning members.
+
+### Ignore Roles from Reassignment
+
+\`\`\`
+;autorole reassign ignore (role)
+;autorole reassign ignore remove (role)
+;autorole reassign ignore list
+\`\`\`
+
+**Requires:** Manage Roles
+
+Prevent specific roles from being auto-reassigned.
+
+---
+
+## Booster Roles
+
+Allow server boosters to create custom color roles.
+
+### Create Booster Role
+
+\`\`\`
+;boosterrole (color)
+\`\`\`
+
+**Aliases:** `;br`, `;color`
+
+Set a custom booster role with your chosen color. Provide hex code or color name.
+
+**Examples:**
+\`\`\`
+;br #FF0000
+;br red
+;br crimson
+\`\`\`
+
+### Rename Booster Role
+
+\`\`\`
+;boosterrole rename (name)
+\`\`\`
+
+**Example:**
+\`\`\`
+;br rename My Custom Role
+\`\`\`
+
+### Set Role Icon
+
+\`\`\`
+;boosterrole icon (emoji)
+;boosterrole icon none
+\`\`\`
+
+**Requires:** Server Level 2 boost
+
+Use a custom emoji or image as your role icon, or remove it with `none`.
+
+### Use Avatar Color
+
+\`\`\`
+;boosterrole dominant [member]
+\`\`\`
+
+**Aliases:** `;br pfp`, `;br avatar`
+
+Set your role color to match your (or someone else's) avatar dominant color.
+
+### Remove Booster Role
+
+\`\`\`
+;boosterrole remove
+\`\`\`
+
+Delete your custom booster role.
+
+### Share Booster Role
+
+\`\`\`
+;boosterrole share [member]
+\`\`\`
+
+Share your booster role with another member (requires their confirmation).
+
+### Remove Shared Role
+
+\`\`\`
+;boosterrole share remove (role)
+\`\`\`
+
+Remove a shared booster role from yourself.
+
+### Organize Multiple Roles
+
+\`\`\`
+;boosterrole organize (top_role)
+\`\`\`
+
+**Requires:** 2+ active boosts
+
+If you have multiple booster roles, specify which should be positioned on top.
+
+---
+
+## Server Configuration
+
+Configure booster role settings. **Requires:** Manage Roles or Manage Guild
+
+### Set Base Position
+
+\`\`\`
+;boosterrole base (role)
+\`\`\`
+
+**Requires:** Manage Roles
+
+Set where booster roles should be positioned in the role hierarchy.
+
+### Allow Non-Boosters
+
+\`\`\`
+;boosterrole include (role)
+;boosterrole include remove (role)
+;boosterrole include list
+\`\`\`
+
+**Requires:** Manage Roles
+
+Allow specific roles to create booster roles without boosting.
+
+### Enable Multi-Boost Roles
+
+\`\`\`
+;boosterrole multiboost
+\`\`\`
+
+**Requires:** Manage Guild
+
+Toggle whether users with 2+ boosts can have multiple booster roles.
+
+### List All Booster Roles
+
+\`\`\`
+;boosterrole list
+\`\`\`
+
+**Requires:** Manage Roles
+
+View all booster roles in the server.
+
+### Clear All Booster Roles
+
+\`\`\`
+;boosterrole clear
+\`\`\`
+
+**Requires:** Manage Roles
+
+Delete all booster roles from the server. Requires confirmation.
+
+---
+
+## Reaction Roles
+
+Let members assign roles by reacting to messages.
+
+### Add Reaction Role
+
+\`\`\`
+;reactionrole add (message) (emoji) (role)
+\`\`\`
+
+**Aliases:** `;rr add`
+
+**Requires:** Manage Roles
+
+**Parameters:**
+- `message` - Message link or ID
+- `emoji` - Reaction emoji to use
+- `role` - Role to assign
+
+**Example:**
+\`\`\`
+;rr add https://discord.com/channels/.../... 👍 @Member
+-\`\`\`
+
+### Remove Reaction Role
+
+\`\`\`
+;reactionrole remove (message) (emoji)
+\`\`\`
+
+**Requires:** Manage Roles
+
+### List Reaction Roles
+
+\`\`\`
+;reactionrole list
+\`\`\`
+
+**Requires:** Manage Roles
+
+### Clear Reaction Roles
+
+\`\`\`
+;reactionrole clear [message]
+\`\`\`
+
+**Requires:** Manage Roles
+
+Remove all reaction roles, or just those on a specific message.
+
+---
+
+## Button Roles
+
+Let members assign roles by clicking buttons.
+
+**Note:** Message must be sent by Evict.
+
+### Add Button Role
+
+\`\`\`
+;rolebutton add (message) (emoji) (role)
+\`\`\`
+
+**Requires:** Manage Messages
+
+**Parameters:**
+- `message` - Message link or ID (must be from Evict)
+- `emoji` - Button emoji
+- `role` - Role to assign
+
+**Example:**
+\`\`\`
+;rolebutton add https://discord.com/channels/.../... 🎮 @Gamer
+\`\`\`
+
+### Remove Button Role
+
+\`\`\`
+;rolebutton remove (message) (role)
+\`\`\`
+
+**Requires:** Manage Messages
+
+---
+
+## Tips
+
+- Booster roles automatically adjust position when configured
+- Reaction and button roles can be combined on the same message
+- Auto role delays are useful for bot detection
+- Multi-boost requires users to have 2+ active boosts
+- Role icons require server level 2 (14 boosts)

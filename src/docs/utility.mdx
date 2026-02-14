@@ -1,0 +1,233 @@
+---
+title: Utility Commands
+description: Helpful utility commands for everyday use
+category: Commands
+order: 6
+lastUpdated: 2026-02-14
+---
+
+# Utility Commands
+
+Essential utility commands for everyday Discord use.
+
+## Basic Utilities
+
+### Ping
+Check bot's latency:
+
+\`\`\`
+;ping
+\`\`\`
+
+Shows WebSocket latency and REST API response time.
+
+### Create Embed
+Create custom embeds using scripts:
+
+\`\`\`
+;createembed (script)
+\`\`\`
+
+Also: `;parse`, `;ce`, `;script`
+
+**Requires:** Manage Messages
+
+**Example:**
+\`\`\`
+;ce \\{embed\\}\\{title: Hello\\}\\{description: World\\}\\{color: #5865F2\\}\\{$end\\}
+\`\`\`
+
+Use the [embed builder](https://evict.bot/embed) for easier creation.
+
+### Recolor
+Recolor emojis or images to a specific color:
+
+\`\`\`
+;recolor (color) [emoji]
+\`\`\`
+
+Attach an image or provide a custom emoji.
+
+**Example:**
+\`\`\`
+;recolor #FF0000 :emoji:
+\`\`\`
+
+---
+
+<details>
+<summary>### AFK System</summary>
+
+Set an AFK status that notifies others when you're mentioned.
+
+#### Set AFK
+
+\`\`\`
+;afk [status]
+\`\`\`
+
+**Default status:** "AFK"
+
+**Example:**
+\`\`\`
+;afk Sleeping
+\`\`\`
+
+#### How It Works
+
+1. When you set AFK, others who mention you see your status
+2. Your nickname gets prefixed with `[AFK]`
+3. AFK automatically removes when you send a message
+4. Notifications show how long you've been AFK
+
+</details>
+
+---
+
+<details>
+<summary>### Message Snipes</summary>
+
+View recently deleted, edited messages, or removed reactions.
+
+#### Deleted Messages
+
+\`\`\`
+;snipe [index]
+\`\`\`
+
+Also: `;sn`, `;s`
+
+View the most recently deleted message (or specify index for older ones).
+
+**Example:**
+\`\`\`
+;snipe 2
+\`\`\`
+
+Shows the 2nd most recent deleted message.
+
+#### Edited Messages
+
+\`\`\`
+;snipe edit [index]
+\`\`\`
+
+Also: `;editsnipe`, `;esnipe`, `;es`
+
+View recently edited messages with before/after content.
+
+#### Removed Reactions
+
+\`\`\`
+;snipe reaction [index]
+\`\`\`
+
+Also: `;reactionsnipe`, `;rsnipe`, `;rs`
+
+View recently removed reactions.
+
+#### Clear Snipes
+
+**Requires:** Manage Messages
+
+\`\`\`
+;snipe clear
+\`\`\`
+
+Also: `;clearsnipes`, `;cs`
+
+Clears all snipes in the current channel.
+
+</details>
+
+---
+
+<details>
+<summary>### Giveaways</summary>
+
+Host giveaways in your server. **Requires:** Manage Messages
+
+#### Start a Giveaway
+
+\`\`\`
+;giveaway start [channel] (duration) --prize (text) [options]
+\`\`\`
+
+Also: `;gw start`
+
+**Required Parameters:**
+- `duration` - How long the giveaway runs (15s minimum, 4w maximum)
+- `--prize` - What members are winning
+
+**Optional Flags:**
+- `--winners (number)` - Number of winners (default: 1)
+- `--required (role)` - Role required to enter
+- `--bonus (role:entries)` - Bonus entries for role
+
+**Duration Format:**
+- `s` - seconds
+- `m` - minutes
+- `h` - hours
+- `d` - days
+- `w` - weeks
+
+**Examples:**
+
+Basic giveaway:
+\`\`\`
+;gw start #giveaways 1d --prize Discord Nitro
+\`\`\`
+
+With winners and requirements:
+\`\`\`
+;gw start 12h --prize $50 Gift Card --winners 3 --required @Members
+\`\`\`
+
+With bonus entries:
+\`\`\`
+;gw start 1w --prize Gaming PC --bonus @Boosters:5
+\`\`\`
+
+#### End a Giveaway
+
+End a giveaway early:
+
+\`\`\`
+;giveaway end [giveaway]
+\`\`\`
+
+Also: `;gw end`, `;gw stop`
+
+Provide the message link or ID of the giveaway.
+
+#### Reroll Winners
+
+Pick new winners:
+
+\`\`\`
+;giveaway reroll [giveaway]
+\`\`\`
+
+Also: `;gw reroll`, `;gw redraw`
+
+#### View Entrants
+
+See who entered a giveaway:
+
+\`\`\`
+;giveaway entrants [giveaway]
+\`\`\`
+
+Also: `;gw entrants`, `;gw entries`
+
+</details>
+
+---
+
+## Tips
+
+- Snipes are stored per-channel and expire after some time
+- AFK status automatically removes when you speak
+- Giveaway durations must be between 15 seconds and 4 weeks
+- Use embed builder for complex custom embeds
+- Recolor works best with custom emojis and PNG images

@@ -1,0 +1,149 @@
+# Embed Builder
+
+Create beautiful, customized embeds for your Discord server with Evict's powerful embed builder.
+
+## What are Embeds?
+
+Embeds are rich message formats in Discord that can include:
+
+- Titles and descriptions
+- Colors and images
+- Fields and footers
+- Author information
+- Timestamps
+
+## Creating Your First Embed
+
+Use the embed builder at [evict.bot/embed](https://evict.bot/embed) to:
+
+1. Design your embed visually
+2. Customize colors, text, and images
+3. Generate the embed code
+4. Use it in your Discord commands
+
+## Embed Script Syntax
+
+Evict uses a simple script syntax for embeds:
+
+\`\`\`
+\{embed\}
+\{title: My Cool Embed\}
+\{description: This is an embed description\}
+\{color: #ccccff\}
+\{footer: Footer text\}
+\{$end\}
+\`\`\`
+
+## Common Embed Elements
+
+### Title
+\`\`\`
+\{title: Your Title Here\}
+\`\`\`
+
+### Description
+\`\`\`
+\{description: Your description text\}
+\`\`\`
+
+### Color
+\`\`\`
+\{color: #5865F2\}
+\`\`\`
+
+### Fields
+\`\`\`
+\{field: Field Name | Field Value | true/false for inline\}
+\`\`\`
+
+### Images
+\`\`\`
+\{image: URL\}
+\{thumbnail: URL\}
+\`\`\`
+
+### Footer
+\`\`\`
+\{footer: Footer text | icon URL\}
+\`\`\`
+
+### Author
+\`\`\`
+\{author: Author name | icon URL\}
+\`\`\`
+
+### Timestamp
+\`\`\`
+\{timestamp\}
+\`\`\`
+
+## Variables
+
+Use dynamic variables in your embeds:
+
+- `{`user`}` - User mention
+- `{`user.name`}` - Username
+- `{`user.id`}` - User ID
+- `{`server`}` - Server name
+- `{`server.id`}` - Server ID
+- `{`server.members`}` - Member count
+
+## Using Embeds in Commands
+
+### Custom Commands
+
+Create custom commands with embeds:
+
+\`\`\`
+;createembed \{embed\}\{title: Welcome!\}\{description: Welcome to \{server\}!\}\{$end\}
+\`\`\`
+
+### Welcome Messages
+
+Set up welcome embeds:
+
+\`\`\`
+;welcome message \{embed\}\{title: Welcome \{user.name\}!\}\{$end\}
+\`\`\`
+
+### Tags
+
+Create reusable embed tags:
+
+\`\`\`
+;tags create rules \{embed\}\{title: Server Rules\}\{description: Follow these rules\}\{$end\}
+\`\`\`
+
+## Tips
+
+- Keep descriptions under 4096 characters
+- Use colors that match your server theme
+- Test embeds before deploying them
+- Use the visual builder for complex designs
+
+## Advanced Features
+
+### Multiple Embeds
+
+Send multiple embeds in one message:
+
+\`\`\`
+\{embed\}\{title: First\}\{$end\}
+\{embed\}\{title: Second\}\{$end\}
+\`\`\`
+
+### Conditional Content
+
+Use if statements:
+
+\`\`\`
+\{if: \{user.roles\} contains Moderator\}
+You are a moderator!
+\{endif\}
+\`\`\`
+
+## Need Help?
+
+- Try the [visual embed builder](/embed)
+- Join our [support server](https://discord.gg/evict)
+- Check embed examples in the builder

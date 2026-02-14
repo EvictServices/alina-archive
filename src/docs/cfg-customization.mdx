@@ -1,0 +1,258 @@
+---
+title: Customization & Context
+description: Customize Evict's profile and response colors/emojis
+category: Configuration
+order: 13
+lastUpdated: 2026-02-14
+---
+
+# Customization & Context
+
+Personalize Evict's appearance and response styling.
+
+## Bot Profile Customization
+
+Customize how Evict appears in your server.
+
+### View Settings
+
+\`\`\`
+;customize view
+\`\`\`
+
+**Aliases:** `;customise view`
+
+### Update Avatar
+
+\`\`\`
+;customize avatar
+\`\`\`
+
+**Aliases:** `;customize pfp`, `;customize icon`, `;customize av`
+
+**Requires:** Administrator
+
+Opens an upload interface. Attach an image or provide a URL.
+
+### Update Banner
+
+\`\`\`
+;customize banner
+\`\`\`
+
+**Requires:** Administrator
+
+Opens an upload interface for banner image.
+
+### Update Bio
+
+\`\`\`
+;customize bio (text)
+\`\`\`
+
+**Requires:** Administrator
+
+**Maximum:** 190 characters
+
+**Example:**
+\`\`\`
+;customize bio Welcome to our community! Use ;help for commands.
+\`\`\`
+
+### Reset to Default
+
+\`\`\`
+;customize reset
+\`\`\`
+
+**Aliases:** `;customize clear`
+
+**Requires:** Administrator
+
+Removes all customizations (requires confirmation).
+
+---
+
+## Server Context Settings
+
+Customize colors and emojis used in bot responses for your server.
+
+**Requires:** Manage Guild
+
+### Available Fields
+
+**Colors:**
+- `approved` - Success messages (default: green)
+- `denied` - Error messages (default: red)
+- `warned` - Warning messages (default: yellow)
+- `information` - Info messages (default: blue)
+- `neutral` - Neutral messages (default: grey)
+
+**Emojis:**
+- `approved` - Success icon (default: ✅)
+- `denied` - Error icon (default: ❌)
+- `warned` - Warning icon (default: ⚠️)
+- `filter` - Filter icon
+- `left` - Left arrow (pagination)
+- `right` - Right arrow (pagination)
+
+### List Available Fields
+
+\`\`\`
+;context list
+\`\`\`
+
+**Aliases:** `;ctx list`
+
+### Set Color
+
+\`\`\`
+;context color (field) (value)
+\`\`\`
+
+**Examples:**
+\`\`\`
+;context color approved #00FF00
+;context color denied red
+;context color information 0x5865F2
+\`\`\`
+
+Supports:
+- Hex codes: `#FF0000`
+- Color names: `red`, `blue`, `green`
+- Discord format: `0x5865F2`
+
+### Set Emoji
+
+\`\`\`
+;context emoji (field) (emoji)
+\`\`\`
+
+**Examples:**
+\`\`\`
+;context emoji approved ✨
+;context emoji denied 🚫
+;context emoji left ⬅️
+\`\`\`
+
+### View Current Settings
+
+\`\`\`
+;context view
+\`\`\`
+
+Shows all configured colors and emojis.
+
+### Reset to Default
+
+\`\`\`
+;context reset
+\`\`\`
+
+Removes all custom context settings (requires confirmation).
+
+---
+
+## Personal Context Settings
+
+Customize how the bot responds to you personally across all servers.
+
+### Set Personal Color
+
+\`\`\`
+;user color (field) (value)
+\`\`\`
+
+**Aliases:** `;uctx color`
+
+**Examples:**
+\`\`\`
+;user color approved purple
+;user color denied #FF0000
+\`\`\`
+
+Responses are ephemeral (only you can see them).
+
+### Set Personal Emoji
+
+\`\`\`
+;user emoji (field) (emoji)
+\`\`\`
+
+**Examples:**
+\`\`\`
+;user emoji approved 🎉
+;user emoji denied ⛔
+\`\`\`
+
+### View Personal Settings
+
+\`\`\`
+;user view
+\`\`\`
+
+Shows your personal context configuration (ephemeral).
+
+### Reset Personal Settings
+
+\`\`\`
+;user reset
+\`\`\`
+
+Removes all personal context settings (requires confirmation, ephemeral).
+
+---
+
+## Priority System
+
+When displaying messages, Evict uses this priority:
+
+1. **Personal settings** (your `;user` config)
+2. **Server settings** (server's `;context` config)
+3. **Default settings** (Evict's defaults)
+
+This means your personal settings override server settings.
+
+---
+
+## Examples
+
+### Custom Success Theme
+
+\`\`\`
+;context color approved #00FF00
+;context emoji approved ✨
+\`\`\`
+
+Now all success messages use green with sparkles.
+
+### Dark Mode Friendly
+
+\`\`\`
+;user color approved #90EE90
+;user color information #87CEEB
+\`\`\`
+
+Lighter colors work better in dark mode.
+
+### Custom Pagination
+
+\`\`\`
+;context emoji left ⏮️
+;context emoji right ⏭️
+\`\`\`
+
+Use custom arrows for pagination.
+
+---
+
+## Tips
+
+- Bot customization only affects one server
+- Context settings affect all bot responses
+- Personal context works across all servers
+- Both regular and custom emojis are supported
+- Color fields use autocomplete
+- Changes apply immediately
+- Bot profile changes require Administrator
+- Context changes require Manage Guild

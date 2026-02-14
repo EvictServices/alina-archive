@@ -1,0 +1,353 @@
+---
+title: Messages & Communication
+description: Confessions, bump reminders, invoke messages, and tags
+category: Configuration
+order: 12
+lastUpdated: 2026-02-14
+---
+
+# Messages & Communication
+
+Custom messaging systems for confessions, bump reminders, and reusable content.
+
+## Anonymous Confessions
+
+Anonymous confession system for your server.
+
+### Setup Channel
+
+\`\`\`
+;confessions add (channel)
+;confessions remove
+\`\`\`
+
+**Requires:** Manage Guild
+
+### View Configuration
+
+\`\`\`
+;confessions config
+\`\`\`
+
+**Requires:** Manage Guild
+
+### Sending Confessions
+
+Members use the slash command:
+
+\`\`\`
+/confess
+\`\`\`
+
+Opens a modal to submit an anonymous confession.
+
+### Moderation
+
+#### Mute Confession Author
+
+\`\`\`
+;confessions mute (number)
+;confessions unmute (number)
+;confessions unmute all
+\`\`\`
+
+**Requires:** Manage Messages
+
+Mute the author of a specific confession by its number. Use `all` to unmute everyone.
+
+### Word Blacklist
+
+**Requires:** Manage Guild
+
+#### Add Blacklisted Word
+
+\`\`\`
+;confessions blacklist add (word)
+\`\`\`
+
+Confessions containing this word will be rejected.
+
+#### Remove Blacklisted Word
+
+\`\`\`
+;confessions blacklist remove (word)
+\`\`\`
+
+#### List Blacklisted Words
+
+\`\`\`
+;confessions blacklist list
+\`\`\`
+
+#### Clear Blacklist
+
+\`\`\`
+;confessions blacklist clear
+\`\`\`
+
+Remove all blacklisted words (requires confirmation).
+
+### Reaction Emojis
+
+**Requires:** Manage Guild
+
+#### Set Custom Emojis
+
+\`\`\`
+;confessions emojis set (upvote) (downvote)
+\`\`\`
+
+Use custom emojis for confession reactions. Use `none` to disable either emoji.
+
+**Examples:**
+\`\`\`
+;confessions emojis set 👍 👎
+;confessions emojis set ⬆️ none
+\`\`\`
+
+#### Reset to Default
+
+\`\`\`
+;confessions emojis reset
+\`\`\`
+
+Resets to 👍 and 👎.
+
+#### View Current Emojis
+
+\`\`\`
+;confessions emojis view
+\`\`\`
+
+---
+
+## Disboard Bump Reminders
+
+Receive automatic bump reminders every 2 hours.
+
+### Enable/Disable
+
+\`\`\`
+;disboard toggle
+\`\`\`
+
+**Aliases:** `;bump toggle`, `;bumpreminder toggle`
+
+**Requires:** Manage Channels
+
+### Set Reminder Channel
+
+\`\`\`
+;disboard channel (channel)
+;disboard channel remove
+\`\`\`
+
+**Requires:** Manage Channels
+
+If no channel is set, reminders go to the last bumped channel.
+
+### Custom Reminder Message
+
+\`\`\`
+;disboard message (script)
+;disboard message remove
+\`\`\`
+
+**Requires:** Manage Channels
+
+**Variables:**
+- `\\{user\\}` - User who last bumped
+- `\\{disboard\\}` - Disboard bot mention
+
+**Example:**
+\`\`\`
+;disboard message It's time to bump! Use /bump or \\{disboard\\}
+\`\`\`
+
+### Thank You Message
+
+\`\`\`
+;disboard message thank (script)
+;disboard message thank remove
+\`\`\`
+
+**Requires:** Manage Channels
+
+Sent when someone bumps the server.
+
+**Variables:**
+- `\\{user\\}` - User who bumped
+- `\\{disboard\\}` - Disboard bot mention
+- `\\{disboard.bumps\\}` - Total server bumps
+- `\\{disboard.user_bumps\\}` - User's bump count
+
+**Example:**
+\`\`\`
+;disboard message thank Thanks \\{user\\} for bump #\\{disboard.user_bumps\\}!
+\`\`\`
+
+### View Settings
+
+\`\`\`
+;disboard settings
+\`\`\`
+
+**Requires:** Manage Channels
+
+### Bump Leaderboard
+
+\`\`\`
+;disboard leaderboard
+\`\`\`
+
+**Aliases:** `;disboard lb`, `;disboard bumps`
+
+View top bumpers in your server.
+
+---
+
+## Invoke Messages
+
+Custom messages sent when moderation actions are performed.
+
+**Requires:** Manage Guild
+
+### Available Actions
+
+- `kick` - When members are kicked
+- `ban` - When members are banned
+- `mute` - When members are muted
+- `unmute` - When members are unmuted
+- `jail` - When members are jailed
+- `unjail` - When members are unjailed
+- `warn` - When members are warned
+
+### Set Custom Message
+
+\`\`\`
+;invoke (action) (script)
+\`\`\`
+
+**Example:**
+\`\`\`
+;invoke kick \\{embed\\}\\{title: Kicked\\}\\{description: \\{user\\} was kicked for \\{reason\\}\\}\\{$end\\}
+\`\`\`
+
+Use the [embed builder](https://evict.bot/embed) for complex messages.
+
+### View Current Message
+
+\`\`\`
+;invoke (action) view
+\`\`\`
+
+### Remove Custom Message
+
+\`\`\`
+;invoke (action) delete
+\`\`\`
+
+**Aliases:** `;invoke (action) remove`
+
+Requires confirmation.
+
+---
+
+## Tags System
+
+Create reusable message commands.
+
+### Use a Tag
+
+\`\`\`
+;tags (name)
+\`\`\`
+
+Display a tag's content.
+
+### Create Tag
+
+\`\`\`
+;tags create (name) (script)
+\`\`\`
+
+**Requires:** Manage Messages
+
+**Example:**
+\`\`\`
+;tags create rules \\{embed\\}\\{title: Server Rules\\}\\{description: 1. Be respectful\\n2. No spam\\}\\{$end\\}
+\`\`\`
+
+### Edit Tag
+
+\`\`\`
+;tags edit (name) (template)
+\`\`\`
+
+**Requires:** Manage Messages
+
+### Delete Tag
+
+\`\`\`
+;tags delete (name)
+\`\`\`
+
+**Requires:** Manage Messages
+
+### Create Alias
+
+\`\`\`
+;tags alias (name) (alias)
+\`\`\`
+
+**Requires:** Manage Messages
+
+Create an alternative name for an existing tag.
+
+### List Tags
+
+\`\`\`
+;tags list
+\`\`\`
+
+View all tags with their restrictions.
+
+### Restrictions
+
+**Requires:** Manage Guild
+
+#### Restrict to User
+
+\`\`\`
+;tags restrict user (name) (user)
+\`\`\`
+
+Toggle whether a specific user can use the tag.
+
+#### Restrict to Role
+
+\`\`\`
+;tags restrict role (name) (role)
+\`\`\`
+
+Toggle whether members with a role can use the tag.
+
+#### Clear Restrictions
+
+\`\`\`
+;tags restrict clear (name)
+\`\`\`
+
+Remove all restrictions from a tag.
+
+---
+
+## Tips
+
+- Confessions cannot be used in DMs
+- Disboard reminders check every 5 minutes
+- Invoke messages support all embed builder features
+- Tags support user and role restrictions simultaneously
+- Use `/confess` in any channel to send anonymous confessions
+- Confession numbers are shown in the footer
+- Bump leaderboard resets monthly

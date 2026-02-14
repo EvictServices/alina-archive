@@ -1,0 +1,239 @@
+# Last.fm Integration
+
+Connect your Last.fm account to Evict and share your music taste with your server.
+
+## What is Last.fm?
+
+Last.fm is a music tracking service that scrobbles (tracks) everything you listen to across different platforms and devices.
+
+## Setup
+
+### 1. Create a Last.fm Account
+
+If you don't have one:
+
+1. Visit [last.fm](https://www.last.fm)
+2. Sign up for a free account
+3. Choose your username carefully (it can't be changed)
+
+### 2. Connect to Evict
+
+Link your Last.fm account to Evict:
+
+```
+;lastfm set (username)
+```
+
+Example: `;lastfm set johndoe`
+
+### 3. Start Scrobbling
+
+Enable scrobbling on your music platforms:
+
+- **Spotify**: Connect in Last.fm settings
+- **Apple Music**: Use the Last.fm app
+- **YouTube Music**: Use browser extensions
+- **Desktop Players**: Use Last.fm desktop scrobbler
+
+## Commands
+
+### Now Playing
+
+Show what you're currently listening to:
+
+\`\`\`
+;nowplaying
+;np
+;fm
+\`\`\`
+
+View someone else's track:
+
+\`\`\`
+;np @user
+\`\`\`
+
+### Top Artists
+
+View your most listened to artists:
+
+\`\`\`
+;lastfm topartists [timeframe]
+;lf tar 7d
+\`\`\`
+
+Timeframes:
+- `7d` - Last 7 days
+- `1m` - Last month
+- `3m` - Last 3 months
+- `6m` - Last 6 months
+- `1y` - Last year
+- `overall` - All time
+
+### Top Tracks
+
+Your most played songs:
+
+\`\`\`
+;lastfm toptracks [timeframe]
+;lf tt 1m
+\`\`\`
+
+### Top Albums
+
+Your top albums:
+
+\`\`\`
+;lastfm topalbums [timeframe]
+;lf tab overall
+\`\`\`
+
+### Recent Tracks
+
+View recently played songs:
+
+\`\`\`
+;lastfm recent
+;lf rc
+\`\`\`
+
+## Social Features
+
+### Who Knows
+
+See who in your server listens to an artist most:
+
+```
+;lastfm whoknows (artist)
+;lf wk Taylor Swift
+```
+
+### Crowns
+
+Earn crowns for having the most plays of an artist in your server:
+
+```
+;lastfm crown (artist)
+;lf crowns @user
+```
+
+### Taste Comparison
+
+Compare music taste with another user:
+
+\`\`\`
+;lastfm taste @user
+;lf compare @friend
+\`\`\`
+
+## Customization
+
+### Custom Embed Mode
+
+Customize your now playing embed:
+
+```
+;lastfm mode (style)
+```
+
+Styles:
+- `default` - Full detailed embed
+- `compact` - Minimal information
+- `minimal` - Just track and artist
+- Custom script - Use your own embed
+
+Example custom mode:
+
+```
+;lastfm mode (embed code here)
+```
+
+### Custom Command
+
+Set a custom command instead of `;np`:
+
+```
+;lastfm command (name)
+```
+
+Example: `;lastfm command fm` (use `;fm` instead)
+
+### Reactions
+
+Customize reactions on now playing:
+
+```
+;lastfm reactions (upvote) (downvote)
+;lf reactions 👍 👎
+```
+
+## Indexing
+
+### Manual Index
+
+Update your Last.fm library cache:
+
+\`\`\`
+;lastfm index
+\`\`\`
+
+Indexing helps with:
+- Faster command responses
+- Accurate who knows data
+- Crown calculations
+
+## Server Settings
+
+### Hide Users
+
+Hide specific users from who knows:
+
+\`\`\`
+;lastfm hide @user
+\`\`\`
+
+### Crown Management
+
+Manage server crowns:
+
+\`\`\`
+;lastfm killallcrowns - Remove all crowns
+;lastfm killseededcrowns - Remove auto-generated crowns
+\`\`\`
+
+## Tips
+
+- Scrobble everything you listen to for accurate stats
+- Index regularly for up-to-date who knows data
+- Check your Last.fm privacy settings
+- Join music discussions in servers with Last.fm users
+
+## Troubleshooting
+
+### Common Issues
+
+**Not updating in real-time**
+- Last.fm has a slight delay in scrobbling
+- Some platforms may take longer to scrobble
+
+**Missing scrobbles**
+- Check your Last.fm connection on the platform
+- Verify scrobbling is enabled
+- Try disconnecting and reconnecting
+
+**Who knows not accurate**
+- Run `;lastfm index` to update your data
+- Wait a few minutes after indexing
+
+## Privacy
+
+Your Last.fm data visibility:
+- Only publicly available Last.fm data is shown
+- You control your Last.fm privacy settings
+- Disconnect anytime with `;lastfm remove`
+
+## Need Help?
+
+- Visit [Last.fm support](https://support.last.fm)
+- Join our [Discord server](https://discord.gg/evict)
+- Check Last.fm scrobbling status

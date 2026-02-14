@@ -1,0 +1,332 @@
+---
+title: Server Setup Guide
+description: Step-by-step guide to setting up Evict in your server
+category: Guides
+order: 1
+lastUpdated: 2026-02-14
+---
+
+# Server Setup Guide
+
+Complete guide to setting up and configuring Evict for your Discord server.
+
+## Initial Setup
+
+### 1. Add Evict to Your Server
+
+Visit [evict.bot](https://evict.bot) and click **"Add to Discord"**.
+
+Select your server and authorize the required permissions.
+
+### 2. Set Your Prefix
+
+Choose a custom prefix for your server:
+
+\`\`\`
+;prefix set !
+\`\`\`
+
+**Default prefix:** `;`
+
+**Personal prefix:** Use `;prefix self` to set your own
+
+### 3. Configure Permissions
+
+Ensure Evict has proper permissions:
+
+**Required:**
+- Read Messages/View Channels
+- Send Messages
+- Embed Links
+- Attach Files
+- Read Message History
+- Add Reactions
+
+**Recommended:**
+- Manage Roles (for auto roles, booster roles)
+- Manage Messages (for snipes, quoter)
+- Manage Channels (for thread watcher)
+- Manage Nicknames (for AFK system)
+
+---
+
+## Essential Features to Configure
+
+### Auto Roles
+
+Automatically assign roles when members join:
+
+\`\`\`
+;autorole add @Member
+\`\`\`
+
+**With delay:**
+\`\`\`
+;autorole add @Verified --delay 300
+\`\`\`
+
+### Welcome System
+
+Set up Disboard bump reminders:
+
+\`\`\`
+;disboard toggle
+;disboard channel #general
+;disboard message Time to bump! Use /bump
+\`\`\`
+
+### Anti-Nuke Protection
+
+Protect your server from raids and malicious admins:
+
+\`\`\`
+;antinuke bot true
+;antinuke ban true --threshold 3 --punishment ban
+;antinuke whitelist @TrustedMod
+\`\`\`
+
+### Booster Roles
+
+Allow boosters to create custom roles:
+
+\`\`\`
+;boosterrole base @Booster
+\`\`\`
+
+Members can then use:
+\`\`\`
+;boosterrole #FF0000
+\`\`\`
+
+---
+
+## Popular Features
+
+### Reaction Roles
+
+Let members self-assign roles:
+
+1. Create a message with Evict or find an existing one
+2. Add reaction role:
+\`\`\`
+;reactionrole add (message_link) 👍 @Member
+\`\`\`
+
+### Tags System
+
+Create custom commands:
+
+\`\`\`
+;tags create rules \\{embed\\}\\{title: Server Rules\\}\\{description: 1. Be respectful\\n2. No spam\\}\\{$end\\}
+\`\`\`
+
+Use with: `;tags rules`
+
+### Vanity Tracking
+
+Reward members who advertise your server:
+
+\`\`\`
+;vanity role @Advertiser
+;vanity channel #announcements
+\`\`\`
+
+### Confessions
+
+Set up anonymous confessions:
+
+\`\`\`
+;confessions add #confessions
+\`\`\`
+
+Members use: `/confess`
+
+---
+
+## Moderation Setup
+
+### Invoke Messages
+
+Custom messages for mod actions:
+
+\`\`\`
+;invoke kick \\{embed\\}\\{title: Kicked\\}\\{description: \\{user\\} was kicked by \\{moderator\\}\\nReason: \\{reason\\}\\}\\{$end\\}
+\`\`\`
+
+### Message Snipes
+
+Retrieve deleted messages:
+
+\`\`\`
+;snipe
+;editsnipe
+\`\`\`
+
+Moderators can clear snipes:
+\`\`\`
+;clearsnipes
+\`\`\`
+
+---
+
+## Engagement Features
+
+### Giveaways
+
+Host giveaways in your server:
+
+\`\`\`
+;giveaway start 1d prize: Discord Nitro winners: 1
+\`\`\`
+
+**With requirements:**
+\`\`\`
+;gw start 1w prize: $50 Gift Card winners: 3 required: @Member bonus: @Booster:5
+\`\`\`
+
+### Last.fm Integration
+
+Connect Last.fm for music tracking:
+
+\`\`\`
+;lastfm set (username)
+;lastfm index
+\`\`\`
+
+Use: `;np` to show now playing
+
+---
+
+## Customization
+
+### Bot Profile
+
+Customize how Evict appears:
+
+\`\`\`
+;customize avatar
+;customize banner
+;customize bio Welcome to our server!
+\`\`\`
+
+**Requires:** Administrator
+
+### Response Colors
+
+Change embed colors:
+
+\`\`\`
+;context color approved #00FF00
+;context color denied #FF0000
+\`\`\`
+
+**Requires:** Manage Guild
+
+### Response Emojis
+
+Change reaction emojis:
+
+\`\`\`
+;context emoji approved ✨
+;context emoji denied 🚫
+\`\`\`
+
+---
+
+## Advanced Configuration
+
+### Thread Watcher
+
+Prevent important threads from archiving:
+
+\`\`\`
+;thread add (thread)
+\`\`\`
+
+### Aliases
+
+Create command shortcuts:
+
+\`\`\`
+;alias add w userinfo
+;alias add av avatar
+\`\`\`
+
+Now `;w @user` works like `;userinfo @user`
+
+### Guild Tag Tracking
+
+Track members with your server tag:
+
+\`\`\`
+;tag role @Tagged
+;tag channel #logs
+\`\`\`
+
+### Ping on Join
+
+Mention new members:
+
+\`\`\`
+;pingonjoin add #welcome
+\`\`\`
+
+---
+
+## Recommended Role Hierarchy
+
+Place Evict's role high enough to:
+
+1. Manage roles below it (for auto roles, booster roles)
+2. Moderate members
+3. Manage channels (if needed)
+
+**Example hierarchy:**
+\`\`\`
+1. Server Owner
+2. Admin
+3. Evict (bot role)
+4. Moderator
+5. Booster roles
+6. Member roles
+\`\`\`
+
+---
+
+## Post-Setup Checklist
+
+- [ ] Set custom prefix
+- [ ] Configure auto roles
+- [ ] Set up anti-nuke protection
+- [ ] Enable booster roles (if applicable)
+- [ ] Create reaction/button roles
+- [ ] Set up Disboard reminders
+- [ ] Configure invoke messages
+- [ ] Test permissions with basic commands
+- [ ] Review context settings (colors/emojis)
+- [ ] Set up tags for FAQs
+- [ ] Enable confessions (optional)
+- [ ] Configure Last.fm (optional)
+- [ ] Set up vanity/guild tag tracking (optional)
+
+---
+
+## Getting Help
+
+- **Support Server:** Use `;support` for invite
+- **Command Help:** Use `;help (command)` for details
+- **Documentation:** Visit [evict.bot/docs](https://evict.bot/docs)
+- **Bot Info:** Use `;botinfo` for statistics
+
+---
+
+## Tips
+
+- Start with essential features, add more later
+- Test commands in a private channel first
+- Use `;help` to explore all commands
+- Many features have configuration commands
+- Embed builder available at [evict.bot/embed](https://evict.bot/embed)
+- Context settings affect all bot responses
+- Personal prefixes work across all servers
+- Most configuration requires Manage Guild or higher

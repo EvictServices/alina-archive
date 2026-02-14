@@ -83,7 +83,10 @@ export function MainNav() {
               >
                 <span className="relative z-10">Home</span>
                 {pathname === "/" && (
-                  <span className="absolute inset-0 bg-accent/10 rounded-full" />
+                  <>
+                    <span className="absolute inset-0 bg-accent/10 rounded-full" />
+                    <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-white rounded-full" />
+                  </>
                 )}
                 <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-accent/5 transition-opacity" />
               </Link>
@@ -103,7 +106,10 @@ export function MainNav() {
               >
                 <span className="relative z-10">Commands</span>
                 {pathname === "/commands" && (
-                  <span className="absolute inset-0 bg-accent/10 rounded-full" />
+                  <>
+                    <span className="absolute inset-0 bg-accent/10 rounded-full" />
+                    <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-white rounded-full" />
+                  </>
                 )}
                 <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-accent/5 transition-opacity" />
               </Link>
@@ -123,7 +129,10 @@ export function MainNav() {
               >
                 <span className="relative z-10">Embeds</span>
                 {pathname === "/embed" && (
-                  <span className="absolute inset-0 bg-accent/10 rounded-full" />
+                  <>
+                    <span className="absolute inset-0 bg-accent/10 rounded-full" />
+                    <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-white rounded-full" />
+                  </>
                 )}
                 <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 bg-accent/5 transition-opacity" />
               </Link>
@@ -155,6 +164,9 @@ export function MainNav() {
                     Status
                   </span>
                 </span>
+                {pathname === "/status" && (
+                  <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-white rounded-full" />
+                )}
                 <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
             </li>

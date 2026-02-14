@@ -1,0 +1,441 @@
+---
+title: Server Automation
+description: Aliases, anti-nuke, threads, vanity tracking, and ping on join
+category: Configuration
+order: 11
+lastUpdated: 2026-02-14
+---
+
+# Server Automation
+
+Automate server management with aliases, protection, and smart monitoring.
+
+## Command Aliases
+
+Create shortcuts for frequently used commands.
+
+### Add Alias
+
+\`\`\`
+;alias add (name) (command)
+\`\`\`
+
+**Aliases:** `;shortcut add`
+
+**Requires:** Manage Guild
+
+**Example:**
+\`\`\`
+;alias add w userinfo
+\`\`\`
+
+Now `;w @user` works like `;userinfo @user`
+
+### View Alias
+
+\`\`\`
+;alias view (alias)
+\`\`\`
+
+See what command an alias triggers.
+
+### Remove Alias
+
+\`\`\`
+;alias remove (alias)
+\`\`\`
+
+**Aliases:** `;alias delete`, `;alias del`, `;alias rm`
+
+### List Aliases
+
+\`\`\`
+;alias list
+\`\`\`
+
+View all command shortcuts.
+
+### Clear Aliases
+
+\`\`\`
+;alias clear
+\`\`\`
+
+Remove all aliases (requires confirmation).
+
+---
+
+## Anti-Nuke Protection
+
+Protect your server from malicious admins and raids.
+
+### View Settings
+
+\`\`\`
+;antinuke settings
+\`\`\`
+
+**Aliases:** `;an settings`, `;antiwizz config`
+
+### Whitelist Members
+
+Exempt trusted members from anti-nuke actions:
+
+\`\`\`
+;antinuke whitelist (member)
+;antinuke whitelist list
+\`\`\`
+
+**Requires:** Anti-nuke admin or guild owner
+
+Toggles whitelist status with confirmation.
+
+### Trust Admins
+
+Grant members permission to manage anti-nuke:
+
+\`\`\`
+;antinuke trust (member)
+;antinuke trust list
+\`\`\`
+
+**Requires:** Guild owner
+
+### Protection Modules
+
+Each module can be configured with:
+- `status` - Enable/disable
+- `--threshold` - Actions before punishment
+- `--duration` - Time window (e.g., `60s`)
+- `--punishment` - Action to take (`ban`, `kick`, or `strip`)
+
+#### Bot Protection
+
+\`\`\`
+;antinuke bot (enabled)
+\`\`\`
+
+Prevent unauthorized bot additions.
+
+#### Ban Protection
+
+\`\`\`
+;antinuke ban (enabled) [--threshold 3] [--duration 60s] [--punishment ban]
+\`\`\`
+
+Prevent mass banning.
+
+#### Kick Protection
+
+\`\`\`
+;antinuke kick (enabled) [options]
+\`\`\`
+
+Prevent mass kicking.
+
+#### Role Protection
+
+\`\`\`
+;antinuke role (enabled) [options]
+\`\`\`
+
+Prevent role creation, deletion, or modification.
+
+#### Channel Protection
+
+\`\`\`
+;antinuke channel (enabled) [options]
+\`\`\`
+
+Prevent channel creation, deletion, or modification.
+
+#### Webhook Protection
+
+\`\`\`
+;antinuke webhook (enabled) [options]
+\`\`\`
+
+Prevent webhook manipulation.
+
+#### Emoji Protection
+
+\`\`\`
+;antinuke emoji (enabled) [options]
+\`\`\`
+
+Prevent emoji manipulation.
+
+### Reset Settings
+
+\`\`\`
+;antinuke reset
+\`\`\`
+
+**Requires:** Anti-nuke admin or guild owner
+
+Removes all settings, whitelisted members, and trusted admins. Requires confirmation.
+
+---
+
+## Thread Watcher
+
+Prevent threads from being archived.
+
+### Watch Thread
+
+\`\`\`
+;thread add (thread)
+\`\`\`
+
+**Aliases:** `;thread create`, `;thread watch`
+
+**Requires:** Manage Channels
+
+### Unwatch Thread
+
+\`\`\`
+;thread remove (thread)
+\`\`\`
+
+**Aliases:** `;thread delete`, `;thread unwatch`
+
+**Requires:** Manage Channels
+
+### List Watched Threads
+
+\`\`\`
+;thread list
+\`\`\`
+
+**Requires:** Manage Channels
+
+### Clear All Watched Threads
+
+\`\`\`
+;thread clear
+\`\`\`
+
+**Requires:** Manage Channels
+
+Requires confirmation.
+
+---
+
+## Vanity Tracking
+
+Grant roles when members advertise your vanity URL in their status.
+
+**Requires:** Server must have a vanity URL
+
+### View Settings
+
+\`\`\`
+;vanity settings
+\`\`\`
+
+**Aliases:** `;vr config`
+
+### Add/Remove Vanity Role
+
+\`\`\`
+;vanity role (role)
+\`\`\`
+
+**Requires:** Manage Roles
+
+Toggles the role - adds if not present, removes if already added.
+
+### Set Notification Channel
+
+\`\`\`
+;vanity channel (channel)
+;vanity channel remove
+\`\`\`
+
+**Requires:** Manage Channels
+
+Set where vanity notifications are sent.
+
+### Custom Notification
+
+\`\`\`
+;vanity message (script)
+;vanity message remove
+\`\`\`
+
+**Requires:** Manage Messages
+
+**Variables:**
+- `\\{user\\}` - Member who added vanity
+- `\\{server\\}` - Server name
+
+**Example:**
+\`\`\`
+;vanity message Thanks \\{user\\} for repping \\{server\\}!
+\`\`\`
+
+### Reset Settings
+
+\`\`\`
+;vanity reset
+\`\`\`
+
+**Requires:** Manage Roles
+
+Removes all roles, channel, and message settings.
+
+---
+
+## Guild Tag Tracking
+
+Grant roles when members add your server's name tag to their username.
+
+### View Settings
+
+\`\`\`
+;tag settings
+\`\`\`
+
+**Requires:** Manage Guild
+
+### Add/Remove Tag Role
+
+\`\`\`
+;tag role (role)
+\`\`\`
+
+**Requires:** Manage Roles
+
+Toggles the role for members with guild tag.
+
+### Set Notification Channel
+
+\`\`\`
+;tag channel (channel)
+;tag channel remove
+\`\`\`
+
+**Requires:** Manage Channels
+
+### Custom Notification
+
+\`\`\`
+;tag message (script)
+;tag message remove
+\`\`\`
+
+**Requires:** Manage Messages
+
+**Variables:**
+- `\\{user\\}` - Member who added tag
+- `\\{server\\}` - Server name
+
+### Assign to Existing Members
+
+\`\`\`
+;tag give
+\`\`\`
+
+Grant tag roles to all members already using the guild tag.
+
+### Reset Settings
+
+\`\`\`
+;tag reset
+\`\`\`
+
+**Requires:** Manage Roles
+
+---
+
+## Ping on Join
+
+Mention new members when they join.
+
+### Add Channel
+
+\`\`\`
+;pingonjoin add [channel]
+\`\`\`
+
+**Aliases:** `;poj add`
+
+**Requires:** Manage Guild
+
+Defaults to current channel if none specified.
+
+### Remove Channel
+
+\`\`\`
+;pingonjoin remove [channel]
+\`\`\`
+
+**Requires:** Manage Guild
+
+### List Channels
+
+\`\`\`
+;pingonjoin list
+\`\`\`
+
+**Requires:** Manage Guild
+
+### Features
+
+- Pings are auto-deleted after 6 seconds
+- Batches pings when 10+ members join within 3 minutes
+- Ignores bot accounts
+
+---
+
+## Message Quoter
+
+Repost messages with reactions or commands.
+
+### Quote a Message
+
+\`\`\`
+;quoter [message]
+\`\`\`
+
+Reply to a message or provide message link.
+
+### Set Quote Relay
+
+\`\`\`
+;quoter channel (channel)
+\`\`\`
+
+**Requires:** Manage Messages
+
+Messages quoted via reaction go here.
+
+### Set Quote Emoji
+
+\`\`\`
+;quoter emoji (emoji)
+\`\`\`
+
+**Requires:** Manage Messages
+
+React with this emoji to quote messages.
+
+### Toggle Embeds
+
+\`\`\`
+;quoter embeds
+\`\`\`
+
+**Requires:** Manage Messages
+
+Enable/disable embed formatting for quotes.
+
+---
+
+## Tips
+
+- Aliases accept additional arguments
+- Anti-nuke whitelisted members bypass all protections
+- Thread watcher sets auto-archive to 7 days
+- Vanity/tag tracking updates automatically
+- Quoter preserves images, videos, and attachments

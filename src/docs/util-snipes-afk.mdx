@@ -1,0 +1,252 @@
+---
+title: Utility - Snipes & AFK
+description: Message snipes and AFK status system
+category: Utilities
+order: 20
+lastUpdated: 2026-02-14
+---
+
+# Utility Features
+
+Essential utility commands for message tracking and status management.
+
+## Message Snipes
+
+Retrieve recently deleted, edited messages, and removed reactions.
+
+### Deleted Messages
+
+\`\`\`
+;snipe [index]
+\`\`\`
+
+**Aliases:** `;sn`, `;s`
+
+View the most recently deleted message in the channel.
+
+**Parameters:**
+- `index` (optional) - Which message to view (1-50, default: 1)
+
+**Examples:**
+\`\`\`
+;snipe
+;snipe 3
+\`\`\`
+
+**Shows:**
+- Message content
+- Author and timestamp
+- Embeds and attachments
+- Images, videos, audio
+- Message replies
+
+### Edited Messages
+
+\`\`\`
+;snipe edit [index]
+\`\`\`
+
+**Aliases:** `;editsnipe`, `;esnipe`, `;es`, `;snipe edited`, `;snipe e`
+
+View recently edited messages with before/after comparison.
+
+**Examples:**
+\`\`\`
+;editsnipe
+;es 2
+\`\`\`
+
+**Shows:**
+- Original content (before)
+- Edited content (after)
+- Edit timestamp
+- All attachment types
+
+### Removed Reactions
+
+\`\`\`
+;snipe reaction [index]
+\`\`\`
+
+**Aliases:** `;reactionsnipe`, `;rsnipe`, `;rs`, `;snipe react`, `;snipe r`
+
+View recently removed reactions.
+
+**Examples:**
+\`\`\`
+;rsnipe
+;snipe reaction 1
+\`\`\`
+
+**Shows:**
+- What emoji was removed
+- Who removed it
+- When it was removed
+- Link to the original message
+
+### Clear Snipes
+
+\`\`\`
+;snipe clear
+\`\`\`
+
+**Aliases:** `;clearsnipes`, `;cs`, `;snipe c`
+
+**Requires:** Manage Messages
+
+Clear all snipes (deleted, edited, reactions) in the current channel.
+
+---
+
+## Snipe System Details
+
+### What Gets Cached
+
+**Deleted Messages:**
+- Message content and embeds
+- Images, videos, and audio files
+- Message refs (replies)
+- Stickers
+
+**Edited Messages:**
+- Before and after content
+- All attachments
+- Edit timestamp
+
+**Removed Reactions:**
+- Emoji used
+- User who removed it
+- Original message link
+- Timestamp
+
+### What Doesn't Get Cached
+
+- Bot messages
+- Empty messages (no content/media)
+- DM messages (guild only)
+- Non-media embeds
+
+### Storage Limits
+
+- **Cache Duration:** 2 hours
+- **Maximum Items:** 50 per channel per type
+- **Channel Specific:** Each channel has its own cache
+
+### Attachment Handling
+
+- Images display in embed thumbnails
+- Videos and audio are re-uploaded
+- Files are base64-encoded and stored
+- Attachments are preserved when retrieved
+
+---
+
+## AFK System
+
+Set an AFK status that automatically notifies others when you're mentioned.
+
+### Set AFK
+
+\`\`\`
+;afk [status]
+\`\`\`
+
+**Parameters:**
+- `status` (optional) - Your AFK message (default: "AFK")
+
+**Examples:**
+\`\`\`
+;afk
+;afk Sleeping
+;afk In a meeting, back in 1 hour
+;afk AFK until tomorrow
+\`\`\`
+
+### How It Works
+
+1. **Set Status:** Use `;afk` with your message
+2. **Nickname Update:** Your nickname gets `[AFK]` prefix
+3. **Auto-Notify:** When mentioned, others see your AFK status
+4. **Auto-Remove:** AFK automatically removes when you send a message
+5. **Duration Display:** Shows how long you've been AFK
+
+### Features
+
+- **Automatic Removal:** Send any message to disable
+- **Mention Notifications:** Others see your status when they mention you
+- **Duration Tracking:** Displays "X minutes/hours ago"
+- **Nickname Prefix:** Visual indicator you're away
+- **Server Persistent:** Status persists until you return
+
+### Examples
+
+**Someone mentions you while AFK:**
+
+```
+User1: @You hey, are you there?
+Evict: @User1, You is currently AFK - Sleeping (2 hours ago)
+```
+
+**You return:**
+
+```
+You: I'm back!
+Evict: Welcome back! You were AFK for 2 hours and 15 minutes.
+```
+
+### Privacy
+
+- AFK status is server-wide
+- Only visible when mentioned
+- Automatically clears when active
+- No manual removal needed
+
+---
+
+## Usage Tips
+
+### Snipes
+
+- Use snipes to retrieve accidentally deleted messages
+- Moderators can clear snipes for privacy
+- Images and videos are fully preserved
+- React snipes help track reaction removals
+- Each channel maintains separate snipe history
+
+### AFK
+
+- Set clear, informative AFK messages
+- Include expected return time if known
+- AFK persists across sessions
+- Nickname prefix shows you're away
+- Sends any message to auto-return
+
+---
+
+## Command Reference
+
+### Snipe Commands
+
+| Command | Aliases | Description |
+|---------|---------|-------------|
+| `;snipe [index]` | `;sn`, `;s` | View deleted message |
+| `;snipe edit [index]` | `;editsnipe`, `;es` | View edited message |
+| `;snipe reaction [index]` | `;rsnipe`, `;rs` | View removed reaction |
+| `;snipe clear` | `;clearsnipes`, `;cs` | Clear all snipes (Manage Messages) |
+
+### AFK Commands
+
+| Command | Description |
+|---------|-------------|  
+| `;afk [status]` | Set AFK status (default: "AFK") |
+
+---
+
+## Technical Notes
+
+- Snipes stored in Redis
+- 2-hour TTL on all cached items
+- Maximum 50 items per channel per type
+- Media files base64-encoded
+- AFK status persists in Redis
+- Nickname changes handled automatically

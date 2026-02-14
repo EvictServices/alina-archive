@@ -1,0 +1,334 @@
+---
+title: Utility - Giveaways
+description: Host and manage server giveaways
+category: Utilities
+order: 21
+lastUpdated: 2026-02-14
+---
+
+# Giveaways
+
+Host engaging giveaways in your server with advanced features.
+
+**Requires:** Manage Messages
+
+## Starting a Giveaway
+
+\`\`\`
+;giveaway start [channel] (duration) prize: (text) winners: (count) [options]
+\`\`\`
+
+**Aliases:** `;gw start`, `;giveaway create`
+
+### Required Parameters
+
+- `duration` - How long the giveaway runs
+  - **Minimum:** 15 seconds
+  - **Maximum:** 4 weeks
+  - **Format:** `1d`, `12h`, `30m`, `2w`
+- `prize:` - What winners receive
+- `winners:` - Number of winners (1-25)
+
+### Optional Parameters
+
+- `channel` - Where to post (defaults to current channel)
+- `required:` - Role required to enter
+- `bonus:` - Roles with bonus entries (format: `@Role:entries`)
+
+### Duration Format
+
+- `s` - seconds (e.g., `30s`)
+- `m` - minutes (e.g., `15m`)
+- `h` - hours (e.g., `12h`)
+- `d` - days (e.g., `3d`)
+- `w` - weeks (e.g., `2w`)
+
+### Examples
+
+**Basic Giveaway:**
+\`\`\`
+;gw start 1d prize: Discord Nitro winners: 1
+\`\`\`
+
+**With Requirements:**
+\`\`\`
+;gw start #giveaways 12h prize: $50 Gift Card winners: 3 required: @Member
+\`\`\`
+
+**With Bonus Entries:**
+\`\`\`
+;gw start 1w prize: Gaming PC winners: 1 required: @Member bonus: @Booster:5 @VIP:10
+\`\`\`
+
+**Multiple Winners:**
+\`\`\`
+;gw start 3d prize: Nitro Classic winners: 5
+\`\`\`
+
+---
+
+## Managing Giveaways
+
+### End Giveaway Early
+
+\`\`\`
+;giveaway end [giveaway]
+\`\`\`
+
+**Aliases:** `;gw end`, `;gw stop`
+
+End a giveaway before its scheduled end time.
+
+**Parameters:**
+- `giveaway` (optional) - Message link/ID or reply to giveaway message
+
+Immediately draws and announces winners.
+
+### Reroll Winners
+
+\`\`\`
+;giveaway reroll [giveaway]
+\`\`\`
+
+**Aliases:** `;gw reroll`, `;gw redraw`
+
+Pick new winners from the same entry pool.
+
+**Use Cases:**
+- Winner didn't respond
+- Winner no longer in server
+- Need to pick backup winners
+
+### View Entrants
+
+\`\`\`
+;giveaway entrants [giveaway]
+\`\`\`
+
+**Aliases:** `;gw entrants`, `;gw entries`
+
+See everyone who entered a giveaway.
+
+Shows paginated list with entry counts based on bonuses.
+
+### List Active Giveaways
+
+\`\`\`
+;giveaway list
+\`\`\`
+
+**Aliases:** `;gw list`, `;gw ls`
+
+View all active giveaways in your server with:
+- Channel location
+- Prize description
+- Message link
+- End time
+
+---
+
+## Server Configuration
+
+### View Settings
+
+\`\`\`
+;giveaway settings
+\`\`\`
+
+**Aliases:** `;gw settings`, `;gw config`
+
+Shows:
+- DM winners setting
+- Silent DM mode
+- Global bonus roles
+
+### Add Global Bonus Role
+
+\`\`\`
+;giveaway addrole (role) [bonus]
+\`\`\`
+
+**Parameters:**
+- `role` - Role to grant bonus entries
+- `bonus` (optional) - Number of bonus entries (default: 1)
+
+**Example:**
+\`\`\`
+;gw addrole @Booster 5
+\`\`\`
+
+This role gets bonus entries in **ALL** server giveaways.
+
+---
+
+## Winner Notifications
+
+### Enable/Disable DMs
+
+\`\`\`
+;giveaway notify [enabled]
+\`\`\`
+
+**Aliases:** `;gw notify`, `;gw dm`
+
+**Default:** Enabled
+
+Toggle whether winners receive DMs.
+
+**Note:** Only sends DMs if 15 or fewer winners.
+
+### Silent DM Mode
+
+\`\`\`
+;giveaway notify silent [enabled]
+\`\`\`
+
+**Default:** Disabled
+
+When enabled, DMs won't create notifications if winner is offline.
+
+**Requirements:**
+- DMs must be enabled
+- Only works with ≤15 winners
+
+---
+
+## Entry System
+
+### How Entries Work
+
+1. **Base Entry:** Everyone gets 1 entry
+2. **Per-Giveaway Bonus:** Roles specified in `bonus:` flag
+3. **Global Bonus:** Roles added via `;gw addrole`
+4. **Total:** All bonuses stack additively
+
+### Entry Calculation Example
+
+```
+Base: 1 entry
+Role @Booster (giveaway bonus): +5 entries
+Role @VIP (global bonus): +10 entries
+Total: 16 entries
+```
+
+### Role Requirements
+
+- Set with `required:` flag
+- Members without the role can't enter
+- Reactions automatically removed if lacking role
+- Checked when reaction is added
+
+---
+
+## Automatic Features
+
+### Background Checker
+
+Runs every 15 seconds to:
+- Check for ended giveaways
+- Draw winners automatically
+- Clean up invalid giveaways
+- Update giveaway messages
+
+### Distributed Locking
+
+Prevents duplicate winner draws when running multiple bot instances.
+
+### Invalid Giveaway Cleanup
+
+Automatically removes giveaways where:
+- Channel was deleted
+- Message was deleted
+- Server no longer accessible
+
+---
+
+## Prize Display
+
+The bot automatically formats prizes based on winner count:
+
+- 1 winner: "Discord Nitro"
+- 2 winners: "2x Discord Nitro"
+- 5 winners: "5x Discord Nitro"
+
+---
+
+## Giveaway Message Format
+
+Each giveaway displays:
+- 🎉 Giveaway emoji reaction
+- Prize description
+- Number of winners
+- End time (with countdown)
+- Requirements (if any)
+- Bonus roles (if any)
+- "React with 🎉 to enter!"
+
+**Winner Announcement:**
+```
+🎉 Giveaway Ended! 🎉
+
+Prize: Discord Nitro
+Winners:
+🎊 @User1
+🎊 @User2
+
+Congratulations!
+```
+
+---
+
+## Best Practices
+
+### Duration
+
+- Short giveaways (1h-6h): Quick engagement
+- Medium giveaways (1d-3d): Standard events
+- Long giveaways (1w+): Major prizes
+
+### Requirements
+
+- Use `required:` for member-only giveaways
+- Prevents raid entries
+- Ensures participants are engaged
+
+### Bonus Entries
+
+- Reward boosters: `bonus: @Booster:5`
+- Reward VIPs: `bonus: @VIP:10`
+- Encourage engagement with global bonuses
+
+### Winner Count
+
+- 1 winner: Major prizes
+- 3-5 winners: Medium prizes
+- 10+ winners: Small prizes/participation rewards
+
+---
+
+## Command Reference
+
+| Command | Aliases | Description |
+|---------|---------|-------------|
+| `;giveaway start` | `;gw start` | Create new giveaway |
+| `;giveaway end` | `;gw end`, `;gw stop` | End giveaway early |
+| `;giveaway reroll` | `;gw reroll` | Pick new winners |
+| `;giveaway entrants` | `;gw entries` | View participants |
+| `;giveaway list` | `;gw list` | Show active giveaways |
+| `;giveaway settings` | `;gw config` | View configuration |
+| `;giveaway addrole` | `;gw addrole` | Add global bonus role |
+| `;giveaway notify` | `;gw dm` | Toggle winner DMs |
+| `;giveaway notify silent` | - | Toggle silent DMs |
+
+---
+
+## Tips
+
+- Use message replies instead of providing links
+- Set realistic durations for your prize value
+- Test with short duration giveaways first
+- Global bonus roles affect all giveaways
+- Bonus entries dramatically increase win chance
+- 25 winner maximum prevents spam
+- Reroll picks completely new winners
+- Entrants list shows entry multipliers

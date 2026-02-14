@@ -1,0 +1,305 @@
+---
+title: Prefix Management
+description: Configure server and personal command prefixes
+category: Configuration
+order: 14
+lastUpdated: 2026-02-14
+---
+
+# Prefix Management
+
+Configure custom prefixes for your server and personal use.
+
+## Overview
+
+Evict supports:
+- **Server prefixes:** Custom prefix for your server
+- **Personal prefixes:** Your own prefix across all servers
+- **Default prefix:** `;` (semicolon)
+
+---
+
+## Commands
+
+### View Current Prefixes
+
+\`\`\`
+;prefix
+\`\`\`
+
+Shows the current server prefix and your personal prefix (if set).
+
+**Example output:**
+\`\`\`
+Server prefix: !
+Your personal prefix: >
+\`\`\`
+
+---
+
+### Set Server Prefix
+
+\`\`\`
+;prefix set (prefix)
+\`\`\`
+
+**Requirements:**
+- **Permission:** Manage Guild
+- **Length:** 1-7 characters
+- **Cannot be:** Bot mention
+
+**Examples:**
+\`\`\`
+;prefix set !
+;prefix set >
+;prefix set e.
+;prefix set evict 
+\`\`\`
+
+**Notes:**
+- The new prefix applies to all members
+- Personal prefixes override server prefix
+- Default prefix `;` always works
+
+---
+
+### Set Personal Prefix
+
+\`\`\`
+;prefix self (prefix)
+\`\`\`
+
+**Requirements:**
+- **Length:** 1-7 characters
+- **Cannot be:** Bot mention
+
+**Examples:**
+\`\`\`
+;prefix self >
+;prefix self e!
+;prefix self .
+\`\`\`
+
+**Benefits:**
+- Works in **all servers** with Evict
+- Overrides server prefixes
+- Portable across Discord
+
+---
+
+### Remove Personal Prefix
+
+\`\`\`
+;prefix self remove
+\`\`\`
+
+Removes your personal prefix and reverts to using server prefixes.
+
+---
+
+## Prefix Priority
+
+When you run a command, Evict checks prefixes in this order:
+
+1. **Personal prefix** (if set)
+2. **Server prefix** (if set)
+3. **Default prefix** (`;`)
+4. **Bot mention** (`@Evict`)
+
+**Example:**
+- Server prefix: `!`
+- Your personal prefix: `>`
+- You can use: `>help`, `!help`, `;help`, or `@Evict help`
+
+---
+
+## Use Cases
+
+### Community Server
+
+Set a user-friendly prefix:
+\`\`\`
+;prefix set !
+\`\`\`
+
+Members use commands like: `!help`, `!userinfo`
+
+### Development Server
+
+Use a descriptive prefix:
+\`\`\`
+;prefix set e.
+\`\`\`
+
+Now commands look like: `e.help`, `e.avatar`
+
+### Bot Testing Server
+
+Use a short prefix:
+\`\`\`
+;prefix set .
+\`\`\`
+
+Quick commands: `.np`, `.av`, `.ui`
+
+### Multi-Bot Server
+
+Avoid conflicts with other bots:
+
+**If another bot uses `!`:**
+\`\`\`
+;prefix set e!
+\`\`\`
+
+**If another bot uses `.`:**
+\`\`\`
+;prefix set >
+\`\`\`
+
+### Power Users
+
+Set your personal prefix for consistency:
+\`\`\`
+;prefix self >
+\`\`\`
+
+Now you can use `>help` in **every server**, regardless of the server's prefix.
+
+---
+
+## Best Practices
+
+### Choosing a Prefix
+
+✅ **Good prefixes:**
+- `!` - Common, easy to type
+- `>` - Clean, single character
+- `e!` - Branded, less conflict
+- `.` - Minimal, fast
+
+❌ **Avoid:**
+- Long prefixes (harder to type)
+- Confusing characters (`|`, `\\`, `/`)
+- Prefixes used by other bots
+- Special Unicode characters
+
+### Server Admins
+
+- Choose a prefix that doesn't conflict with other bots
+- Announce the prefix in your rules or welcome channel
+- Keep it simple and memorable
+- Consider your server's theme
+
+### Personal Users
+
+- Use a prefix you can type quickly
+- Make it different from common server prefixes
+- Remember it must be 1-7 characters
+- Test it in multiple servers
+
+---
+
+## Troubleshooting
+
+### Commands Not Working
+
+1. **Check the prefix:**
+   \`\`\`
+   ;prefix
+   \`\`\`
+
+2. **Try all options:**
+   - Personal prefix (if set)
+   - Server prefix
+   - Default: `;help`
+   - Mention: `@Evict help`
+
+3. **Verify permissions:**
+   - Evict can read messages
+   - You have command permissions
+
+### Can't Change Server Prefix
+
+- **Requires:** Manage Guild permission
+- **Check:** Your roles and permissions
+- **Alternative:** Ask an admin to change it
+
+### Forgot Personal Prefix
+
+Use the default prefix or mention:
+\`\`\`
+;prefix
+@Evict prefix
+\`\`\`
+
+Then remove your personal prefix:
+\`\`\`
+;prefix self remove
+\`\`\`
+
+---
+
+## Technical Details
+
+### Character Limits
+
+- **Minimum:** 1 character
+- **Maximum:** 7 characters
+- **Type:** Any alphanumeric or symbol
+
+### Validation
+
+Prefixes cannot be:
+- Bot mentions (`<@123456789>`)
+- Empty strings
+- Only whitespace
+
+### Storage
+
+- **Server prefixes:** Stored per-server
+- **Personal prefixes:** Stored per-user globally
+- **Default:** Hardcoded in bot configuration
+
+---
+
+## Examples
+
+### Gaming Community
+
+\`\`\`
+;prefix set g!
+\`\`\`
+
+Commands: `g!userinfo`, `g!avatar`, `g!np`
+
+### Music Server
+
+\`\`\`
+;prefix set m.
+\`\`\`
+
+Commands: `m.np`, `m.fm`, `m.topartists`
+
+### Support Server
+
+\`\`\`
+;prefix set ?
+\`\`\`
+
+Commands: `?help`, `?commands`, `?invite`
+
+### Personal Setup
+
+\`\`\`
+;prefix self >>
+\`\`\`
+
+Use `>>help` in any server with Evict.
+
+---
+
+## Related
+
+- [Configuration Overview](/docs/configuration) - All configuration commands
+- [Commands Overview](/docs/commands-overview) - Command categories
+- [Server Setup Guide](/docs/server-setup) - Full setup walkthrough
