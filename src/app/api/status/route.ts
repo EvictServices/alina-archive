@@ -3,12 +3,13 @@ import { getCached, setCached } from '@/lib/redis';
 
 const EXTERNAL_API_URL = 'https://elara.evict.bot/health';
 const CACHE_KEY = 'status:health';
-const CACHE_DURATION = 30; // 30 seconds
+const CACHE_DURATION = 30;
 
 export async function GET() {
   try {
     const cached = await getCached<any>(CACHE_KEY);
     if (cached) {
+      console.log('[Cache HIT] Serving cached status data');
       return NextResponse.json(cached, {
         headers: {
           'X-Cache': 'HIT',

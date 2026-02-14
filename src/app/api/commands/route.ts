@@ -9,6 +9,7 @@ export async function GET() {
   try {
     const cached = await getCached<any>(CACHE_KEY);
     if (cached) {
+      console.log('[Cache HIT] Serving cached commands data');
       return NextResponse.json(cached, {
         headers: {
           'X-Cache': 'HIT',

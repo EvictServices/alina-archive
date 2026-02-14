@@ -39,6 +39,7 @@ export async function POST(request: Request) {
     const cachedData = await getCached<{ rows: any[]; timestamp: string }>(CACHE_KEY);
     
     if (cachedData) {
+      console.log('[Cache HIT] Serving cached top commands data');
       return NextResponse.json({
         success: true,
         data: cachedData.rows,

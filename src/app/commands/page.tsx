@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import type { Command, CommandsData } from '@/types/commands';
 import { processCommands } from '@/lib/commands';
 
-const EXTERNAL_API_URL = 'https://elara.evict.bot';
 const COPY_FEEDBACK_DURATION = 2000;
 import { MdSecurity, MdBuild, MdSettings, MdInfo, MdSportsEsports, MdWavingHand, MdAutoAwesome, MdList } from 'react-icons/md';
 import type { IconType } from 'react-icons';
@@ -98,35 +97,54 @@ export default function CommandsPage() {
 
   const flattenCommands = (commands: Command[]): Command[] => {
     const flattened: Command[] = [];
-    for (const cmd of commands) {
-      flattened.push(cmd);
-      if (cmd.subcommands && cmd.subcommands.length > 0) {
-        flattened.push(...flattenCommands(cmd.subcommands));
+    const seen = new Set<string>();
+    
+    const addCommand = (cmd: Command) => {
+      const key = cmd.qualified_name || cmd.name;
+      if (!seen.has(key)) {
+        seen.add(key);
+        flattened.push(cmd);
       }
-    }
+      
+      if (cmd.subcommands && cmd.subcommands.length > 0) {
+        cmd.subcommands.forEach(addCommand);
+      }
+    };
+    
+    commands.forEach(addCommand);
     return flattened;
   };
 
   const getFilteredCommands = () => {
     if (!selectedCategory) return [];
     
-    let categoryCommands: Command[] = [];
-    if (selectedCategory === 'All') {
-      categoryCommands = flattenCommands(Object.values(commands).flat());
-    } else {
-      categoryCommands = flattenCommands(commands[selectedCategory] || []);
+    if (!searchQuery) {
+      let categoryCommands: Command[] = [];
+      if (selectedCategory === 'All') {
+        categoryCommands = flattenCommands(Object.values(commands).flat());
+      } else {
+        categoryCommands = flattenCommands(commands[selectedCategory] || []);
+      }
+      return categoryCommands;
     }
     
-    if (!searchQuery) return categoryCommands;
+    const allCommands = flattenCommands(Object.values(commands).flat());
+    const searchLower = searchQuery.toLowerCase().trim();
     
-    return categoryCommands.filter(cmd =>
-      cmd.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      cmd.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      cmd.aliases.some(alias => alias.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
+    return allCommands.filter(cmd => {
+      const name = (cmd.name || '').toLowerCase();
+      const qualifiedName = (cmd.qualified_name || '').toLowerCase();
+      const description = (cmd.description || '').toLowerCase();
+      const aliases = cmd.aliases || [];
+      
+      if (name.includes(searchLower)) return true;
+      if (qualifiedName.includes(searchLower)) return true;
+      if (description.includes(searchLower)) return true;
+      if (Array.isArray(aliases) && aliases.some(alias => alias.toLowerCase().includes(searchLower))) return true;
+      
+      return false;
+    });
   };
-
-  const displayedCommands = getFilteredCommands();
 
   const CommandCard = ({ command }: { command: Command }) => {
     return (
@@ -171,7 +189,7 @@ export default function CommandsPage() {
               <span className="text-white/80">{command.signature}</span>
             </div>
           )}
-          {command.permissions.length > 0 && (
+          {command.permissions && command.permissions.length > 0 && (
             <div>
               <span className="text-white/60">Permissions: </span>
               <span className="text-white/80">{command.permissions.join(', ')}</span>
@@ -185,7 +203,7 @@ export default function CommandsPage() {
               </code>
             </div>
           )}
-          {command.aliases.length > 0 && (
+          {command.aliases && command.aliases.length > 0 && (
             <div>
               <span className="text-white/60">Aliases: </span>
               <span className="text-white/80">{command.aliases.join(', ')}</span>
@@ -195,6 +213,8 @@ export default function CommandsPage() {
       </div>
     );
   };
+
+  const displayedCommands = getFilteredCommands();
 
   if (loading) {
     return (
@@ -326,9 +346,9 @@ export default function CommandsPage() {
 
             {selectedCategory && (
               <div className="space-y-4">
-                {displayedCommands.map((command) => (
+                {displayedCommands.map((command, index) => (
                   <CommandCard
-                    key={command.qualified_name || command.name}
+                    key={`${command.qualified_name || command.name}-${command.category || ''}-${index}`}
                     command={command}
                   />
                 ))}
@@ -374,7 +394,7 @@ export default function CommandsPage() {
                 <p className="text-white font-medium">{selectedCommand.is_subcommand ? selectedCommand.qualified_name : selectedCommand.name}</p>
               </div>
 
-              {selectedCommand.aliases.length > 0 && (
+              {selectedCommand.aliases && selectedCommand.aliases.length > 0 && (
                 <div>
                   <p className="text-white/60 text-xs uppercase mb-1">Aliases</p>
                   <p className="text-white">{selectedCommand.aliases.join(', ')}</p>
@@ -383,7 +403,7 @@ export default function CommandsPage() {
 
               <div>
                 <p className="text-white/60 text-xs uppercase mb-2">Permissions Required</p>
-                {selectedCommand.permissions.length > 0 ? (
+                {selectedCommand.permissions && selectedCommand.permissions.length > 0 ? (
                   <div className="flex flex-wrap gap-2">
                     {selectedCommand.permissions.map(perm => (
                       <span
