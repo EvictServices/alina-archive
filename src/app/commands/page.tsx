@@ -95,6 +95,15 @@ export default function CommandsPage() {
     setTimeout(() => setCopiedCommand(null), COPY_FEEDBACK_DURATION);
   };
 
+  const formatPermission = (perm: string | Record<string, boolean>): string => {
+    if (typeof perm === 'string') return perm;
+    if (typeof perm === 'object') {
+      const key = Object.keys(perm)[0];
+      return key ? key.replace(/_/g, ' ') : '';
+    }
+    return '';
+  };
+
   const flattenCommands = (commands: Command[]): Command[] => {
     const flattened: Command[] = [];
     const seen = new Set<string>();
@@ -192,7 +201,7 @@ export default function CommandsPage() {
           {command.permissions && command.permissions.length > 0 && (
             <div>
               <span className="text-white/60">Permissions: </span>
-              <span className="text-white/80">{command.permissions.join(', ')}</span>
+              <span className="text-white/80">{command.permissions.map(formatPermission).join(', ')}</span>
             </div>
           )}
           {command.signature && (
@@ -405,14 +414,17 @@ export default function CommandsPage() {
                 <p className="text-white/60 text-xs uppercase mb-2">Permissions Required</p>
                 {selectedCommand.permissions && selectedCommand.permissions.length > 0 ? (
                   <div className="flex flex-wrap gap-2">
-                    {selectedCommand.permissions.map(perm => (
-                      <span
-                        key={perm}
-                        className="bg-[#ccccff]/20 text-white px-3 py-1 rounded-full text-sm"
-                      >
-                        {perm}
-                      </span>
-                    ))}
+                    {selectedCommand.permissions.map((perm, idx) => {
+                      const formattedPerm = formatPermission(perm);
+                      return (
+                        <span
+                          key={`${formattedPerm}-${idx}`}
+                          className="bg-[#ccccff]/20 text-white px-3 py-1 rounded-full text-sm"
+                        >
+                          {formattedPerm}
+                        </span>
+                      );
+                    })}
                   </div>
                 ) : (
                   <p className="text-white/80 text-sm">None</p>
