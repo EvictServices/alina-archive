@@ -18,8 +18,9 @@ function formatPermissions(
 }
 
 export function processParams(command: RawCommand): Command {
+  const { subcommands, ...rest } = command;
   const baseCommand: Command = {
-    ...command,
+    ...rest,
     permissions: formatPermissions(command.permissions),
   };
 
