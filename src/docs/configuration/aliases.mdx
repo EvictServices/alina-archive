@@ -1,0 +1,314 @@
+---
+title: Command Aliases
+description: Create shortcuts for frequently used commands
+category: Configuration
+order: 15
+lastUpdated: 2026-02-14
+---
+
+# Command Aliases
+
+Create shortcuts for frequently used commands to speed up your workflow.
+
+## Overview
+
+Aliases let you create custom shortcuts that trigger full commands. Perfect for commands you use frequently or ones with long names.
+
+**Example:**
+- Create alias `w` for `userinfo`
+- Now `;w @user` works like `;userinfo @user`
+
+---
+
+## Commands
+
+### Add Alias
+
+\`\`\`
+;alias add (name) (command)
+\`\`\`
+
+**Aliases:** `;shortcut add`
+
+**Requires:** Manage Guild
+
+**Examples:**
+\`\`\`
+;alias add w userinfo
+;alias add av avatar
+;alias add ui userinfo
+;alias add bi botinfo
+\`\`\`
+
+**Notes:**
+- Aliases can pass through arguments
+- Cannot override existing commands
+- Alias names are case-insensitive
+
+### View Alias
+
+\`\`\`
+;alias view (alias)
+\`\`\`
+
+See what command an alias triggers.
+
+**Example:**
+\`\`\`
+;alias view w
+\`\`\`
+
+Shows: `w -> userinfo`
+
+### Remove Alias
+
+\`\`\`
+;alias remove (alias)
+\`\`\`
+
+**Aliases:** `;alias delete`, `;alias del`, `;alias rm`
+
+**Requires:** Manage Guild
+
+**Example:**
+\`\`\`
+;alias remove w
+\`\`\`
+
+### List Aliases
+
+\`\`\`
+;alias list
+\`\`\`
+
+View all command shortcuts in your server.
+
+Shows alias name and the command it triggers.
+
+### Clear Aliases
+
+\`\`\`
+;alias clear
+\`\`\`
+
+**Requires:** Manage Guild
+
+Remove all aliases at once. Requires confirmation.
+
+---
+
+## Use Cases
+
+### Quick Access Commands
+
+\`\`\`
+;alias add ui userinfo
+;alias add av avatar
+;alias add si serverinfo
+\`\`\`
+
+Now use: `;ui @user`, `;av @user`, `;si`
+
+### Shortening Long Commands
+
+\`\`\`
+;alias add gw giveaway
+;alias add rr reactionrole
+;alias add br boosterrole
+\`\`\`
+
+Now use: `;gw start`, `;rr add`, `;br #FF0000`
+
+### Common Typos
+
+\`\`\`
+;alias add userinof userinfo
+;alias add userinffo userinfo
+\`\`\`
+
+Guards against common typos.
+
+### Group Commands
+
+\`\`\`
+;alias add fm lastfm
+;alias add np nowplaying
+\`\`\`
+
+Shorter access to Last.fm features.
+
+---
+
+## How Aliases Work
+
+### Argument Passing
+
+Aliases automatically pass arguments to the target command:
+
+**Setup:**
+\`\`\`
+;alias add w userinfo
+\`\`\`
+
+**Usage:**
+\`\`\`
+;w @John
+\`\`\`
+
+**Executes:**
+\`\`\`
+;userinfo @John
+\`\`\`
+
+### Subcommands
+
+Aliases work with subcommands too:
+
+**Setup:**
+\`\`\`
+;alias add gw giveaway
+\`\`\`
+
+**Usage:**
+\`\`\`
+;gw start 1d prize: Nitro winners: 1
+\`\`\`
+
+**Executes:**
+\`\`\`
+;giveaway start 1d prize: Nitro winners: 1
+\`\`\`
+
+### Limitations
+
+- Cannot override existing commands
+- Cannot create recursive aliases
+- Cannot chain multiple commands
+- Server-specific (don't transfer between servers)
+
+---
+
+## Best Practices
+
+### Keep It Short
+
+✅ **Good:**
+\`\`\`
+;alias add w userinfo
+;alias add av avatar
+\`\`\`
+
+❌ **Avoid:**
+\`\`\`
+;alias add ui123abc userinfo
+\`\`\`
+
+### Use Logical Names
+
+✅ **Good:**
+\`\`\`
+;alias add ui userinfo
+;alias add si serverinfo
+;alias add ci channelinfo
+\`\`\`
+
+❌ **Confusing:**
+\`\`\`
+;alias add x userinfo
+;alias add y serverinfo
+\`\`\`
+
+### Common Abbreviations
+
+- `ui` = userinfo
+- `av` = avatar
+- `si` = serverinfo/servericon
+- `gw` = giveaway
+- `rr` = reactionrole
+- `br` = boosterrole
+- `fm` = lastfm
+- `np` = nowplaying
+
+### Document Your Aliases
+
+Keep a list of server aliases in:
+- Server rules/info channel
+- Staff documentation
+- Welcome message
+
+---
+
+## Examples
+
+### Moderation Server
+
+\`\`\`
+;alias add w userinfo
+;alias add av avatar
+;alias add ar autorole
+;alias add rr reactionrole
+\`\`\`
+
+### Music Community
+
+\`\`\`
+;alias add fm lastfm
+;alias add np nowplaying
+;alias add ta topartists
+;alias add tt toptracks
+\`\`\`
+
+### Gaming Server
+
+\`\`\`
+;alias add gw giveaway
+;alias add ui userinfo
+;alias add av avatar
+;alias add br boosterrole
+\`\`\`
+
+---
+
+## Troubleshooting
+
+### Alias Not Working
+
+1. **Check if it exists:**
+   \`\`\`
+   ;alias list
+   \`\`\`
+
+2. **View the alias:**
+   \`\`\`
+   ;alias view (name)
+   \`\`\`
+
+3. **Verify spelling:**
+   - Aliases are case-insensitive
+   - Check for typos
+
+### Cannot Create Alias
+
+**Error: "Already exists"**
+- Command with that name exists
+- Choose different alias name
+
+**Error: "Missing permissions"**
+- Requires Manage Guild permission
+- Ask an admin to create it
+
+### Alias Confusion
+
+If aliases cause confusion:
+1. Use `;alias list` to review
+2. Remove unclear ones
+3. Standardize naming convention
+4. Document in server info
+
+---
+
+## Related
+
+- [Server Automation](/docs/configuration/automation) - Overview of automation features
+- [Configuration Overview](/docs/configuration/configuration) - All configuration options
+- [Commands Overview](/docs/introduction/commands-overview) - All available commands

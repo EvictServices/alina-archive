@@ -1,0 +1,456 @@
+---
+title: Ping on Join
+description: Automatically mention new members when they join
+category: Configuration
+order: 20
+lastUpdated: 2026-02-14
+---
+
+# Ping on Join
+
+Automatically mention new members when they join your server to help them get started.
+
+## Overview
+
+Ping on Join sends a mention (ping) to new members in designated channels when they join the server.
+
+**Features:**
+- Multiple ping channels
+- Auto-deletion after 6 seconds
+- Smart batching for mass joins
+- Ignores bot accounts
+- Configurable per channel
+
+**Use cases:**
+- Welcome channels
+- Getting started guides
+- Member verification
+- Activity tracking
+
+---
+
+## Commands
+
+### Add Channel
+
+\`\`\`
+;pingonjoin add [channel]
+\`\`\`
+
+**Aliases:** `;poj add`
+
+**Requires:** Manage Guild
+
+Add a channel where new members will be pinged.
+
+**Examples:**
+\`\`\`
+;pingonjoin add #welcome
+;pingonjoin add
+\`\`\`
+
+Uses current channel if none specified.
+
+### Remove Channel
+
+\`\`\`
+;pingonjoin remove [channel]
+\`\`\`
+
+**Aliases:** `;poj remove`
+
+**Requires:** Manage Guild
+
+Remove a channel from ping list.
+
+**Examples:**
+\`\`\`
+;pingonjoin remove #welcome
+;pingonjoin remove
+\`\`\`
+
+### List Channels
+
+\`\`\`
+;pingonjoin list
+\`\`\`
+
+**Aliases:** `;poj list`
+
+**Requires:** Manage Guild
+
+View all channels configured for pinging new members.
+
+Shows:
+- Channel name
+- Channel ID
+- When added
+
+---
+
+## How It Works
+
+### Normal Join
+
+When a member joins:
+1. Bot sends ping in all configured channels
+2. Format: `@NewMember`
+3. Message auto-deletes after 6 seconds
+4. Member sees the ping notification
+
+### Mass Join Detection
+
+When 10+ members join within 3 minutes:
+1. Bot batches pings together
+2. Format: `@Member1 @Member2 @Member3 ...`
+3. Prevents spam during raids/promotion events
+4. Still auto-deletes after 6 seconds
+
+### Bot Accounts
+
+- Bot accounts are **not pinged**
+- Prevents spam from bot additions
+- Only real member accounts get pinged
+
+---
+
+## Use Cases
+
+### Welcome Channel
+
+\`\`\`
+;pingonjoin add #welcome
+\`\`\`
+
+Ping members in welcome channel to:
+- Draw attention to welcome message
+- Help them find the channel
+- Encourage first interaction
+
+### Verification
+
+\`\`\`
+;pingonjoin add #verify-here
+\`\`\`
+
+Direct members to verification:
+- Ping in verification channel
+- They see the verification instructions
+- Encourages immediate verification
+
+### Rules Acceptance
+
+\`\`\`
+;pingonjoin add #rules
+\`\`\`
+
+Ping in rules channel:
+- Ensures they see the ping notification
+- Draws attention to rules
+- Higher rules acceptance rate
+
+### Getting Started
+
+\`\`\`
+;pingonjoin add #start-here
+\`\`\`
+
+Guide new members:
+- Ping in getting started guide
+- They see first steps
+- Better onboarding experience
+
+---
+
+## Best Practices
+
+### Channel Selection
+
+**Good channels for pings:**
+- ✅ Welcome channels
+- ✅ Verification channels
+- ✅ Rules/info channels
+- ✅ Getting started guides
+
+**Avoid pinging in:**
+- ❌ General chat
+- ❌ Active discussion channels
+- ❌ Staff channels
+- ❌ Voice text channels
+
+### Message Context
+
+Always pair pings with clear instructions:
+
+**Good:**
+\`\`\`
+Welcome to ServerName!
+
+React with ✅ to get access to the server.
+Check out #rules for guidelines.
+Say hi in #general!
+
+[Ping on Join activates here]
+\`\`\`
+
+**Not clear:**
+\`\`\`
+Welcome!
+
+[Ping on Join activates here]
+\`\`\`
+
+### Multiple Channels
+
+You can ping in multiple places:
+\`\`\`
+;pingonjoin add #verify
+;pingonjoin add #rules
+;pingonjoin add #welcome
+\`\`\`
+
+But keep it reasonable - 1-3 channels max to avoid overwhelming new members.
+
+### Auto-Deletion
+
+**6-second auto-deletion means:**
+- Members see the notification
+- Channel stays clean
+- No ping message clutter
+- Works for slow mobile notifications
+
+---
+
+## Examples
+
+### Simple Welcome
+
+\`\`\`
+;pingonjoin add #welcome
+\`\`\`
+
+Single ping in welcome channel.
+
+### Verification Flow
+
+\`\`\`
+;pingonjoin add #verification
+\`\`\`
+
+Ping to direct attention to verification instructions.
+
+### Multi-Step Onboarding
+
+\`\`\`
+;pingonjoin add #start-here
+\`\`\`
+
+Ping in comprehensive onboarding channel with:
+- Welcome message
+- Rule highlights
+- Role selection info
+- Channel guide
+
+### Community Server
+
+\`\`\`
+;pingonjoin add #welcome
+\`\`\`
+
+Single welcome ping with:
+- Friendly greeting
+- Server introduction
+- Quick start guide
+
+---
+
+## Advanced Setup
+
+### Combined with Welcome Messages
+
+Pair Ping on Join with welcome messages:
+
+**Channel setup:**
+1. Pin welcome message at top
+2. Ping on Join active in channel
+3. New members see ping notification
+4. They open channel and see pinned welcome
+
+**Welcome message example:**
+\`\`\`
+Welcome to ServerName! 👋
+
+✅ Read #rules
+🎭 Get roles in #roles
+💬 Chat in #general
+🎮 Find games in #gaming
+
+Need help? Ping @Moderator
+\`\`\`
+
+### With Auto Reactions
+
+Combine with reaction roles:
+
+\`\`\`
+;pingonjoin add #verification
+\`\`\`
+
+Setup message with reaction:
+- Member gets pinged
+- They see verification message
+- React to get access
+- Seamless onboarding
+
+---
+
+## Limitations
+
+### Discord Limits
+
+- Cannot ping members with DM-only notifications
+- Cannot force ping sound for muted channels
+- Subject to Discord rate limits during mass joins
+
+### Server Constraints
+
+- Requires Manage Guild permission to configure
+- Evict must have Send Messages permission in channel
+- Evict must have Mention Everyone permission (for role mentions)
+
+### Auto-Deletion
+
+- 6-second delay is fixed
+- Cannot be customized
+- Cannot disable auto-deletion
+- Old messages not affected (must remove channel to stop)
+
+---
+
+## Troubleshooting
+
+### Pings Not Sending
+
+**Check:**
+1. Channel is configured:
+   \`\`\`
+   ;pingonjoin list
+   \`\`\`
+
+2. Evict has permissions in channel:
+   - View Channel
+   - Send Messages
+   - Mention Everyone (if needed)
+
+3. New member isn't a bot:
+   - Bot accounts aren't pinged
+   - Only real members
+
+**Solution:**
+\`\`\`
+;pingonjoin remove #channel
+;pingonjoin add #channel
+\`\`\`
+
+### Pings Not Deleting
+
+**Possible causes:**
+- Evict missing Manage Messages permission
+- Bug in auto-deletion
+- Channel permissions changed
+
+**Check permissions:**
+- View Channel
+- Send Messages
+- Manage Messages (for deletion)
+
+### Members Not Seeing Pings
+
+**Check:**
+1. Member notification settings:
+   - Server notification settings
+   - Channel mute status
+   - Mention settings
+
+2. Member verification level:
+   - Might need email verification
+   - Might need to pass verification
+
+3. Member filters:
+   - DM privacy settings
+   - Blocked messages from server
+
+---
+
+## Mass Join Handling
+
+### Normal Traffic
+
+- 1-9 members joining: Individual pings
+- Each member gets their own ping
+- All auto-delete after 6 seconds
+
+### High Traffic (10+ in 3 minutes)
+
+- Pings are batched together
+- Format: `@Member1 @Member2 @Member3 ...`
+- Prevents spam
+- Still auto-deletes
+
+### Raid Protection
+
+During raids:
+- Ping on Join continues working
+- Batching prevents ping spam
+- Consider temporarily disabling:
+  \`\`\`
+  ;pingonjoin remove #welcome
+  \`\`\`
+
+---
+
+## Comparison with Welcome Messages
+
+| Feature | Ping on Join | Welcome Messages |
+|---------|-------------|------------------|
+| **Notification** | Yes (ping) | No |
+| **Auto-delete** | Yes (6s) | No |
+| **Customizable** | No | Yes |
+| **Variables** | No | Yes |
+| **Embeds** | No | Yes |
+| **Best for** | Directing attention | Informative welcome |
+
+**Best together:**
+- Use Ping on Join to get attention
+- Use Welcome Message for information
+- Provide clear onboarding path
+
+---
+
+## Privacy Considerations
+
+### Member Privacy
+
+**Pros:**
+- Helps new members find welcome info
+- Improves engagement
+- Increases rules compliance
+
+**Cons:**
+- Some members dislike being pinged
+- Can be seen as aggressive
+- May annoy privacy-conscious users
+
+**Balance:**
+- Use sparingly (1-2 channels)
+- Pair with valuable info
+- Auto-delete keeps it clean
+- Consider member feedback
+
+---
+
+## Related
+
+- [Server Automation](/docs/configuration/automation) - Automation overview
+- [Auto Roles](/docs/configuration/roles#auto-roles) - Automatic role assignment
+- [Configuration Overview](/docs/configuration/configuration) - All configuration options

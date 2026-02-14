@@ -1,0 +1,542 @@
+---
+title: Permissions Guide
+description: Understanding permissions and role hierarchy in Evict
+category: Guides
+order: 3
+lastUpdated: 2026-02-14
+---
+
+# Permissions Guide
+
+Complete guide to permissions, role hierarchy, and access control for Evict.
+
+## Overview
+
+Evict uses Discord's permission system to:
+- Control who can use commands
+- Manage roles and members
+- Protect sensitive features
+- Ensure proper moderation
+
+---
+
+## Required Bot Permissions
+
+### Essential Permissions
+
+These permissions are **required** for basic functionality:
+
+| Permission | Purpose | Impact if Missing |
+|-----------|---------|------------------|
+| **View Channels** | See channels | Bot appears offline |
+| **Send Messages** | Reply to commands | Bot cannot respond |
+| **Embed Links** | Show rich embeds | Embeds show as text |
+| **Attach Files** | Send images | Image commands fail |
+| **Read Message History** | Access context | Some features broken |
+| **Add Reactions** | React to messages | Reaction roles fail |
+| **Use External Emojis** | Custom emojis | Limited emoji use |
+
+### Feature-Specific Permissions
+
+Enable these for specific features:
+
+<details>
+<summary>Role Management</summary>
+
+| Permission | Required For |
+|-----------|-------------|
+| **Manage Roles** | Auto roles, booster roles, reaction roles, button roles |
+
+**Important:** Evict can only manage roles **below** its own role in the hierarchy.
+
+</details>
+
+<details>
+<summary>Moderation</summary>
+
+| Permission | Required For |
+|-----------|-------------|
+| **Manage Messages** | Snipes, message editing, quote system |
+| **Kick Members** | Kick command, anti-nuke |
+| **Ban Members** | Ban/unban commands, anti-nuke |
+| **Manage Channels** | Thread watcher |
+| **Manage Nicknames** | AFK system (nickname changes) |
+| **Manage Webhooks** | Custom webhook features |
+
+</details>
+
+<details>
+<summary>Advanced Features</summary>
+
+| Permission | Required For |
+|-----------|-------------|
+| **Manage Server** | Full configuration access |
+| **Administrator** | All permissions (not recommended) |
+
+**Note:** Administrator gives all permissions but bypasses role hierarchy. Only grant if absolutely necessary.
+
+</details>
+
+---
+
+## User Permission Requirements
+
+Commands require specific user permissions.
+
+### Configuration Commands
+
+| Command | Required Permission |
+|---------|-------------------|
+| `;autorole` | Manage Guild |
+| `;boosterrole` | Manage Guild |
+| `;reactionrole` | Manage Guild |
+| `;buttonrole` | Manage Guild |
+| `;prefix set` | Manage Guild |
+| `;antinuke` | Administrator |
+| `;customize` | Administrator |
+| `;context` | Manage Guild |
+
+### Moderation Commands
+
+| Command | Required Permission |
+|---------|-------------------|
+| `;kick` | Kick Members |
+| `;ban` | Ban Members |
+| `;unban` | Ban Members |
+| `;clearsnipes` | Manage Messages |
+
+### Management Commands
+
+| Command | Required Permission |
+|---------|-------------------|
+| `;confessions` | Manage Guild |
+| `;disboard` | Manage Guild |
+| `;giveaway` | Manage Guild |
+| `;vanity` | Manage Guild |
+| `;tags create` | Manage Guild |
+
+### Everyone Commands
+
+These commands work for all members:
+- `;help`
+- `;userinfo`
+- `;avatar`
+- `;snipe`
+- `;np`
+- `;afk`
+- All fun commands
+
+---
+
+## Role Hierarchy
+
+### Understanding Hierarchy
+
+Discord uses a **top-down role hierarchy**:
+
+\`\`\`
+1. Server Owner (top)
+2. Admin Role
+3. Evict Bot Role ← Should be here
+4. Moderator Role
+5. Booster Roles (if applicable)
+6. Member Roles
+7. @everyone (bottom)
+\`\`\`
+
+### Key Rules
+
+1. **Evict can only manage roles below itself**
+2. **Higher roles cannot be managed by lower roles**
+3. **Server owner bypasses all restrictions**
+
+### Recommended Placement
+
+Place Evict's role:
+- **Above:** All roles it needs to manage
+- **Below:** Admin roles that should control it
+
+**Example for auto roles:**
+\`\`\`
+1. Server Owner
+2. Admin
+3. Evict ← Must be here
+4. @Member ← Can be managed
+5. @Verified ← Can be managed
+6. @everyone
+\`\`\`
+
+**Example for booster roles:**
+\`\`\`
+1. Server Owner
+2. Admin
+3. Evict ← Must be here
+4. Booster custom roles ← Created below Evict
+5. @everyone
+\`\`\`
+
+---
+
+## Setting Up Permissions
+
+### Step 1: Create Evict's Role
+
+If not auto-created:
+
+1. Server Settings → Roles
+2. Create new role (e.g., "Evict")
+3. Assign core permissions
+4. Move to proper position in hierarchy
+
+### Step 2: Assign Permissions
+
+**Server-wide:**
+1. Server Settings → Roles
+2. Click Evict's role
+3. Enable required permissions
+4. Save changes
+
+**Channel-specific:**
+1. Channel Settings → Permissions
+2. Add Evict's role
+3. Set channel overrides
+4. Save
+
+### Step 3: Verify Setup
+
+Test with basic commands:
+\`\`\`
+;ping
+;help
+;userinfo
+\`\`\`
+
+Test role management:
+\`\`\`
+;autorole add @Member
+\`\`\`
+
+### Step 4: Adjust as Needed
+
+- Add permissions for new features
+- Remove unnecessary permissions
+- Update role position if needed
+
+---
+
+## Permission Scenarios
+
+### Public Community Server
+
+**Bot permissions:**
+- View Channels
+- Send Messages
+- Embed Links
+- Attach Files
+- Manage Roles (for auto roles)
+- Add Reactions (for reaction roles)
+
+**Role hierarchy:**
+\`\`\`
+Owner → Admin → Moderator → Evict → Member → @everyone
+\`\`\`
+
+### Private Friend Server
+
+**Bot permissions:**
+- Basic permissions (view, send, embed)
+- Manage Messages (for snipes)
+- Add Reactions
+
+**Role hierarchy:**
+\`\`\`
+Owner → Evict → @everyone
+\`\`\`
+
+### Gaming Community
+
+**Bot permissions:**
+- All basic permissions
+- Manage Roles (booster roles)
+- Manage Messages (moderation)
+- Kick/Ban Members (anti-nuke)
+
+**Role hierarchy:**
+\`\`\`
+Owner → Admin → Evict → Moderator → Member roles → @everyone
+\`\`\`
+
+### Music Server
+
+**Bot permissions:**
+- Basic permissions
+- Manage Roles (for Last.fm tiers)
+- Embed Links (for now playing)
+
+**Role hierarchy:**
+\`\`\`
+Owner → Admin → Evict → Music roles → @everyone
+\`\`\`
+
+---
+
+## Channel Permissions
+
+### Overriding Server Permissions
+
+Channel overrides can:
+- Grant additional permissions
+- Deny server permissions
+- Restrict specific features
+
+### Setting Channel Overrides
+
+1. Channel Settings → Permissions
+2. Add Evict's role
+3. Set overrides:
+   - ✅ **Allow** - Grants permission
+   - ❌ **Deny** - Removes permission
+   - ⚪ **Neutral** - Uses role default
+
+### Common Use Cases
+
+**Staff-only commands:**
+1. Create #staff channel
+2. Deny @everyone "View Channel"
+3. Allow @Staff "View Channel"
+4. Evict inherits access through role
+
+**Read-only announcements:**
+1. Deny @everyone "Send Messages"
+2. Allow Evict "Send Messages"
+3. Use `;embed` or tags for announcements
+
+**Private logs:**
+1. Create #logs channel
+2. Deny @everyone "View Channel"
+3. Allow @Admin "View Channel"
+4. Allow Evict "View Channel" and "Send Messages"
+
+---
+
+## Troubleshooting Permissions
+
+### "Missing Permissions" Error
+
+**For the bot:**
+1. Check server-wide permissions
+2. Check channel overrides
+3. Verify role hierarchy
+
+**For you:**
+1. Check your roles
+2. Verify command requirements
+3. Ask an admin
+
+### Role Management Fails
+
+**Error: "I cannot manage this role"**
+
+**Solution:**
+1. Server Settings → Roles
+2. Move Evict's role above target role
+3. Try again
+
+### Commands Not Working in Channel
+
+**Possible causes:**
+1. Channel overrides denying permissions
+2. Evict can't view channel
+3. Evict can't send messages
+
+**Check:**
+1. Channel Settings → Permissions
+2. Find Evict's role
+3. Ensure "View Channel" and "Send Messages" allowed
+
+---
+
+## Security Best Practices
+
+### Principle of Least Privilege
+
+Only grant permissions actually needed:
+
+✅ **Good:**
+- Enable specific permissions
+- Review regularly
+- Remove when unused
+
+❌ **Bad:**
+- Grant Administrator
+- "Give all permissions just in case"
+- Never review
+
+### Administrator Permission
+
+**Pros:**
+- All permissions enabled
+- Easy setup
+
+**Cons:**
+- Bypasses role hierarchy
+- Security risk if bot compromised
+- No granular control
+
+**Recommendation:** Only use if you fully trust the bot and understand risks.
+
+### Regular Audits
+
+Review permissions monthly:
+1. Check granted permissions
+2. Remove unnecessary ones
+3. Verify role position
+4. Test critical features
+
+### Multiple Bots
+
+When using multiple bots:
+1. Give each bot its own role
+2. Position based on trust level
+3. Don't overlap permissions unnecessarily
+4. Name roles clearly (e.g., "Evict Bot")
+
+---
+
+## Permission Presets
+
+### Minimal Setup
+
+For basic commands only:
+- View Channels
+- Send Messages
+- Embed Links
+- Read Message History
+
+### Standard Setup
+
+For most features:
+- All minimal permissions
+- Attach Files
+- Add Reactions
+- Manage Roles
+- Manage Messages
+
+### Full Setup
+
+For all features:
+- All standard permissions
+- Kick Members
+- Ban Members
+- Manage Channels
+- Manage Nicknames
+- Manage Webhooks
+
+---
+
+## Command-Specific Permissions
+
+### Auto Roles
+
+**Bot needs:**
+- Manage Roles
+- Role above auto role
+
+**User needs:**
+- Manage Guild (to configure)
+
+### Reaction Roles
+
+**Bot needs:**
+- Manage Roles
+- Add Reactions
+- Read Message History
+- Role above reaction roles
+
+**User needs:**
+- Manage Guild (to configure)
+
+### Anti-Nuke
+
+**Bot needs:**
+- Kick Members
+- Ban Members
+- Manage Roles (for punishment)
+- High role position
+
+**User needs:**
+- Administrator (to configure)
+
+### Snipes
+
+**Bot needs:**
+- Manage Messages
+- Read Message History
+- Embed Links
+
+**User needs:**
+- No permission needed to use
+- Manage Messages to clear snipes
+
+### Giveaways
+
+**Bot needs:**
+- Send Messages
+- Embed Links
+- Add Reactions
+- Manage Roles (for required roles)
+
+**User needs:**
+- Manage Guild (to start)
+
+---
+
+## Advanced Topics
+
+### Permission Integers
+
+Discord uses bit flags for permissions:
+
+\`\`\`
+Administrator: 8
+Manage Guild: 32
+Manage Roles: 268435456
+\`\`\`
+
+**Why this matters:**
+- Permission calculators use these
+- API uses these internally
+- Debugging shows these values
+
+### Permission Inheritance
+
+Permissions inherit from:
+1. @everyone role (base)
+2. Additional roles (additive)
+3. Channel overrides (override)
+
+**Example:**
+- @everyone: Can send messages
+- @Member: Can attach files
+- User has both: Can send messages AND attach files
+
+### Integration Permissions
+
+Some commands use:
+- **Slash commands** (application commands)
+- **Context menus** (right-click actions)
+
+These use:
+- The bot's permissions
+- User's permissions
+- Channel permissions
+
+All three must align for operation.
+
+---
+
+## Related
+
+- [Server Setup Guide](/docs/guides/server-setup) - Initial setup walkthrough
+- [Troubleshooting](/docs/guides/troubleshooting) - Permission issues and solutions
+- [Configuration Overview](/docs/configuration/configuration) - Server configuration commands

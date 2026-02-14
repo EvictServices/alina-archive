@@ -1,0 +1,344 @@
+---
+title: Thread Watcher
+description: Prevent important threads from being archived
+category: Configuration
+order: 17
+lastUpdated: 2026-02-14
+---
+
+# Thread Watcher
+
+Keep important threads active by preventing automatic archiving.
+
+## Overview
+
+Thread Watcher monitors specified threads and automatically prevents them from archiving due to inactivity.
+
+**Use cases:**
+- Important discussion threads
+- Long-running projects
+- Community feedback threads
+- Bug report threads
+- Feature request threads
+
+---
+
+## Commands
+
+### Watch Thread
+
+\`\`\`
+;thread add (thread)
+\`\`\`
+
+**Aliases:** `;thread create`, `;thread watch`
+
+**Requires:** Manage Channels
+
+Start watching a thread to prevent archiving.
+
+**How to specify thread:**
+- Thread ID
+- Thread mention
+- While in the thread, use without arguments
+
+**Examples:**
+\`\`\`
+;thread add
+;thread add 1234567890
+;thread add #thread-name
+\`\`\`
+
+**What happens:**
+- Sets auto-archive duration to maximum (7 days)
+- Monitors thread for archive attempts
+- Automatically bumps thread when needed
+
+### Unwatch Thread
+
+\`\`\`
+;thread remove (thread)
+\`\`\`
+
+**Aliases:** `;thread delete`, `;thread unwatch`
+
+**Requires:** Manage Channels
+
+Stop watching a thread (allows normal archiving).
+
+**Examples:**
+\`\`\`
+;thread remove
+;thread remove 1234567890
+;thread remove #thread-name
+\`\`\`
+
+### List Watched Threads
+
+\`\`\`
+;thread list
+\`\`\`
+
+**Requires:** Manage Channels
+
+View all currently watched threads in the server.
+
+Shows:
+- Thread name
+- Thread ID
+- Parent channel
+- When added to watch list
+
+### Clear All Watched Threads
+
+\`\`\`
+;thread clear
+\`\`\`
+
+**Requires:** Manage Channels
+
+Remove all threads from watch list at once.
+
+Requires confirmation before proceeding.
+
+---
+
+## How It Works
+
+### Auto-Archive Prevention
+
+When you add a thread to watch:
+
+1. **Sets maximum archive duration** (7 days)
+2. **Monitors for inactivity**
+3. **Automatically sends hidden message** to prevent archiving
+4. **Continues until removed from watch list**
+
+### Smart Monitoring
+
+- Only activates when thread approaches archive
+- Doesn't spam the thread with unnecessary messages
+- Hidden messages don't disturb members
+- Works even if thread is locked
+
+---
+
+## Use Cases
+
+### Long-Term Projects
+
+\`\`\`
+;thread add #project-planning
+\`\`\`
+
+Keep project threads active for months.
+
+### Community Feedback
+
+\`\`\`
+;thread add #suggestions-discussion
+;thread add #feature-requests
+\`\`\`
+
+Maintain permanent feedback channels.
+
+### Support Threads
+
+\`\`\`
+;thread add #ongoing-issue-123
+\`\`\`
+
+Keep support threads accessible until resolved.
+
+### Important Announcements
+
+\`\`\`
+;thread add #announcement-discussion
+\`\`\`
+
+Keep discussion threads for major announcements active.
+
+### Event Planning
+
+\`\`\`
+;thread add #event-2026-planning
+\`\`\`
+
+Maintain event coordination threads.
+
+---
+
+## Best Practices
+
+### When to Use Thread Watcher
+
+✅ **Good for:**
+- Ongoing discussions (weeks/months)
+- Reference threads
+- Long-term projects
+- Community hubs
+- Support cases
+
+❌ **Not needed for:**
+- Temporary discussions
+- One-time questions
+- Completed projects
+- Active threads (frequent messages)
+
+### Managing Watched Threads
+
+**Regular cleanup:**
+\`\`\`
+;thread list
+\`\`\`
+
+Review monthly and remove:
+- Completed projects
+- Resolved issues
+- Inactive/outdated threads
+
+**Archive when done:**
+\`\`\`
+;thread remove #completed-project
+\`\`\`
+
+Let threads archive naturally when no longer needed.
+
+### Thread Organization
+
+- Name threads clearly
+- Use thread tags (if available)
+- Pin important messages in threads
+- Update thread name when status changes
+
+---
+
+## Limitations
+
+### Discord Limits
+
+- Cannot prevent manual archiving by admins
+- Cannot watch archived threads (unarchive first)
+- Cannot watch threads in channels Evict can't access
+- Subject to Discord's thread limits
+
+### Server Constraints
+
+- Requires Manage Channels permission
+- Evict must have access to parent channel
+- Cannot watch threads in private channels Evict can't see
+
+### Archived Threads
+
+If a thread is manually archived:
+1. Thread Watcher stops monitoring it
+2. Remove from watch list automatically
+3. Need to re-add after unarchiving
+
+---
+
+## Thread Limits
+
+### Discord Thread Limits
+
+**Free servers:**
+- Maximum thread age: 24 hours inactive
+
+**Boosted servers:**
+- Level 1: 3 days inactive
+- Level 2: 7 days inactive  
+- Level 3: 7 days inactive
+
+Thread Watcher sets threads to maximum available duration.
+
+---
+
+## Troubleshooting
+
+### Thread Still Archived
+
+**Check:**
+1. Thread is on watch list:
+   \`\`\`
+   ;thread list
+   \`\`\`
+
+2. Evict has permissions:
+   - Send Messages in thread
+   - View thread
+   - Manage Threads (optional)
+
+3. Thread wasn't manually archived:
+   - Moderators can force-archive threads
+   - Watcher can't prevent manual archiving
+
+**Solution:**
+Re-add after unarchiving:
+\`\`\`
+;thread remove #thread
+;thread add #thread
+\`\`\`
+
+### Cannot Add Thread
+
+**Error: "Missing permissions"**
+- Need Manage Channels permission
+- Evict needs access to thread
+
+**Error: "Thread not found"**
+- Check thread ID/mention is correct
+- Thread might be archived
+- Thread might be deleted
+
+### Watcher Not Working
+
+1. **Verify thread is watched:**
+   \`\`\`
+   ;thread list
+   \`\`\`
+
+2. **Check Evict permissions:**
+   - Can send messages in thread
+   - Can view parent channel
+
+3. **Remove and re-add:**
+   \`\`\`
+   ;thread remove #thread
+   ;thread add #thread
+   \`\`\`
+
+---
+
+## Examples
+
+### Development Server
+
+\`\`\`
+;thread add #feature-planning
+;thread add #bug-reports-ongoing
+;thread add #api-discussion
+\`\`\`
+
+### Community Server
+
+\`\`\`
+;thread add #rules-questions
+;thread add #partnership-applications
+;thread add #community-feedback
+\`\`\`
+
+### Support Server
+
+\`\`\`
+;thread add #ongoing-support-1
+;thread add #vip-support-2
+;thread add #technical-issues
+\`\`\`
+
+---
+
+## Related
+
+- [Server Automation](/docs/configuration/automation) - Automation features overview
+- [Configuration Overview](/docs/configuration/configuration) - All configuration options
+- [Permissions Guide](/docs/guides/permissions-guide) - Permission requirements

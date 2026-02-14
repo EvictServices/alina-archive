@@ -1,0 +1,383 @@
+---
+title: Variables & Placeholders
+description: Complete guide to using variables in embeds and messages
+category: Features
+order: 30
+lastUpdated: 2026-02-14
+---
+
+# Variables & Placeholders
+
+Variables allow you to create dynamic, personalized messages and embeds that automatically populate with user data, server information, and contextual details.
+
+## Overview
+
+Variables are placeholders enclosed in `\{curly braces\}` that get replaced with real data when used.
+
+**Example:**
+\`\`\`
+Welcome \{user.mention\}! You're member #\{guild.count\}
+\`\`\`
+
+**Result:**
+\`\`\`
+Welcome @John! You're member #1,234
+\`\`\`
+
+---
+
+## Where to Use Variables
+
+Variables work in:
+- **Embed builder** (online and command-based)
+- **Invoke messages** (mod action responses)
+- **Tags** (custom commands)
+- **Disboard messages** (bump reminders)
+- **Vanity tracking** (advertisement rewards)
+- **Welcome messages** (if applicable)
+- **Any custom messages** configured through Evict
+
+---
+
+## User Variables
+
+### Basic Information
+
+| Variable | Output | Example |
+|----------|--------|---------|
+| `\{user\}` | Username | `John` |
+| `\{user.mention\}` | User mention | `@John` |
+| `\{user.id\}` | User ID | `123456789` |
+| `\{user.tag\}` | Username#0 | `John#0` |
+| `\{user.name\}` | Display name | `John` |
+| `\{user.discriminator\}` | Discriminator | `0` |
+
+### User Details
+
+| Variable | Output | Example |
+|----------|--------|---------|
+| `\{user.avatar\}` | Avatar URL | `https://cdn.discord...` |
+| `\{user.created_at\}` | Account creation | `Jan 15, 2020` |
+| `\{user.joined_at\}` | Server join date | `Mar 20, 2023` |
+| `\{user.bot\}` | Is bot? | `False` |
+| `\{user.color\}` | Role color (hex) | `#5865F2` |
+
+---
+
+## Guild Variables
+
+### Server Information
+
+| Variable | Output | Example |
+|----------|--------|---------|
+| `\{guild\}` | Server name | `Awesome Server` |
+| `\{guild.name\}` | Server name | `Awesome Server` |
+| `\{guild.id\}` | Server ID | `987654321` |
+| `\{guild.count\}` | Member count | `1,234` |
+| `\{guild.icon\}` | Server icon URL | `https://cdn.discord...` |
+| `\{guild.owner\}` | Owner username | `ServerOwner` |
+
+### Server Details
+
+| Variable | Output | Example |
+|----------|--------|---------|
+| `\{guild.description\}` | Server description | `Best community ever!` |
+| `\{guild.banner\}` | Banner URL | `https://cdn.discord...` |
+| `\{guild.vanity\}` | Vanity URL code | `coolserver` |
+| `\{guild.boost_count\}` | Boost count | `14` |
+| `\{guild.boost_tier\}` | Boost level | `2` |
+
+---
+
+## Channel Variables
+
+| Variable | Output | Example |
+|----------|--------|---------|
+| `\{channel\}` | Channel name | `general` |
+| `\{channel.mention\}` | Channel mention | `#general` |
+| `\{channel.id\}` | Channel ID | `111222333` |
+| `\{channel.topic\}` | Channel topic | `Main chat` |
+
+---
+
+## Role Variables
+
+| Variable | Output | Example |
+|----------|--------|---------|
+| `\{role\}` | Role name | `Member` |
+| `\{role.mention\}` | Role mention | `@Member` |
+| `\{role.id\}` | Role ID | `444555666` |
+| `\{role.color\}` | Role color | `#FF5733` |
+
+---
+
+## Moderator Variables
+
+For invoke messages and moderation commands:
+
+| Variable | Output | Example |
+|----------|--------|---------|
+| `\{moderator\}` | Mod username | `ModName` |
+| `\{moderator.mention\}` | Mod mention | `@ModName` |
+| `\{moderator.id\}` | Mod ID | `777888999` |
+| `\{reason\}` | Action reason | `Spam` |
+
+---
+
+## Time & Date Variables
+
+### Current Time
+
+| Variable | Output | Example |
+|----------|--------|---------|
+| `\{timestamp\}` | Unix timestamp | `1705276800` |
+| `\{timestamp:R\}` | Relative time | `2 hours ago` |
+| `\{timestamp:F\}` | Full date/time | `Tuesday, January 15, 2026 3:00 PM` |
+| `\{timestamp:D\}` | Date | `January 15, 2026` |
+| `\{timestamp:t\}` | Short time | `3:00 PM` |
+| `\{timestamp:T\}` | Long time | `3:00:00 PM` |
+
+### Usage Example
+
+\`\`\`
+Message sent \{timestamp:R\}
+At exactly \{timestamp:T\} on \{timestamp:D\}
+\`\`\`
+
+**Result:**
+\`\`\`
+Message sent 5 minutes ago
+At exactly 3:15:42 PM on January 15, 2026
+\`\`\`
+
+---
+
+## Utility Variables
+
+| Variable | Output | Example |
+|----------|--------|---------|
+| `\{invites\}` | User invites | `12` |
+| `\{boost_count\}` | User boosts | `2` |
+| `\{booster\}` | Is booster? | `True` |
+
+---
+
+## Embed-Specific Syntax
+
+### Basic Embed Structure
+
+\`\`\`
+\{embed\}
+\{title: Your Title\}
+\{description: Your description with variables\}
+\{color: #5865F2\}
+\{footer: Footer text\}
+\{image: URL\}
+\{thumbnail: URL\}
+\{$end\}
+\`\`\`
+
+### Embed with Variables
+
+\`\`\`
+\{embed\}
+\{title: Welcome \{user.name\}!\}
+\{description: You're member #\{guild.count\} in \{guild.name\}\}
+\{color: \{user.color\}\}
+\{thumbnail: \{user.avatar\}\}
+\{footer: Joined \{timestamp:R\}\}
+\{$end\}
+\`\`\`
+
+### Embed Fields
+
+\`\`\`
+\{embed\}
+\{title: User Info\}
+\{field: Username|\{user.tag\}|true\}
+\{field: ID|\{user.id\}|true\}
+\{field: Joined|\{user.joined_at\}|true\}
+\{$end\}
+\`\`\`
+
+**Field syntax:** `\{field: Name|Value|Inline\}`
+
+---
+
+## Common Use Cases
+
+### Welcome Message
+
+\`\`\`
+\{embed\}
+\{title: Welcome to \{guild.name\}!\}
+\{description: Hey \{user.mention\}, welcome to our community! You're member #\{guild.count\}.\}
+\{color: #00FF00\}
+\{thumbnail: \{guild.icon\}\}
+\{image: \{user.avatar\}\}
+\{footer: Account created \{user.created_at\}\}
+\{$end\}
+\`\`\`
+
+### Kick Invoke Message
+
+\`\`\`
+\{embed\}
+\{title: Member Kicked\}
+\{description: \{user.mention\} was kicked from the server\}
+\{field: Moderator|\{moderator.mention\}|true\}
+\{field: Reason|\{reason\}|true\}
+\{color: #FFA500\}
+\{footer: \{guild.name\} • \{timestamp:F\}\}
+\{$end\}
+\`\`\`
+
+### Disboard Bump Reminder
+
+\`\`\`
+\{embed\}
+\{title: 🚀 Time to Bump!\}
+\{description: Hey everyone! It's time to bump our server on Disboard.\n\nUse </bump:1234567890> to bump!\}
+\{color: #5865F2\}
+\{footer: Help us grow to \{guild.count:+100\} members!\}
+\{$end\}
+\`\`\`
+
+### Server Rules Tag
+
+\`\`\`
+\{embed\}
+\{title: \{guild.name\} Rules\}
+\{description: Please follow these rules to keep our community safe!\}
+\{field: 1. Be Respectful|Treat all members with kindness|false\}
+\{field: 2. No Spam|Don't flood channels with messages|false\}
+\{field: 3. No NSFW|Keep content appropriate|false\}
+\{color: #FF0000\}
+\{footer: Last updated: \{timestamp:D\}\}
+\{$end\}
+\`\`\`
+
+### Vanity Reward
+
+\`\`\`
+\{embed\}
+\{title: Thanks for Advertising!\}
+\{description: \{user.mention\} added our vanity URL to their name!\n\nYou've been given the \{role.mention\} role.\}
+\{color: #FFD700\}
+\{thumbnail: \{user.avatar\}\}
+\{footer: Total advertisers: \{role.members\}\}
+\{$end\}
+\`\`\`
+
+---
+
+## Advanced Techniques
+
+### Conditional Variables
+
+Some variables return boolean or conditional values:
+
+\`\`\`
+Bot: \{user.bot\}
+Booster: \{booster\}
+\`\`\`
+
+### Dynamic Colors
+
+Use user or role colors:
+
+\`\`\`
+\{color: \{user.color\}\}
+\{color: \{role.color\}\}
+\`\`\`
+
+### Dynamic Images
+
+Use avatars and icons:
+
+\`\`\`
+\{thumbnail: \{user.avatar\}\}
+\{image: \{guild.icon\}\}
+\{image: \{guild.banner\}\}
+\`\`\`
+
+### Multiple Users
+
+For commands that involve multiple users:
+
+\`\`\`
+\{user\} hugged \{target\}!
+\{user.mention\} slapped \{target.mention\}
+\`\`\`
+
+---
+
+## Tips & Best Practices
+
+### Formatting
+
+✅ **Good:**
+\`\`\`
+\{user.mention\} joined \{guild.name\}
+\`\`\`
+
+❌ **Bad:**
+\`\`\`
+\{user.mention\}joined\{guild.name\} (missing spaces)
+\`\`\`
+
+### Mentions
+
+Use `.mention` for clickable mentions:
+- `\{user.mention\}` → @John (clickable)
+- `\{user\}` → John (plain text)
+
+### Escaping
+
+In the web embed builder, curly braces are automatically handled. In Discord:
+- Type variables as shown: `\{user\}`
+- Don't add extra escaping
+
+### Testing
+
+Test your embeds before deploying:
+1. Use the [embed builder](https://evict.bot/embed)
+2. Preview in real-time
+3. Check variable output
+4. Verify formatting
+
+### Performance
+
+- Variables are instant (no delays)
+- Safe for frequent use
+- Cached appropriately
+
+---
+
+## Troubleshooting
+
+### Variable Not Working
+
+1. **Check spelling:** `\{user.mention\}` not `\{user.mentions\}`
+2. **Check context:** Some variables only work in specific commands
+3. **Check syntax:** Must use curly braces `\{variable\}`
+
+### Incorrect Output
+
+1. **Missing data:** Variable might be unavailable (e.g., `\{guild.vanity\}` in servers without vanity)
+2. **Wrong context:** Using `\{moderator\}` outside moderation commands
+
+### Embed Not Showing
+
+1. **Check embed syntax:** Must start with `\{embed\}`
+2. **Must end with:** `\{$end\}`
+3. **Verify structure:** Title, description, fields properly formatted
+
+---
+
+## Related
+
+- [Embed Builder](/docs/features/embed-builder) - Visual embed creation
+- [Tags System](/docs/configuration/messages#tags-system) - Custom commands with variables
+- [Invoke Messages](/docs/configuration/messages#invoke-messages) - Moderation message customization
+- [Disboard Integration](/docs/configuration/messages#disboard-bump-reminders) - Bump reminder messages

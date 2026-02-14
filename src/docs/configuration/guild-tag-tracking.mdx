@@ -1,0 +1,455 @@
+---
+title: Guild Tag Tracking
+description: Reward members who add your server name as a tag
+category: Configuration
+order: 19
+lastUpdated: 2026-02-14
+---
+
+# Guild Tag Tracking
+
+Automatically grant roles to members who add your server's name tag to their Discord username.
+
+## Overview
+
+Guild Tag Tracking monitors member usernames for your server's name and rewards them with roles when detected.
+
+**What it does:**
+- Detects server name in usernames
+- Auto-assigns configured role
+- Removes role when tag removed
+- Optional notifications
+- Bulk assignment to existing members
+
+**Example:**
+If your server is "Epic Gaming", members with:
+- `John | Epic Gaming`
+- `Sarah [Epic Gaming]`
+- `Mike - Epic Gaming`
+
+Will automatically receive the configured role.
+
+---
+
+## Commands
+
+### View Settings
+
+\`\`\`
+;tag settings
+\`\`\`
+
+**Requires:** Manage Guild
+
+Shows:
+- Server name being tracked
+- Assigned role(s)
+- Notification channel
+- Custom message template
+- Current members with tag
+
+### Add/Remove Tag Role
+
+\`\`\`
+;tag role (role)
+\`\`\`
+
+**Requires:** Manage Roles
+
+Toggles the role - adds if not configured, removes if already set.
+
+**Example:**
+\`\`\`
+;tag role @Supporter
+\`\`\`
+
+Members with guild tag will automatically get @Supporter role.
+
+### Set Notification Channel
+
+\`\`\`
+;tag channel (channel)
+;tag channel remove
+\`\`\`
+
+**Requires:** Manage Channels
+
+Set where notifications are posted when members add guild tag.
+
+**Examples:**
+\`\`\`
+;tag channel #logs
+;tag channel remove
+\`\`\`
+
+### Custom Notification
+
+\`\`\`
+;tag message (script)
+;tag message remove
+\`\`\`
+
+**Requires:** Manage Messages
+
+**Variables:**
+- `\\{user\\}` - Member who added tag
+- `\\{user.mention\\}` - Mentionable format
+- `\\{server\\}` - Server name
+- `\\{server.name\\}` - Full server name
+
+**Examples:**
+\`\`\`
+;tag message Thanks \\{user.mention\\} for adding \\{server\\} to your name!
+;tag message \\{user\\} is now representing \\{server\\}! 🎉
+\`\`\`
+
+### Assign to Existing Members
+
+\`\`\`
+;tag give
+\`\`\`
+
+**Requires:** Manage Roles
+
+Grant tag roles to all members who already have the guild tag in their username.
+
+**Use when:**
+- First time setting up tag tracking
+- After adding new tag role
+- After server name change
+
+### Reset Settings
+
+\`\`\`
+;tag reset
+\`\`\`
+
+**Requires:** Manage Roles
+
+Removes all tag tracking configuration:
+- Assigned roles
+- Notification channel
+- Custom message
+
+Requires confirmation.
+
+---
+
+## How It Works
+
+### Detection
+
+Tag tracking watches for your server name in usernames:
+
+**Common formats detected:**
+\`\`\`
+John | ServerName
+Sarah [ServerName]
+Mike - ServerName
+Alex • ServerName
+Chris / ServerName
+\`\`\`
+
+**Detection rules:**
+- Case-insensitive
+- Matches full server name
+- Works with common separators (|, -, •, /, [, ])
+- Ignores extra spaces
+
+### Automatic Role Assignment
+
+When tag detected:
+1. Member gets configured role immediately
+2. Notification sent to configured channel (if set)
+3. Role persists while tag remains
+
+When tag removed:
+1. Role automatically removed
+2. No notification sent for removal
+
+---
+
+## Use Cases
+
+### Clan/Team Representation
+
+\`\`\`
+;tag role @Clan Member
+;tag channel #roster
+;tag message Welcome to the clan, \\{user.mention\\}!
+\`\`\`
+
+### Community Support
+
+Reward members who represent your community:
+\`\`\`
+;tag role @Representative
+;tag channel #growth
+;tag message Thanks \\{user.mention\\} for repping \\{server\\}!
+\`\`\`
+
+### Partner Verification
+
+Verify partnership applicants:
+\`\`\`
+;tag role @Verified Partner
+;tag channel #partnerships
+\`\`\`
+
+### Exclusive Access
+
+Grant perks to members representing your brand:
+\`\`\`
+;tag role @VIP Supporter
+\`\`\`
+
+Gives access to exclusive channels and features.
+
+---
+
+## Best Practices
+
+### Role Configuration
+
+**Dedicated role:**
+Create a specific role for tagged members:
+- Clear name: "Clan Member", "Representative", "Supporter"
+- Distinct color
+- Hoisted (optional, for visibility)
+- Appropriate permissions
+
+**Perks to include:**
+- Custom color
+- Exclusive channels
+- Special badges/emojis
+- Recognition in community
+- Priority support
+
+### Notification Setup
+
+**Where to notify:**
+- ✅ Staff logs
+- ✅ Member showcase channel
+- ✅ Clan/team roster
+- ❌ General chat (too spammy)
+
+**Message content:**
+- Welcome the member
+- Include their name/mention
+- Explain benefits (optional)
+- Keep it positive
+
+### Tag Guidelines
+
+**Communicate clearly:**
+- Specify exact server name to use
+- Show example formats
+- Explain benefits
+- Post in rules/info channels
+
+**Example announcement:**
+\`\`\`
+Add "[ServerName]" to your username to get:
+✅ @Supporter role
+✅ Custom color
+✅ Exclusive channels
+✅ Recognition in community
+
+Examples:
+- YourName | ServerName
+- YourName [ServerName]
+- YourName - ServerName
+\`\`\`
+
+---
+
+## Examples
+
+### Gaming Clan
+
+\`\`\`
+;tag role @Clan Member
+;tag channel #clan-roster
+;tag message Welcome \\{user.mention\\} to the clan! You now have access to exclusive scrims and events.
+;tag give
+\`\`\`
+
+### Community Server
+
+\`\`\`
+;tag role @Supporter
+;tag channel #supporters
+;tag message 🌟 \\{user\\} is now representing \\{server\\}! Thank you for your support!
+\`\`\`
+
+### Simple Setup
+
+\`\`\`
+;tag role @Tagged Member
+\`\`\`
+
+No notifications, just role assignment.
+
+### Competitive Team
+
+\`\`\`
+;tag role @Team Member
+;tag channel #team-updates
+;tag message \\{user.mention\\} joined the official roster! Check out our team in #about!
+\`\`\`
+
+---
+
+## Limitations
+
+### Detection Limits
+
+**May not detect:**
+- Partial server names
+- Creative variations of server name
+- Server name in non-standard locations
+- Server name in decorative fonts
+- Server name with excessive spacing
+
+**Best detection:**
+- Full, exact server name
+- Common separators (|, -, [, ])
+- Standard characters
+- Clear spacing
+
+### Username Changes
+
+- Only detects on username update
+- Manual check: Use `;tag give`
+- Delayed detection is normal (Discord API updates)
+
+### Role Management
+
+- Evict must have Manage Roles permission
+- Evict's role must be above tag role
+- Cannot assign roles to server owner
+- Cannot bypass role hierarchy
+
+---
+
+## Troubleshooting
+
+### Role Not Assigned
+
+**Check:**
+1. Member has full server name in username:
+   - Must include complete server name
+   - Use common separator (|, -, [, ])
+
+2. Tag role configured:
+   \`\`\`
+   ;tag settings
+   \`\`\`
+
+3. Evict has permissions:
+   - Manage Roles
+   - Role hierarchy correct
+
+4. Try manual assignment:
+   \`\`\`
+   ;tag give
+   \`\`\`
+
+**Solution:**
+\`\`\`
+;tag reset
+;tag role @TaggedMember
+;tag give
+\`\`\`
+
+### Notifications Not Sending
+
+**Check:**
+1. Channel configured:
+   \`\`\`
+   ;tag settings
+   \`\`\`
+
+2. Evict has permissions in channel:
+   - View Channel
+   - Send Messages
+   - Embed Links
+
+3. Channel still exists:
+   - Not deleted
+   - Still accessible to Evict
+
+### Role Removed Unexpectedly
+
+**Possible causes:**
+- Member removed tag from username
+- Role manually removed by admin
+- Member left and rejoined server
+
+**This is normal:**
+Tag tracking automatically removes role when tag is removed from username.
+
+### Tag Give Not Working
+
+**Check:**
+1. Evict can view all members:
+   - Enable Server Members Intent (if self-hosted)
+   - Check role hierarchy
+
+2. Members have detectable tag:
+   - Must include full server name
+   - Use standard characters
+
+---
+
+## Advanced Features
+
+### Bulk Assignment
+
+When first setting up or after changes:
+
+\`\`\`
+;tag role @NewRole
+;tag give
+\`\`\`
+
+Scans all members and assigns role to those already using tag.
+
+### Integration with Other Systems
+
+Combine with auto roles:
+\`\`\`
+;autorole add @Tagged Member
+\`\`\`
+
+Create info command:
+\`\`\`
+;tags create howto \\{embed\\}\\{title: Get @Tagged Member Role\\}\\{description: Add [\\{server.name\\}] to your username to get exclusive perks!\\}\\{$end\\}
+\`\`\`
+
+### Name Change Monitoring
+
+Tag tracking automatically monitors all username changes:
+- Name updated → Check for tag
+- Tag added → Assign role
+- Tag removed → Remove role
+
+---
+
+## Comparison with Vanity Tracking
+
+| Feature | Guild Tag | Vanity |
+|---------|-----------|--------|
+| **Location** | Username | Status/Username |
+| **Requirement** | None | Vanity URL (Boost L3) |
+| **Format** | Server name | discord.gg/code |
+| **Visibility** | Always visible | Can be temporary |
+| **Best for** | Clans, Teams | Server growth |
+
+---
+
+## Related
+
+- [Vanity Tracking](/docs/configuration/vanity-tracking) - Track vanity URLs
+- [Auto Roles](/docs/configuration/roles#auto-roles) - Automatic role assignment
+- [Server Automation](/docs/configuration/automation) - Automation overview

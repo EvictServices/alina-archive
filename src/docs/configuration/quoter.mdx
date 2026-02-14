@@ -1,0 +1,495 @@
+---
+title: Message Quoter
+description: Repost messages using reactions or commands
+category: Configuration
+order: 21
+lastUpdated: 2026-02-14
+---
+
+# Message Quoter
+
+Repost messages to different channels using reactions or commands, preserving content and context.
+
+## Overview
+
+Message Quoter allows members to quote messages for:
+- Highlighting important messages
+- Cross-posting to discussion channels
+- Preserving context
+- Sharing announcements
+
+**Features:**
+- Quote via command or reaction
+- Preserves attachments, images, and embeds
+- Auto-relay to configured channel
+- Optional embed formatting
+- Shows original message link
+
+---
+
+## Commands
+
+### Quote a Message
+
+\`\`\`
+;quoter [message]
+\`\`\`
+
+**Methods:**
+
+**Reply to message:**
+\`\`\`
+;quoter
+\`\`\`
+Reply to the message you want to quote.
+
+**Provide message link:**
+\`\`\`
+;quoter https://discord.com/channels/...
+\`\`\`
+
+**Provide message ID:**
+\`\`\`
+;quoter 1234567890
+\`\`\`
+(In same channel as original message)
+
+**What gets quoted:**
+- Message content
+- Author info
+- Timestamp
+- Images & attachments
+- Videos
+- Embeds (if embed mode enabled)
+
+### Set Quote Relay Channel
+
+\`\`\`
+;quoter channel (channel)
+\`\`\`
+
+**Requires:** Manage Messages
+
+Set where messages quoted via reaction are posted.
+
+**Examples:**
+\`\`\`
+;quoter channel #highlights
+;quoter channel #starboard
+;quoter channel #quotes
+\`\`\`
+
+**How it works:**
+- Member reacts with configured emoji
+- Message auto-quoted to relay channel
+- No command needed
+
+### Set Quote Emoji
+
+\`\`\`
+;quoter emoji (emoji)
+\`\`\`
+
+**Requires:** Manage Messages
+
+Set which emoji triggers automatic quoting.
+
+**Examples:**
+\`\`\`
+;quoter emoji ⭐
+;quoter emoji 💬
+;quoter emoji 📌
+;quoter emoji :custom_emoji:
+\`\`\`
+
+**Requirements:**
+- Can be any emoji
+- Can be custom server emoji
+- Only one emoji at a time
+
+### Toggle Embeds
+
+\`\`\`
+;quoter embeds
+\`\`\`
+
+**Requires:** Manage Messages
+
+Enable or disable embed formatting for quoted messages.
+
+**Embed mode ON:**
+- Quoted messages formatted as rich embeds
+- Shows author avatar
+- Colored sidebar
+- Clean formatting
+
+**Embed mode OFF:**
+- Plain text quotes
+- Simple format
+- Less visual
+
+---
+
+## How It Works
+
+### Command Quoting
+
+**Using command:**
+\`\`\`
+;quoter [reply to message]
+\`\`\`
+
+**Process:**
+1. You use `;quoter` command
+2. Bot reposts message in same channel
+3. Includes original message link
+4. Preserves all content and attachments
+
+### Reaction Quoting
+
+**Using reaction:**
+1. Admin sets emoji: `;quoter emoji ⭐`
+2. Admin sets relay: `;quoter channel #highlights`
+3. Members react with ⭐ to messages
+4. Messages auto-posted to #highlights
+
+**Requirements:**
+- Both emoji and channel must be set
+- Member must have access to original channel
+- Bot must have permissions in relay channel
+
+---
+
+## Use Cases
+
+### Starboard
+
+Create a starboard for popular messages:
+
+\`\`\`
+;quoter emoji ⭐
+;quoter channel #starboard
+;quoter embeds
+\`\`\`
+
+Members ⭐ react to great messages → auto-posted to starboard.
+
+### Highlights Channel
+
+Save important messages:
+
+\`\`\`
+;quoter emoji 💡
+;quoter channel #highlights
+\`\`\`
+
+### Discussion Relay
+
+Cross-post to discussion channels:
+
+\`\`\`
+;quoter emoji 💬
+;quoter channel #discussion
+\`\`\`
+
+### Announcement Sharing
+
+Share announcements to specific channels:
+
+\`\`\`
+;quoter emoji 📢
+;quoter channel #announcements-discussion
+\`\`\`
+
+### Meme Collection
+
+Collect funny messages:
+
+\`\`\`
+;quoter emoji 😂
+;quoter channel #best-of
+\`\`\`
+
+---
+
+## Best Practices
+
+### Emoji Selection
+
+**Popular choices:**
+- ⭐ - Starboard
+- 💬 - Quotes
+- 📌 - Pins/highlights
+- 💡 - Ideas
+- 📢 - Announcements
+- 😂 - Funny moments
+
+**Guidelines:**
+- Choose recognizable emoji
+- Match purpose (⭐ for starboard, 📌 for highlights)
+- Avoid commonly used reactions (✅, ❌)
+- Consider custom server emojis
+
+### Relay Channel Setup
+
+**Good relay channels:**
+- Dedicated starboard/highlights channel
+- Discussion channels
+- Archive channels
+- Best-of collections
+
+**Channel permissions:**
+- Members can view
+- Only bot can post (optional)
+- Clear channel purpose in description
+
+**Channel maintenance:**
+- Regular cleanup of old quotes
+- Pin particularly good ones
+- Consider archiving monthly
+
+### Embed Mode
+
+**When to use embeds (ON):**
+- Starboards
+- Highlights
+- Professional look
+- Better readability
+
+**When to disable embeds (OFF):**
+- Plain text preference
+- Simpler appearance
+- Mobile optimization
+
+---
+
+## Examples
+
+### Community Starboard
+
+\`\`\`
+;quoter emoji ⭐
+;quoter channel #starboard
+;quoter embeds
+\`\`\`
+
+**Channel description:**
+> Messages with 3+ ⭐ reactions appear here!
+
+### Development Server
+
+\`\`\`
+;quoter emoji 💡
+;quoter channel #ideas-discussion
+;quoter embeds
+\`\`\`
+
+Quote ideas → discuss in dedicated channel.
+
+### Support Server
+
+\`\`\`
+;quoter emoji 📌
+;quoter channel #solutions
+\`\`\`
+
+Pin solved issues to solutions channel.
+
+### Gaming Community
+
+\`\`\`
+;quoter emoji 🏆
+;quoter channel #epic-moments
+;quoter embeds
+\`\`\`
+
+Quote epic gaming moments.
+
+---
+
+## Advanced Features
+
+### Preserves Content
+
+**Text:**
+- Full message content
+- Markdown formatting
+- Code blocks
+- Links
+
+**Media:**
+- Images (all types)
+- Videos
+- GIFs
+- Audio files
+
+**Embeds:**
+- Website previews
+- YouTube videos
+- Spotify tracks
+- Custom embeds
+
+### Jump Links
+
+Every quote includes "Jump to message" link:
+- Takes you to original message
+- Shows original context
+- Preserves original timestamp
+
+### Author Attribution
+
+Quotes always show:
+- Original author name
+- Author avatar (embed mode)
+- Author mention (text mode)
+- Timestamp
+
+---
+
+## Permissions
+
+### Required Permissions
+
+**For bot:**
+- View Channel (both channels)
+- Send Messages (relay channel)
+- Embed Links (if embed mode ON)
+- Read Message History
+- Add Reactions (for confirmation)
+
+**For members:**
+- Use commands permission
+- React permission (for reaction quotes)
+- View channel access
+
+### Permission Issues
+
+If relay not working:
+1. Check bot can see relay channel
+2. Verify bot can send messages
+3. Check embed permission if using embeds
+4. Verify member can see original message
+
+---
+
+## Limitations
+
+### Discord Limits
+
+- Cannot quote messages in channels bot can't access
+- Cannot preserve deleted messages
+- Subject to message character limits
+- Limited to messages within past 14 days for reactions
+
+### Content Limits
+
+**Can preserve:**
+- Text content
+- Images, videos, GIFs
+- Links
+- Attachments
+- Most embeds
+
+**Cannot preserve:**
+- Message replies (shows as regular message)
+- Voice messages (shows link)
+- Some third-party embeds
+- Deleted attachments
+
+### Reaction Quoting
+
+- Only works if emoji AND channel configured
+- Member must have access to original message
+- Bot must be in both channels
+- Cannot quote from DMs
+
+---
+
+## Troubleshooting
+
+### Reaction Quotes Not Working
+
+**Check:**
+1. Both emoji and channel configured:
+   \`\`\`
+   ;quoter emoji ⭐
+   ;quoter channel #starboard
+   \`\`\`
+
+2. Bot has permissions in relay channel:
+   - View Channel
+   - Send Messages
+   - Embed Links
+
+3. Member has access to original channel:
+   - Must be able to see original message
+   - Cannot quote from channels they can't access
+
+### Command Quotes Not Working
+
+**Check:**
+1. Using correct format:
+   - Reply to message, OR
+   - Provide message link, OR
+   - Provide message ID
+
+2. Bot can see original message:
+   - Must be in same server
+   - Must have access to channel
+
+3. Message formatting:
+   - Check message link is valid
+   - Check message ID is correct
+
+### Embeds Not Showing
+
+**Check:**
+1. Embed mode enabled:
+   \`\`\`
+   ;quoter embeds
+   \`\`\`
+
+2. Bot has Embed Links permission in relay channel
+
+3. Server has embeds enabled (Server Settings → Text & Images)
+
+### Attachments Not Preserved
+
+**Possible causes:**
+- Original attachment deleted
+- Attachment too large
+- Bot missing permissions
+
+**Discord limits:**
+- Free servers: 25MB per file
+- Boosted servers: Higher limits
+
+---
+
+## Comparison with Discord Features
+
+### vs. Discord Pins
+
+| Feature | Quoter | Pins |
+|---------|--------|------|
+| **Limit** | Unlimited | 50 per channel |
+| **Location** | Separate channel | Same channel |
+| **Automation** | Via reactions | Manual |
+| **History** | Persistent | Limited |
+
+### vs. Message Forwarding
+
+| Feature | Quoter | Discord Forwarding |
+|---------|--------|-------------------|
+| **Author** | Shows original | Shows forwarder |
+| **Link** | Includes jump link | No link |
+| **Format** | Consistent | Basic |
+| **Cross-server** | Same server only | Any server/DM |
+
+---
+
+## Related
+
+- [Server Automation](/docs/configuration/automation) - Automation overview
+- [Configuration Overview](/docs/configuration/configuration) - All configuration options
+- [Custom Messages](/docs/configuration/messages) - Message customization

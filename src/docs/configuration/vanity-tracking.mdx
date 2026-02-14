@@ -1,0 +1,382 @@
+---
+title: Vanity Tracking
+description: Reward members who advertise your server's vanity URL
+category: Configuration
+order: 18
+lastUpdated: 2026-02-14
+---
+
+# Vanity Tracking
+
+Automatically grant roles to members who add your server's vanity URL to their Discord status or username.
+
+## Overview
+
+Vanity Tracking monitors member statuses for your server's vanity URL and rewards them with roles when detected.
+
+**Requirements:**
+- Server must have a vanity URL
+- Requires Server Boost Level 3 for vanity URL
+
+**What it does:**
+- Detects vanity in custom status
+- Detects vanity in username
+- Auto-assigns configured role
+- Removes role when vanity removed
+- Optional notifications
+
+---
+
+## Commands
+
+### View Settings
+
+\`\`\`
+;vanity settings
+\`\`\`
+
+**Aliases:** `;vr config`
+
+Shows:
+- Current vanity URL
+- Assigned role(s)
+- Notification channel
+- Custom message template
+
+### Add/Remove Vanity Role
+
+\`\`\`
+;vanity role (role)
+\`\`\`
+
+**Requires:** Manage Roles
+
+Toggles the role - adds if not configured, removes if already set.
+
+**Example:**
+\`\`\`
+;vanity role @Advertiser
+\`\`\`
+
+Members with vanity will automatically get @Advertiser role.
+
+### Set Notification Channel
+
+\`\`\`
+;vanity channel (channel)
+;vanity channel remove
+\`\`\`
+
+**Requires:** Manage Channels
+
+Set where notifications are posted when members add vanity.
+
+**Examples:**
+\`\`\`
+;vanity channel #logs
+;vanity channel remove
+\`\`\`
+
+### Custom Notification
+
+\`\`\`
+;vanity message (script)
+;vanity message remove
+\`\`\`
+
+**Requires:** Manage Messages
+
+**Variables:**
+- `\\{user\\}` - Member who added vanity
+- `\\{user.mention\\}` - Mentionable format
+- `\\{server\\}` - Server name
+- `\\{vanity\\}` - Vanity URL code
+
+**Examples:**
+\`\`\`
+;vanity message Thanks \\{user.mention\\} for repping discord.gg/\\{vanity\\}!
+;vanity message \\{user\\} is now advertising \\{server\\}!
+\`\`\`
+
+### Reset Settings
+
+\`\`\`
+;vanity reset
+\`\`\`
+
+**Requires:** Manage Roles
+
+Removes all vanity tracking configuration:
+- Assigned roles
+- Notification channel
+- Custom message
+
+Requires confirmation.
+
+---
+
+## How It Works
+
+### Detection
+
+Vanity tracking watches for your vanity in:
+
+**Custom Status:**
+\`\`\`
+Playing discord.gg/yourvanity
+\`\`\`
+
+**Username:**
+\`\`\`
+John | discord.gg/yourvanity
+\`\`\`
+
+**About Me/Bio:**
+\`\`\`
+Join my server: discord.gg/yourvanity
+\`\`\`
+
+### Automatic Role Assignment
+
+When vanity detected:
+1. Member gets configured role immediately
+2. Notification sent to configured channel (if set)
+3. Role persists while vanity remains
+
+When vanity removed:
+1. Role automatically removed
+2. No notification sent for removal
+
+---
+
+## Use Cases
+
+### Community Growth
+
+Reward members who help advertise:
+\`\`\`
+;vanity role @Recruiter
+;vanity channel #growth
+;vanity message Thanks \\{user.mention\\} for repping us!
+\`\`\`
+
+### VIP Status
+
+Give advertisers special perks:
+\`\`\`
+;vanity role @VIP Advertiser
+\`\`\`
+
+Grant access to exclusive channels.
+
+### Competition Tracking
+
+Track participants in growth contests:
+\`\`\`
+;vanity role @Contest Participant
+;vanity channel #contest-log
+\`\`\`
+
+### Recognition
+
+Public recognition for advertisers:
+\`\`\`
+;vanity channel #announcements
+;vanity message Thank you \\{user.mention\\} for advertising \\{server\\}! 🎉
+\`\`\`
+
+---
+
+## Best Practices
+
+### Role Configuration
+
+**Dedicated role:**
+Create a specific role for vanity members:
+- Clear name: "Advertiser", "Recruiter", "Supporter"
+- Distinct color
+- Hoisted (optional, for visibility)
+- No dangerous permissions
+
+**Perks to include:**
+- Custom color
+- Exclusive channels
+- Special badges/emojis
+- Early access to features
+- Recognition in community
+
+### Notification Setup
+
+**Where to notify:**
+- ✅ Staff logs
+- ✅ Growth tracking channel
+- ✅ Community showcase
+- ❌ General chat (too spammy)
+
+**Message content:**
+- Thank the member
+- Include their name/mention
+- Optional: Show count or milestone
+- Keep it positive and encouraging
+
+### Incentivization
+
+**Encourage participation:**
+- Announce vanity tracking in rules
+- Showcase benefits of advertiser role
+- Run periodic contests
+- Recognize top advertisers
+- Offer temporary boosts/perks
+
+---
+
+## Examples
+
+### Basic Setup
+
+\`\`\`
+;vanity role @Advertiser
+\`\`\`
+
+Simple tracking without notifications.
+
+### With Notifications
+
+\`\`\`
+;vanity role @Supporter
+;vanity channel #growth-log
+;vanity message \\{user.mention\\} is now supporting \\{server\\}! Thank you! 💚
+\`\`\`
+
+### Multiple Benefits
+
+\`\`\`
+;vanity role @VIP Supporter
+;vanity channel #announcements
+;vanity message 🌟 \\{user.mention\\} joined the supporter squad! They now have access to exclusive channels!
+\`\`\`
+
+### Growth Competition
+
+\`\`\`
+;vanity role @Growth Contest
+;vanity channel #contest-entries
+;vanity message \\{user\\} entered the growth contest! Total entries: \\{role.members\\}
+\`\`\`
+
+---
+
+## Limitations
+
+### Discord Requirements
+
+- **Vanity URL required** (Server Boost Level 3)
+- Must have actual vanity code
+- Cannot track on servers without vanity
+
+### Detection Limits
+
+**May not detect:**
+- Vanity in non-standard formats
+- Vanity with extra characters/spaces
+- Vanity in images
+- Vanity in voice channel names
+
+**Detects:**
+- Custom status text
+- Username text
+- About Me/Bio text
+- Case-insensitive matching
+
+### Role Management
+
+- Evict must have Manage Roles permission
+- Evict's role must be above vanity role
+- Cannot assign roles to server owner
+- Cannot bypass role hierarchy
+
+---
+
+## Troubleshooting
+
+### Role Not Assigned
+
+**Check:**
+1. Member has vanity in status/name:
+   - Must include full vanity code
+   - Must be in detectable location
+
+2. Vanity role configured:
+   \`\`\`
+   ;vanity settings
+   \`\`\`
+
+3. Evict has permissions:
+   - Manage Roles
+   - Role hierarchy correct
+
+4. Member not at role limit:
+   - Discord: 250 roles max per server
+   - Member can have max roles
+
+**Solution:**
+\`\`\`
+;vanity reset
+;vanity role @Advertiser
+\`\`\`
+
+### Notifications Not Sending
+
+**Check:**
+1. Channel configured:
+   \`\`\`
+   ;vanity settings
+   \`\`\`
+
+2. Evict has permissions in channel:
+   - View Channel
+   - Send Messages
+   - Embed Links (if using embeds)
+
+3. Channel still exists:
+   - Not deleted
+   - Still accessible to Evict
+
+### Role Removed Unexpectedly
+
+**Possible causes:**
+- Member removed vanity from status/name
+- Role manually removed by admin
+- Member left and rejoined server
+
+**This is normal behavior:**
+Vanity tracking automatically removes role when vanity is removed from status.
+
+---
+
+## Advanced Setup
+
+### Multiple Roles
+
+While you can only set one vanity role at a time, combine with other systems:
+
+\`\`\`
+;vanity role @Advertiser
+;autorole add @Advertiser
+\`\`\`
+
+### Integration with Tags
+
+Create info tag about vanity benefits:
+
+\`\`\`
+;tags create vanity \\{embed\\}\\{title: Become an Advertiser!\\}\\{description: Add discord.gg/ourvanity to your status and get exclusive perks!\\}\\{$end\\}
+\`\`\`
+
+---
+
+## Related
+
+- [Guild Tag Tracking](/docs/configuration/guild-tag-tracking) - Similar feature for guild tags
+- [Auto Roles](/docs/configuration/roles#auto-roles) - Automatic role assignment
+- [Server Automation](/docs/configuration/automation) - Automation overview

@@ -1,0 +1,711 @@
+---
+title: FAQ
+description: Frequently asked questions about Evict
+category: Guides
+order: 4
+lastUpdated: 2026-02-14
+---
+
+# Frequently Asked Questions
+
+Common questions about Evict features, usage, and troubleshooting.
+
+## General Questions
+
+### What is Evict?
+
+Evict is a multipurpose Discord bot offering:
+- Server management and automation
+- Role management (auto, booster, reaction/button roles)
+- Moderation tools (anti-nuke, snipes)
+- Social integrations (Last.fm, GitHub, Roblox)
+- Fun and utility commands
+- Custom embed builder
+
+### How do I add Evict to my server?
+
+1. Visit [evict.bot](https://evict.bot)
+2. Click "Add to Discord"
+3. Select your server
+4. Authorize required permissions
+
+### What's the default prefix?
+
+The default prefix is `;` (semicolon).
+
+You can change it with:
+\`\`\`
+;prefix set (prefix)
+\`\`\`
+
+Or use a personal prefix:
+\`\`\`
+;prefix self (prefix)
+\`\`\`
+
+### Is Evict free?
+
+Yes, Evict is completely free to use with all features available to everyone.
+
+### Where can I get support?
+
+Join the support server:
+\`\`\`
+;support
+\`\`\`
+
+Or visit [evict.bot/support](https://evict.bot/support)
+
+---
+
+## Setup & Configuration
+
+### How do I set up Evict in my server?
+
+Follow the [Server Setup Guide](/docs/guides/server-setup) for a complete walkthrough.
+
+**Quick steps:**
+1. Set your prefix: `;prefix set !`
+2. Configure auto roles: `;autorole add @Member`
+3. Set up anti-nuke: `;antinuke bot true`
+4. Enable features as needed
+
+### What permissions does Evict need?
+
+**Essential:**
+- View Channels
+- Send Messages
+- Embed Links
+- Attach Files
+
+**Recommended:**
+- Manage Roles
+- Manage Messages
+- Add Reactions
+
+See the [Permissions Guide](/docs/guides/permissions-guide) for details.
+
+### How do I change the prefix?
+
+**Server prefix:**
+\`\`\`
+;prefix set !
+\`\`\`
+Requires Manage Guild permission.
+
+**Personal prefix:**
+\`\`\`
+;prefix self >
+\`\`\`
+Works in all servers with Evict.
+
+### Can I use multiple prefixes?
+
+Yes! You can use:
+- Your personal prefix (if set)
+- The server prefix (if set)
+- The default prefix (`;`)
+- Bot mention (`@Evict`)
+
+All work simultaneously.
+
+---
+
+## Features
+
+### What are auto roles?
+
+Auto roles are roles automatically assigned when members join your server.
+
+**Setup:**
+\`\`\`
+;autorole add @Member
+\`\`\`
+
+**With delay:**
+\`\`\`
+;autorole add @Verified --delay 300
+\`\`\`
+
+See [Role Management](/docs/configuration/roles) for details.
+
+### What are booster roles?
+
+Booster roles let server boosters create custom colored roles.
+
+**Setup:**
+\`\`\`
+;boosterrole base @Booster
+\`\`\`
+
+**Boosters can use:**
+\`\`\`
+;boosterrole #FF0000
+\`\`\`
+
+See [Role Management](/docs/configuration/roles#booster-roles) for details.
+
+### How do reaction roles work?
+
+Reaction roles let members self-assign roles by reacting to a message.
+
+**Setup:**
+1. Create or find a message
+2. Add reaction role:
+\`\`\`
+;reactionrole add (message_link) 👍 @Member
+\`\`\`
+
+See [Role Management](/docs/configuration/roles#reaction-roles) for details.
+
+### What is anti-nuke?
+
+Anti-nuke protects your server from malicious admins and raids.
+
+**Features:**
+- Ban/kick protection
+- Channel/role protection
+- Bot protection
+- Webhook protection
+- Whitelist system
+
+**Setup:**
+\`\`\`
+;antinuke bot true
+;antinuke ban true --threshold 3 --punishment ban
+\`\`\`
+
+See [Server Automation](/docs/configuration/automation#anti-nuke-protection) for details.
+
+### What are snipes?
+
+Snipes let you view recently deleted or edited messages.
+
+**Commands:**
+- `;snipe` - View deleted messages
+- `;editsnipe` or `;esnipe` - View edited messages
+- `;reactionsnipe` or `;rsnipe` - View removed reactions
+
+See [Snipes & AFK](/docs/utilities/snipes-afk#message-snipes) for details.
+
+### How does the AFK system work?
+
+Set yourself as AFK, and Evict will notify others when they mention you.
+
+**Set AFK:**
+\`\`\`
+;afk Going to sleep!
+\`\`\`
+
+**Remove AFK:**
+- Send any message
+- Or use `;afk remove`
+
+See [Snipes & AFK](/docs/utilities/snipes-afk#afk-system) for details.
+
+---
+
+## Last.fm Integration
+
+### How do I connect Last.fm?
+
+1. **Set your username:**
+\`\`\`
+;lastfm set (username)
+\`\`\`
+
+2. **Index your library:**
+\`\`\`
+;lastfm index
+\`\`\`
+This takes 5-10 minutes for the first index.
+
+3. **Use commands:**
+\`\`\`
+;np
+;topartists
+;topalbums
+\`\`\`
+
+See [Last.fm Integration](/docs/features/lastfm-integration) for details.
+
+### Why isn't my Last.fm working?
+
+**Common issues:**
+
+1. **Not indexed yet:**
+\`\`\`
+;lastfm index
+\`\`\`
+Wait 5-10 minutes for first index.
+
+2. **Profile is private:**
+- Make your Last.fm profile public
+- Check privacy settings on Last.fm
+
+3. **Wrong username:**
+- Verify username is correct
+- Must match exactly
+
+4. **No scrobbles:**
+- Need listening history on Last.fm
+- Start scrobbling music
+
+### How long does indexing take?
+
+**First index:** 5-10 minutes
+
+**Updates:** Automatic and instant after first index
+
+You only need to run `;lastfm index` once.
+
+---
+
+## Embeds & Variables
+
+### How do I create embeds?
+
+**Web builder:**
+Visit [evict.bot/embed](https://evict.bot/embed)
+
+**In Discord:**
+\`\`\`
+\{embed\}
+\{title: Your Title\}
+\{description: Your description\}
+\{color: #5865F2\}
+\{$end\}
+\`\`\`
+
+See [Embed Builder](/docs/features/embed-builder) for details.
+
+### What are variables?
+
+Variables are placeholders that get replaced with real data.
+
+**Examples:**
+- `\{user.mention\}` → @Username
+- `\{guild.name\}` → Server name
+- `\{guild.count\}` → Member count
+
+**Usage:**
+\`\`\`
+Welcome \{user.mention\} to \{guild.name\}!
+\`\`\`
+
+See [Variables & Placeholders](/docs/features/variables) for the complete list.
+
+### Where can I use variables?
+
+Variables work in:
+- Embed builder
+- Tags (`;tags create`)
+- Invoke messages (`;invoke`)
+- Disboard messages
+- Vanity tracking
+- Most custom messages
+
+---
+
+## Moderation
+
+### What moderation commands are available?
+
+**Basic moderation:**
+- `;kick` - Kick a member
+- `;ban` - Ban a member
+- `;unban` - Unban a member
+
+**Message management:**
+- `;snipe` - View deleted messages
+- `;clearsnipes` - Clear cached snipes
+
+**Server protection:**
+- `;antinuke` - Configure anti-nuke protection
+
+### Can I customize moderation messages?
+
+Yes! Use invoke messages:
+
+\`\`\`
+;invoke kick \{embed\}\{title: Kicked\}\{description: \{user\} was kicked by \{moderator\}\nReason: \{reason\}\}\{$end\}
+\`\`\`
+
+See [Messages & Communication](/docs/configuration/messages#invoke-messages) for details.
+
+### How do I protect my server from raids?
+
+Use anti-nuke:
+
+\`\`\`
+;antinuke bot true
+;antinuke ban true --threshold 3 --punishment ban
+;antinuke channel true --threshold 5
+\`\`\`
+
+**Whitelist trusted admins:**
+\`\`\`
+;antinuke whitelist @Admin
+\`\`\`
+
+See [Server Automation](/docs/configuration/automation#anti-nuke-protection) for details.
+
+---
+
+## Giveaways
+
+### How do I start a giveaway?
+
+\`\`\`
+;giveaway start 1d prize: Discord Nitro winners: 1
+\`\`\`
+
+**Format:**
+- Duration: `1s`, `5m`, `1h`, `2d`, `1w`
+- Prize: Any text
+- Winners: Number of winners
+
+See [Giveaways](/docs/utilities/giveaways) for details.
+
+### Can I add requirements to giveaways?
+
+Yes! Use the `required:` parameter:
+
+\`\`\`
+;gw start 1w prize: $50 Gift Card winners: 2 required: @Member
+\`\`\`
+
+**Bonus entries:**
+\`\`\`
+;gw start 1w prize: Nitro winners: 1 required: @Member bonus: @Booster:5
+\`\`\`
+
+This gives boosters 5 extra entries.
+
+### How do I reroll a giveaway?
+
+\`\`\`
+;giveaway reroll (message_id)
+\`\`\`
+
+Selects new random winner(s) from original entries.
+
+---
+
+## Customization
+
+### Can I customize bot responses?
+
+Yes! Use context settings:
+
+**Colors:**
+\`\`\`
+;context color approved #00FF00
+;context color denied #FF0000
+\`\`\`
+
+**Emojis:**
+\`\`\`
+;context emoji approved ✅
+;context emoji denied ❌
+\`\`\`
+
+See [Customization & Context](/docs/configuration/customization) for details.
+
+### Can I change the bot's profile?
+
+Yes, with Administrator permission:
+
+\`\`\`
+;customize avatar
+;customize banner
+;customize bio Your custom bio here
+\`\`\`
+
+Changes are **per-server** and only visible in that server.
+
+See [Customization & Context](/docs/configuration/customization#bot-profile-customization) for details.
+
+### Can I create custom commands?
+
+Yes! Use the tags system:
+
+\`\`\`
+;tags create rules Server rules here
+\`\`\`
+
+**Use with:**
+\`\`\`
+;tags rules
+\`\`\`
+
+**With embeds:**
+\`\`\`
+;tags create welcome \{embed\}\{title: Welcome!\}\{description: Welcome to our server!\}\{$end\}
+\`\`\`
+
+See [Messages & Communication](/docs/configuration/messages#tags-system) for details.
+
+---
+
+## Technical Questions
+
+### What programming language is Evict built with?
+
+Evict is built with Python using the discord.py library.
+
+### Is Evict open source?
+
+No, Evict is not currently open source.
+
+### What databases does Evict use?
+
+Evict uses:
+- PostgreSQL (primary database)
+- Redis (caching)
+
+### How is data stored?
+
+Data is stored securely and includes:
+- Server configurations
+- User settings (Last.fm, personal prefix, AFK)
+- Role configurations
+- Temporary caches (snipes)
+
+We never store message content permanently.
+
+### What's the uptime?
+
+Check current status at [evict.bot/status](https://evict.bot/status) or use `;status`.
+
+Target uptime: 99.5%+
+
+---
+
+## Troubleshooting
+
+### Bot doesn't respond to commands
+
+**Solutions:**
+
+1. **Check prefix:**
+\`\`\`
+@Evict prefix
+\`\`\`
+
+2. **Verify permissions:**
+- Bot needs "Send Messages"
+- Bot needs "View Channel"
+
+3. **Try mentioning:**
+\`\`\`
+@Evict help
+\`\`\`
+
+See [Troubleshooting](/docs/guides/troubleshooting) for more solutions.
+
+### "Missing Permissions" error
+
+**For bot:**
+- Check Server Settings → Roles → Evict
+- Enable required permissions
+- Check role hierarchy
+
+**For you:**
+- Check command requirements with `;help (command)`
+- Verify your roles and permissions
+
+See [Permissions Guide](/docs/guides/permissions-guide) for details.
+
+### Commands work sometimes but not always
+
+**Possible causes:**
+
+1. **Channel-specific permissions**
+- Check channel overrides
+- Verify bot has access
+
+2. **Rate limiting**
+- Wait a few seconds
+- Don't spam commands
+
+3. **Feature disabled**
+- Some features can be disabled per-server
+- Check with server admins
+
+### Role commands not working
+
+**Check role hierarchy:**
+
+1. Server Settings → Roles
+2. Evict's role must be **above** roles it manages
+3. Move Evict's role higher
+
+See [Permissions Guide](/docs/guides/permissions-guide#role-hierarchy) for details.
+
+---
+
+## Privacy & Data
+
+### What data does Evict collect?
+
+**Stored data:**
+- Server IDs and configurations
+- User IDs and settings
+- Role configurations
+- Temporary caches (10 minutes for snipes)
+
+**Not stored:**
+- Message content (except temporary snipes)
+- DM content
+- Voice data
+- Payment information
+
+### Can I delete my data?
+
+Yes. Use these commands:
+
+**Personal data:**
+\`\`\`
+;lastfm remove
+;prefix self remove
+;afk remove
+\`\`\`
+
+**Or contact support:**
+\`\`\`
+;support
+\`\`\`
+
+### Is my data secure?
+
+Yes. We:
+- Use secure databases
+- Encrypt sensitive data
+- Follow Discord TOS
+- Regularly audit security
+- Never sell data
+
+### Can staff see my data?
+
+Staff can access:
+- Public Discord information
+- Configuration data (for support)
+
+Staff cannot access:
+- Your DMs
+- Private user data without reason
+- Data from servers they're not in
+
+---
+
+## Community
+
+### How can I suggest features?
+
+Join the support server:
+\`\`\`
+;support
+\`\`\`
+
+Use the suggestions channel or contact staff.
+
+### How do I report bugs?
+
+Join the support server and provide:
+- What command you used
+- What happened vs what should happen
+- Screenshots if applicable
+- Error messages
+
+### Can I contribute?
+
+Currently, direct code contributions aren't accepted as Evict isn't open source.
+
+You can contribute by:
+- Reporting bugs
+- Suggesting features
+- Helping others in support
+- Creating guides and tutorials
+
+### How do I stay updated?
+
+- Check [evict.bot/updates](https://evict.bot/updates)
+- Join the support server (`;support`)
+- Follow announcements in support server
+
+---
+
+## Billing & Premium
+
+### Is there a premium version?
+
+Not currently. All features are free for everyone.
+
+### Will Evict always be free?
+
+We plan to keep all current features free. Any future premium features would be additions, not removals.
+
+### How is Evict funded?
+
+Evict is currently self-funded by the development team.
+
+---
+
+## Advanced Usage
+
+### Can I use Evict via API?
+
+Not currently. Evict is Discord-only.
+
+### Does Evict support slash commands?
+
+Some features use slash commands (like `/confess`), but most commands use prefix-based invocation.
+
+### Can I self-host Evict?
+
+No. Evict is not open source and cannot be self-hosted.
+
+### What's the command limit?
+
+No hard limit per user, but Discord rate limits apply:
+- ~50 commands per channel per minute
+- ~5 commands per second globally
+
+Normal usage won't hit these limits.
+
+---
+
+## Getting Help
+
+### I have a question not listed here
+
+**Check documentation:**
+- Browse [all docs](/docs)
+- Use search feature
+
+**Join support server:**
+\`\`\`
+;support
+\`\`\`
+
+**Ask in the community:**
+- Support server help channels
+- Community members can assist
+
+### My issue isn't resolved
+
+Contact staff directly in the support server with:
+- Detailed description
+- Steps to reproduce
+- Screenshots/error messages
+- What you've already tried
+
+---
+
+## Related
+
+- [Getting Started](/docs/introduction/getting-started) - New user guide
+- [Server Setup Guide](/docs/guides/server-setup) - Setup walkthrough
+- [Troubleshooting](/docs/guides/troubleshooting) - Common issues
+- [Commands Overview](/docs/introduction/commands-overview) - All commands

@@ -1,0 +1,603 @@
+---
+title: Troubleshooting
+description: Common issues and solutions for Evict
+category: Guides
+order: 2
+lastUpdated: 2026-02-14
+---
+
+# Troubleshooting
+
+Common problems and their solutions when using Evict.
+
+## Bot Not Responding
+
+### Commands Don't Work
+
+**Issue:** Bot doesn't respond to commands
+
+**Solutions:**
+
+1. **Check the prefix:**
+   \`\`\`
+   @Evict prefix
+   \`\`\`
+
+2. **Verify bot permissions:**
+   - Read Messages/View Channels
+   - Send Messages
+   - Embed Links
+
+3. **Check bot status:**
+   - Visit [evict.bot/status](https://evict.bot/status)
+   - Use `;status` command
+   - Check if bot is online in member list
+
+4. **Try pinging the bot:**
+   \`\`\`
+   @Evict ping
+   \`\`\`
+
+5. **Check channel permissions:**
+   - Ensure Evict has access to the channel
+   - Check role hierarchy
+   - Verify no channel-specific restrictions
+
+### Specific Commands Don't Work
+
+**Issue:** Some commands work, others don't
+
+**Check permissions:**
+- `;userinfo` requires: Read Messages
+- `;avatar` requires: Embed Links
+- `;autorole` requires: Manage Roles
+- `;ban` requires: Ban Members (for bot)
+
+**Check command syntax:**
+\`\`\`
+;help (command)
+\`\`\`
+
+Example: `;help autorole`
+
+---
+
+## Permission Issues
+
+### Cannot Manage Roles
+
+**Issue:** "I don't have permission to manage roles"
+
+**Solutions:**
+
+1. **Check role hierarchy:**
+   - Evict's role must be **above** roles it manages
+   - Move Evict's role higher in Server Settings → Roles
+
+2. **Verify bot has permission:**
+   - Server Settings → Roles
+   - Find Evict's role
+   - Enable "Manage Roles"
+
+3. **Check specific role:**
+   - Evict cannot manage roles higher than itself
+   - Evict cannot manage the server owner's role
+
+### Cannot Use Moderation Commands
+
+**Issue:** "You don't have permission to use this command"
+
+**This means YOUR permissions:**
+
+- `;kick` requires: Kick Members
+- `;ban` requires: Ban Members
+- `;autorole` requires: Manage Guild
+- `;customize` requires: Administrator
+
+**Check your roles in Server Settings.**
+
+### Cannot Delete/Edit Messages
+
+**Issue:** Snipes, quoter, or other features not working
+
+**Solutions:**
+
+1. **Grant "Manage Messages":**
+   - Server Settings → Roles
+   - Find Evict's role
+   - Enable "Manage Messages"
+
+2. **Check channel overrides:**
+   - Channel Settings → Permissions
+   - Ensure Evict isn't denied "Manage Messages"
+
+---
+
+## Feature-Specific Issues
+
+### Auto Roles Not Working
+
+**Issue:** Auto roles aren't assigned when members join
+
+**Solutions:**
+
+1. **Verify setup:**
+   \`\`\`
+   ;autorole list
+   \`\`\`
+
+2. **Check role hierarchy:**
+   - Evict's role must be above the autorole
+
+3. **Test with yourself:**
+   - Leave and rejoin (if possible)
+   - Or invite an alt account
+
+4. **Check delays:**
+   \`\`\`
+   ;autorole list
+   \`\`\`
+   Role might have a delay configured
+
+### Booster Roles Not Creating
+
+**Issue:** Boosters can't create custom roles
+
+**Solutions:**
+
+1. **Check base role:**
+   \`\`\`
+   ;boosterrole settings
+   \`\`\`
+   Must have a base role set
+
+2. **Verify user is booster:**
+   - Check their profile for boost badge
+   - They must actively be boosting
+
+3. **Check role limit:**
+   - Discord has a 250 role limit
+   - Delete unused roles if at limit
+
+4. **Role hierarchy:**
+   - Evict must have permission to create roles
+   - Created roles will be below Evict's role
+
+### Reaction Roles Not Working
+
+**Issue:** Reactions don't give roles
+
+**Solutions:**
+
+1. **Check setup:**
+   \`\`\`
+   ;reactionrole list
+   \`\`\`
+
+2. **Verify message:**
+   - Message must exist
+   - Message must be in same server
+   - Evict must have access to channel
+
+3. **Check role hierarchy:**
+   - Evict's role must be above reaction roles
+
+4. **Test reaction:**
+   - Remove and re-add reaction
+   - Check if Evict's reaction is still on message
+
+### Snipes Not Showing
+
+**Issue:** `;snipe` says no messages to snipe
+
+**Solutions:**
+
+1. **Messages must be deleted AFTER Evict joined:**
+   - Evict only caches messages while online
+   - Delete a new message and try immediately
+
+2. **Check Manage Messages permission:**
+   - Required for snipes to work
+   - Server Settings → Roles → Evict
+
+3. **Cache duration:**
+   - Snipes expire after ~10 minutes
+   - Delete messages recently
+
+4. **Cleared snipes:**
+   - Moderators can use `;clearsnipes`
+   - Check if snipes were intentionally cleared
+
+### Last.fm Not Working
+
+**Issue:** Last.fm commands show errors
+
+**Solutions:**
+
+1. **Set username:**
+   \`\`\`
+   ;lastfm set (username)
+   \`\`\`
+
+2. **Index your library:**
+   \`\`\`
+   ;lastfm index
+   \`\`\`
+   This takes a few minutes
+
+3. **Check Last.fm profile:**
+   - Must be public
+   - Must have scrobbles
+   - Username must be correct
+
+4. **Wait for indexing:**
+   - First index takes 5-10 minutes
+   - Library updates happen automatically
+
+### Giveaways Not Starting
+
+**Issue:** `;giveaway start` doesn't work
+
+**Solutions:**
+
+1. **Check syntax:**
+   \`\`\`
+   ;giveaway start (duration) prize: (prize) winners: (number)
+   \`\`\`
+
+2. **Valid duration:**
+   - Must use: `s`, `m`, `h`, `d`, `w`
+   - Example: `1h`, `30m`, `1d`
+   - Minimum: 1 minute
+
+3. **Check permissions:**
+   - Requires: Manage Guild
+   - Check your roles
+
+4. **Channel access:**
+   - Evict must be able to post in channel
+   - Check Evict can add reactions
+
+---
+
+## Embed Issues
+
+### Embeds Not Showing
+
+**Issue:** Embeds appear as plain text or don't show
+
+**Solutions:**
+
+1. **Check bot permission:**
+   - Must have "Embed Links" permission
+   - Server Settings → Roles → Evict
+
+2. **Verify embed syntax:**
+   \`\`\`
+   \{embed\}
+   \{title: Title\}
+   \{description: Description\}
+   \{$end\}
+   \`\`\`
+
+3. **Test simple embed:**
+   Use [evict.bot/embed](https://evict.bot/embed) to create and test
+
+4. **Check user settings:**
+   - User Settings → Text & Images
+   - "Show embeds and preview website links" must be enabled
+
+### Variables Not Working
+
+**Issue:** Variables show as `\{user\}` instead of data
+
+**Solutions:**
+
+1. **Check syntax:**
+   - Correct: `\{user.mention\}`
+   - Wrong: `\{user mentions\}`
+
+2. **Use correct context:**
+   - `\{moderator\}` only works in invoke messages
+   - `\{reason\}` only works in moderation commands
+
+3. **Check [variable documentation](/docs/features/variables):**
+   - Lists all available variables
+   - Shows correct syntax
+
+4. **Test in embed builder:**
+   - Use [evict.bot/embed](https://evict.bot/embed)
+   - Preview shows variable output
+
+---
+
+## Anti-Nuke Issues
+
+### Anti-Nuke Triggering Incorrectly
+
+**Issue:** Anti-nuke punishing trusted members
+
+**Solutions:**
+
+1. **Add to whitelist:**
+   \`\`\`
+   ;antinuke whitelist @User
+   \`\`\`
+
+2. **Adjust thresholds:**
+   \`\`\`
+   ;antinuke ban --threshold 5
+   \`\`\`
+   Increase threshold to be less sensitive
+
+3. **Check settings:**
+   \`\`\`
+   ;antinuke settings
+   \`\`\`
+
+4. **Disable specific modules:**
+   \`\`\`
+   ;antinuke role false
+   \`\`\`
+
+### Anti-Nuke Not Triggering
+
+**Issue:** Anti-nuke doesn't catch raids
+
+**Solutions:**
+
+1. **Enable modules:**
+   \`\`\`
+   ; antinuke bot true
+   ;antinuke ban true
+   \`\`\`
+
+2. **Check role hierarchy:**
+   - Evict must be able to ban/kick users
+   - Evict's role must be high enough
+
+3. **Verify punishment:**
+   \`\`\`
+   ;antinuke ban --punishment ban
+   \`\`\`
+
+4. **Check thresholds:**
+   - Default is 3 actions
+   - Might need adjustment for your server
+
+---
+
+## API & Integration Issues
+
+### Webhook Errors
+
+**Issue:** Commands using webhooks fail
+
+**Solutions:**
+
+1. **Check "Manage Webhooks" permission:**
+   - Server Settings → Roles → Evict
+   - Enable "Manage Webhooks"
+
+2. **Channel access:**
+   - Evict needs permission in the target channel
+
+3. **Webhook limit:**
+   - Discord has webhook limits per channel
+   - Delete unused webhooks
+
+### GitHub Integration Not Working
+
+**Issue:** GitHub commands fail or show errors
+
+**Solutions:**
+
+1. **Check username:**
+   \`\`\`
+   ;github set (username)
+   \`\`\`
+
+2. **Profile must be public:**
+   - Private profiles won't work
+   - Check GitHub privacy settings
+
+3. **Valid username:**
+   - Must exist on GitHub
+   - Case-sensitive
+
+---
+
+## General Troubleshooting Steps
+
+### Step 1: Verify Bot is Online
+
+- Check member list for Evict
+- Visit [evict.bot/status](https://evict.bot/status)
+- Use `;status` command
+
+### Step 2: Check Permissions
+
+**For the bot:**
+- Server Settings → Roles → Evict
+- Ensure required permissions enabled
+
+**For yourself:**
+- Check your roles
+- Verify command permission requirements
+
+### Step 3: Test Basic Commands
+
+\`\`\`
+@Evict ping
+;help
+;botinfo
+\`\`\`
+
+If these work, issue is command-specific.
+
+### Step 4: Check Role Hierarchy
+
+Server Settings → Roles:
+1. Evict's role should be high
+2. Above roles it needs to manage
+3. Below roles that should manage it
+
+### Step 5: Review Recent Changes
+
+- Did you change bot permissions?
+- Did you move roles?
+- Did you add new bots with conflicting permissions?
+
+### Step 6: Clear Cache
+
+Sometimes helps with:
+- Autocomplete issues
+- Command recognition
+- Role assignment problems
+
+**How:** Restart Discord (Ctrl+R on desktop)
+
+---
+
+## Getting Help
+
+### Support Server
+
+Get help from staff and community:
+\`\`\`
+;support
+\`\`\`
+
+### Report Bugs
+
+If you found a bug:
+1. Note the exact command used
+2. Screenshot any errors
+3. Report in support server
+
+### Command Help
+
+Get help for specific commands:
+\`\`\`
+;help (command)
+\`\`\`
+
+Example:
+\`\`\`
+;help autorole
+;help reactionrole
+;help giveaway start
+\`\`\`
+
+---
+
+## Error Messages
+
+### "Missing Permissions"
+
+- **What it means:** Bot or you lack permissions
+- **Solution:** Check [Permission Issues](#permission-issues)
+
+### "Role hierarchy"
+
+- **What it means:** Role is above Evict's role
+- **Solution:** Move Evict's role higher
+
+### "Invalid syntax"
+
+- **What it means:** Command format is wrong
+- **Solution:** Check `;help (command)`
+
+### "Not found"
+
+- **What it means:** User, role, or channel doesn't exist
+- **Solution:** Verify IDs, mentions, or names
+
+### "Timed out"
+
+- **What it means:** Discord API slow or bot under heavy load
+- **Solution:** Wait a moment and retry
+
+### "Rate limited"
+
+- **What it means:** Too many requests too quickly
+- **Solution:** Wait 10-30 seconds and retry
+
+---
+
+## Performance Issues
+
+### Bot is Slow
+
+**Possible causes:**
+
+1. **High Discord API latency:**
+   - Check `;ping` for latency
+   - Check [evict.bot/status](https://evict.bot/status)
+
+2. **Heavy server load:**
+   - Large servers may experience slight delays
+   - Normal for complex commands
+
+3. **First-time commands:**
+   - Some commands (like `;lastfm index`) take time
+   - This is normal
+
+### Commands Queue
+
+**Issue:** Commands execute slowly one by one
+
+**This is normal:**
+- Discord rate limits apply
+- Commands process in order
+- No action needed
+
+---
+
+## Prevention Tips
+
+### Keep Evict's Role High
+
+- Above all roles it needs to manage
+- Prevents most permission issues
+
+### Regular Permission Audits
+
+- Review bot permissions monthly
+- Remove unnecessary permissions
+- Add new ones as needed
+
+### Test Before Deploying
+
+- Test new features in a test channel
+- Verify embeds before publishing
+- Check variable output
+
+### Monitor Role Limits
+
+- Discord: 250 role limit
+- Booster roles count toward this
+- Clean up unused roles
+
+### Backup Configurations
+
+- Screenshot important configs
+- Note complex embed codes
+- Document custom setups
+
+---
+
+## Still Need Help?
+
+Join the support server:
+\`\`\`
+;support
+\`\`\`
+
+**Include in your help request:**
+- Exact command used
+- Error message (if any)
+- Screenshots
+- What you've already tried
+- Your role permissions
+- Bot's role permissions

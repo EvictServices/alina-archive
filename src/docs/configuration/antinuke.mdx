@@ -1,0 +1,394 @@
+---
+title: Anti-Nuke Protection
+description: Protect your server from malicious admins and raids
+category: Configuration
+order: 16
+lastUpdated: 2026-02-14
+---
+
+# Anti-Nuke Protection
+
+Comprehensive protection system to defend your server against malicious admins, raids, and mass destructive actions.
+
+## Overview
+
+Anti-nuke monitors administrative actions and automatically punishes members who exceed configured thresholds within a time window.
+
+**Protection against:**
+- Mass bans/kicks
+- Unauthorized bot additions
+- Role/channel manipulation
+- Webhook abuse
+- Emoji deletion
+
+---
+
+## Getting Started
+
+### View Settings
+
+\`\`\`
+;antinuke settings
+\`\`\`
+
+**Aliases:** `;an settings`, `;antiwizz config`
+
+Shows all protection modules, thresholds, and whitelisted members.
+
+### Quick Setup
+
+\`\`\`
+;antinuke bot true
+;antinuke ban true --threshold 3 --punishment ban
+;antinuke kick true --threshold 3 --punishment strip
+;antinuke channel true --threshold 5
+;antinuke role true --threshold 5
+\`\`\`
+
+---
+
+## Whitelist System
+
+### Whitelist Members
+
+\`\`\`
+;antinuke whitelist (member)
+;antinuke whitelist list
+\`\`\`
+
+**Requires:** Anti-nuke admin or guild owner
+
+Toggles whitelist status (adds if not present, removes if present). Whitelisted members bypass **all** anti-nuke protections.
+
+**Who to whitelist:**
+- Server owner (automatically immune)
+- Trusted admins
+- Bot accounts you trust
+
+### Trust Admins
+
+\`\`\`
+;antinuke trust (member)
+;antinuke trust list
+\`\`\`
+
+**Requires:** Guild owner only
+
+Grant members permission to manage anti-nuke settings and whitelist.
+
+---
+
+## Protection Modules
+
+Each module can be configured with:
+- **Status** - Enable (`true`) or disable (`false`)
+- **Threshold** - Number of actions before punishment
+- **Duration** - Time window (e.g., `60s`)
+- **Punishment** - Action: `ban`, `kick`, or `strip` (remove roles)
+
+### Bot Protection
+
+\`\`\`
+;antinuke bot (enabled)
+\`\`\`
+
+**What it does:** Prevents unauthorized bot additions
+
+**How it works:**
+- Detects when bots are added
+- Kicks the bot immediately
+- Punishes the member who added it
+
+**Example:**
+\`\`\`
+;antinuke bot true
+\`\`\`
+
+### Ban Protection
+
+\`\`\`
+;antinuke ban (enabled) [--threshold 3] [--duration 60s] [--punishment ban]
+\`\`\`
+
+**What it does:** Prevents mass banning
+
+**Example:**
+\`\`\`
+;antinuke ban true --threshold 3 --punishment ban
+\`\`\`
+
+If someone bans 3+ members within 60 seconds, they get banned.
+
+### Kick Protection
+
+\`\`\`
+;antinuke kick (enabled) [--threshold 3] [--duration 60s] [--punishment strip]
+\`\`\`
+
+**What it does:** Prevents mass kicking
+
+**Example:**
+\`\`\`
+;antinuke kick true --threshold 5 --punishment kick
+\`\`\`
+
+### Role Protection
+
+\`\`\`
+;antinuke role (enabled) [--threshold 5] [--duration 60s] [--punishment strip]
+\`\`\`
+
+**What it does:** Prevents role manipulation
+
+**Monitors:**
+- Role creation
+- Role deletion
+- Role permission changes
+- Mass role assignments
+
+**Example:**
+\`\`\`
+;antinuke role true --threshold 5
+\`\`\`
+
+### Channel Protection
+
+\`\`\`
+;antinuke channel (enabled) [--threshold 5] [--duration 60s] [--punishment strip]
+\`\`\`
+
+**What it does:** Prevents channel manipulation
+
+**Monitors:**
+- Channel creation
+- Channel deletion
+- Channel permission changes
+
+**Example:**
+\`\`\`
+;antinuke channel true --threshold 5
+\`\`\`
+
+### Webhook Protection
+
+\`\`\`
+;antinuke webhook (enabled) [--threshold 3] [--duration 60s] [--punishment ban]
+\`\`\`
+
+**What it does:** Prevents webhook abuse
+
+**Monitors:**
+- Webhook creation
+- Webhook deletion
+
+**Example:**
+\`\`\`
+;antinuke webhook true --threshold 3
+\`\`\`
+
+### Emoji Protection
+
+\`\`\`
+;antinuke emoji (enabled) [--threshold 5] [--duration 60s] [--punishment strip]
+\`\`\`
+
+**What it does:** Prevents emoji deletion
+
+**Example:**
+\`\`\`
+;antinuke emoji true --threshold 10
+\`\`\`
+
+---
+
+## Punishment Types
+
+### Ban
+
+Permanently bans the offender from the server.
+
+**Use for:**
+- Clear malicious intent
+- Bot protection
+- Mass banning
+
+### Kick
+
+Removes the offender from the server (they can rejoin).
+
+**Use for:**
+- Moderate violations
+- Warning-level offenses
+
+### Strip
+
+Removes all roles from the offender (keeps them in server).
+
+**Use for:**
+- Trusted members who make mistakes
+- Accidental threshold triggers
+- Less severe violations
+
+---
+
+## Configuration Examples
+
+### Maximum Protection
+
+\`\`\`
+;antinuke bot true
+;antinuke ban true --threshold 2 --punishment ban
+;antinuke kick true --threshold 3 --punishment ban
+;antinuke role true --threshold 3 --punishment ban
+;antinuke channel true --threshold 3 --punishment ban
+;antinuke webhook true --threshold 2 --punishment ban
+;antinuke emoji true --threshold 5 --punishment strip
+\`\`\`
+
+### Balanced Protection
+
+\`\`\`
+;antinuke bot true
+;antinuke ban true --threshold 3 --punishment ban
+;antinuke kick true --threshold 5 --punishment kick
+;antinuke role true --threshold 5 --punishment strip
+;antinuke channel true --threshold 5 --punishment strip
+;antinuke webhook true --threshold 3 --punishment ban
+\`\`\`
+
+### Lenient Protection
+
+\`\`\`
+;antinuke bot true
+;antinuke ban true --threshold 5 --punishment strip
+;antinuke kick true --threshold 10 --punishment strip
+;antinuke role true --threshold 10 --punishment strip
+;antinuke channel true --threshold 10 --punishment strip
+\`\`\`
+
+---
+
+## Best Practices
+
+### Set Appropriate Thresholds
+
+**Small servers (< 100 members):**
+- Ban/Kick: 2-3 threshold
+- Role/Channel: 3-5 threshold
+
+**Medium servers (100-1000):**
+- Ban/Kick: 3-5 threshold
+- Role/Channel: 5-10 threshold
+
+**Large servers (1000+):**
+- Ban/Kick: 5-10 threshold
+- Role/Channel: 10-20 threshold
+
+### Choose Right Punishments
+
+- **Ban:** Malicious actions (bot additions, mass bans)
+- **Kick:** Moderate violations
+- **Strip:** Trusted members, accidental triggers
+
+### Monitor Actions
+
+- Check anti-nuke logs regularly
+- Review false positives
+- Adjust thresholds based on activity
+
+---
+
+## Troubleshooting
+
+### False Positives
+
+**Issue:** Legitimate admin actions trigger anti-nuke
+
+**Solutions:**
+1. Whitelist the member:
+   \`\`\`
+   ;antinuke whitelist @Admin
+   \`\`\`
+
+2. Increase threshold:
+   \`\`\`
+   ;antinuke role true --threshold 10
+   \`\`\`
+
+3. Use `strip` instead of `ban`:
+   \`\`\`
+   ;antinuke channel true --punishment strip
+   \`\`\`
+
+### Not Triggering
+
+**Issue:** Anti-nuke doesn't catch violations
+
+**Check:**
+1. Module is enabled:
+   \`\`\`
+   ;antinuke settings
+   \`\`\`
+
+2. Evict has proper permissions:
+   - Ban Members (for punishments)
+   - Kick Members (for punishments)
+   - Manage Roles (for strip punishment)
+
+3. Evict's role is high enough:
+   - Must be above target member's roles
+   - Check Server Settings → Roles
+
+### Raid Not Stopped
+
+**Issue:** Raid continues despite anti-nuke
+
+**Possible causes:**
+- Multiple raiders below threshold each
+- Raiders have roles above Evict
+
+**Solutions:**
+- Enable verification
+- Lock down channels
+- Report to Discord
+
+---
+
+## Reset Settings
+
+\`\`\`
+;antinuke reset
+\`\`\`
+
+**Requires:** Anti-nuke admin or guild owner
+
+Removes:
+- All protection settings
+- Whitelisted members
+- Trusted admins
+
+Requires confirmation.
+
+**Use when:**
+- Starting fresh configuration
+- Removing anti-nuke completely
+- Fixing misconfiguration
+
+---
+
+## Important Notes
+
+- **Server owner** is always immune to anti-nuke
+- **Whitelisted members** bypass all protections
+- **Bot must have permissions** to apply punishments
+- **Role hierarchy matters** - Evict can only punish those below it
+- **Actions are logged** in anti-nuke module
+- **Thresholds count per member** within duration window
+
+---
+
+## Related
+
+- [Server Automation](/docs/configuration/automation) - Automation overview
+- [Permissions Guide](/docs/guides/permissions-guide) - Permission setup
+- [Troubleshooting](/docs/guides/troubleshooting) - Common issues

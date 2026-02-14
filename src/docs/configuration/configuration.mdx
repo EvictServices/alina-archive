@@ -1,0 +1,164 @@
+---
+title: Configuration
+description: Server configuration and customization commands
+category: Configuration
+order: 1
+lastUpdated: 2026-02-14
+---
+
+# Configuration Overview
+
+Evict provides powerful server configuration tools to automate, customize, and protect your Discord server.
+
+## Configuration Categories
+
+### [Role Management](/docs/configuration/roles)
+
+Automate role assignment and let members manage their own roles:
+
+- **Auto Roles** - Automatically assign roles when members join
+- **Booster Roles** - Custom colored roles for server boosters
+- **Reaction Roles** - Self-assignable roles via reactions
+- **Button Roles** - Self-assignable roles via buttons
+
+**Quick Start:**
+\`\`\`
+;autorole add @Member
+;boosterrole base @Booster
+;reactionrole add (message_link) 👍 @Role
+\`\`\`
+
+---
+
+### [Server Automation](/docs/configuration/automation)
+
+Automate common server tasks and protect your community:
+
+- **Command Aliases** - Create shortcuts for frequently used commands
+- **Anti-Nuke Protection** - Protect against malicious admins and raids
+- **Thread Watcher** - Keep important threads from archiving
+- **Vanity Tracking** - Reward members who advertise your server
+- **Guild Tag Tracking** - Track members with your server tag
+- **Ping on Join** - Mention new members in welcome channels
+- **Quoter** - Quote messages across channels
+
+**Quick Start:**
+\`\`\`
+;alias add ui userinfo
+;antinuke bot true
+;thread add (thread_id)
+\`\`\`
+
+---
+
+### [Messages & Communication](/docs/configuration/messages)
+
+Customize server communications and create custom responses:
+
+- **Confessions** - Anonymous confession system
+- **Disboard Integration** - Bump reminder system
+- **Invoke Messages** - Custom moderation action responses
+- **Tags System** - Create custom commands with embeds
+
+**Quick Start:**
+\`\`\`
+;confessions add #confessions
+;disboard toggle
+;tags create rules (your content here)
+\`\`\`
+
+---
+
+### [Customization & Context](/docs/configuration/customization)
+
+Personalize how Evict appears and responds in your server:
+
+- **Bot Profile** - Customize Evict's avatar, banner, and bio per-server
+- **Response Colors** - Change embed colors for different response types
+- **Response Emojis** - Customize reaction emojis for bot responses
+- **Context Settings** - Server-wide and personal preferences
+
+**Quick Start:**
+\`\`\`
+;customize avatar
+;context color approved #00FF00
+;context emoji approved ✅
+\`\`\`
+
+---
+
+### [Prefix Management](/docs/configuration/prefix)
+
+Configure how you interact with Evict:
+
+- **Server Prefix** - Custom prefix for your server
+- **Personal Prefix** - Your own prefix across all servers
+- **Prefix Priority** - Multiple prefix support
+
+**Quick Start:**
+\`\`\`
+;prefix set !
+;prefix self >
+\`\`\`
+
+---
+
+## Common Configuration Tasks
+
+### Setting Up a New Server
+
+1. **Set your prefix:** `;prefix set !`
+2. **Configure auto roles:** `;autorole add @Member`
+3. **Enable anti-nuke:** `;antinuke bot true`
+4. **Set up bump reminders:** `;disboard toggle`
+5. **Create welcome tags:** `;tags create welcome ...`
+
+See the [Server Setup Guide](/docs/guides/server-setup) for a complete walkthrough.
+
+### Role Automation
+
+- Auto-assign roles to new members
+- Let boosters create custom roles
+- Set up reaction/button role menus
+- Track members with vanity URLs or tags
+
+[Learn more about Role Management →](/docs/configuration/roles)
+
+### Server Protection
+
+- Anti-nuke protection against raids
+- Threshold-based action limits
+- Whitelisting trusted admins
+- Automatic punishment system
+
+[Learn more about Anti-Nuke →](/docs/configuration/automation#anti-nuke-protection)
+
+### Custom Messages
+
+- Create reusable message templates with tags
+- Customize moderation action responses
+- Set up anonymous confessions
+- Configure bump reminders
+
+[Learn more about Messages →](/docs/configuration/messages)
+
+---
+
+## Permission Requirements
+
+Most configuration commands require **Manage Guild** permission.
+
+Some advanced features require **Administrator**:
+- Anti-nuke configuration
+- Bot profile customization
+
+See the [Permissions Guide](/docs/guides/permissions-guide) for details.
+
+---
+
+## Next Steps
+
+- **[Server Setup Guide](/docs/guides/server-setup)** - Complete setup walkthrough
+- **[Role Management](/docs/configuration/roles)** - Detailed role automation
+- **[Server Automation](/docs/configuration/automation)** - Protection and automation
+- **[Troubleshooting](/docs/guides/troubleshooting)** - Common configuration issues
