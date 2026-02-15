@@ -89,6 +89,17 @@ export default function CommandsPage() {
     }
   }, [categories, selectedCategory]);
 
+  useEffect(() => {
+    if (selectedCommand) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedCommand]);
+
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     setCopiedCommand(text);
@@ -187,12 +198,6 @@ export default function CommandsPage() {
             <div>
               <span className="text-white/60">Arguments: </span>
               <span className="text-white/80">{command.signature}</span>
-            </div>
-          )}
-          {command.permissions && command.permissions.length > 0 && (
-            <div>
-              <span className="text-white/60">Permissions: </span>
-              <span className="text-white/80">{command.permissions.join(', ')}</span>
             </div>
           )}
           {command.signature && (
