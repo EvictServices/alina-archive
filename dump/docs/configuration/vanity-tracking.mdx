@@ -87,16 +87,16 @@ Set where notifications are posted when members add vanity.
 **Requires:** Manage Messages
 
 **Variables:**
-- `\\{user\\}` - Member who added vanity
-- `\\{user.mention\\}` - Mentionable format
-- `\\{server\\}` - Server name
-- `\\{vanity\\}` - Vanity URL code
+- `\{user\}` - Member who added vanity
+- `\{user.mention\}` - Mentionable format
+- `\{server\}` - Server name
+- `\{vanity\}` - Vanity URL code
 
 **Examples:**
-\`\`\`
-;vanity message Thanks \\{user.mention\\} for repping discord.gg/\\{vanity\\}!
-;vanity message \\{user\\} is now advertising \\{server\\}!
-\`\`\`
+```
+;vanity message Thanks {user.mention} for repping discord.gg/{vanity}!
+;vanity message {user} is now advertising {server}!
+```
 
 ### Reset Settings
 
@@ -154,11 +154,11 @@ When vanity removed:
 ### Community Growth
 
 Reward members who help advertise:
-\`\`\`
+```
 ;vanity role @Recruiter
 ;vanity channel #growth
-;vanity message Thanks \\{user.mention\\} for repping us!
-\`\`\`
+;vanity message Thanks {user.mention} for repping us!
+```
 
 ### VIP Status
 
@@ -180,10 +180,10 @@ Track participants in growth contests:
 ### Recognition
 
 Public recognition for advertisers:
-\`\`\`
+```
 ;vanity channel #announcements
-;vanity message Thank you \\{user.mention\\} for advertising \\{server\\}! 🎉
-\`\`\`
+;vanity message Thank you {user.mention} for advertising {server}! 🎉
+```
 
 ---
 
@@ -242,27 +242,27 @@ Simple tracking without notifications.
 
 ### With Notifications
 
-\`\`\`
+```
 ;vanity role @Supporter
 ;vanity channel #growth-log
-;vanity message \\{user.mention\\} is now supporting \\{server\\}! Thank you! 💚
-\`\`\`
+;vanity message {user.mention} is now supporting {server}! Thank you! 💚
+```
 
 ### Multiple Benefits
 
-\`\`\`
+```
 ;vanity role @VIP Supporter
 ;vanity channel #announcements
-;vanity message 🌟 \\{user.mention\\} joined the supporter squad! They now have access to exclusive channels!
-\`\`\`
+;vanity message 🌟 {user.mention} joined the supporter squad! They now have access to exclusive channels!
+```
 
 ### Growth Competition
 
-\`\`\`
+```
 ;vanity role @Growth Contest
 ;vanity channel #contest-entries
-;vanity message \\{user\\} entered the growth contest! Total entries: \\{role.members\\}
-\`\`\`
+;vanity message {user} entered the growth contest! Total entries: {role.members}
+```
 
 ---
 
@@ -270,7 +270,7 @@ Simple tracking without notifications.
 
 ### Discord Requirements
 
-- **Vanity URL required** (Server Boost Level 3)
+- **Vanity URL required:** Server Boost Level 3
 - Must have actual vanity code
 - Cannot track on servers without vanity
 
@@ -369,9 +369,9 @@ While you can only set one vanity role at a time, combine with other systems:
 
 Create info tag about vanity benefits:
 
-\`\`\`
-;tags create vanity \\{embed\\}\\{title: Become an Advertiser!\\}\\{description: Add discord.gg/ourvanity to your status and get exclusive perks!\\}\\{$end\\}
-\`\`\`
+```
+;tags create vanity {embed}{title: Become an Advertiser!}{description: Add discord.gg/ourvanity to your status and get exclusive perks!}{$end}
+```
 
 ---
 
@@ -379,4 +379,4 @@ Create info tag about vanity benefits:
 
 - [Guild Tag Tracking](/docs/configuration/guild-tag-tracking) - Similar feature for guild tags
 - [Auto Roles](/docs/configuration/roles#auto-roles) - Automatic role assignment
-- [Server Automation](/docs/configuration/automation) - Automation overview
+- [Anti-Nuke Protection](/docs/configuration/antinuke) - Server protection

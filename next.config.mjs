@@ -1,5 +1,7 @@
 import { execSync } from "child_process";
 import createMDX from '@next/mdx';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 
 const EPOCH = BigInt("1420070400000");
 const snowflakeId = ((BigInt(Date.now()) - EPOCH) << BigInt(22) | BigInt(Math.floor(Math.random() * 4096))).toString();

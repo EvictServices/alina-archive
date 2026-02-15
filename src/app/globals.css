@@ -545,6 +545,51 @@ svg.rough-annotation {
   }
 }
 
+/* Documentation list styling for better alignment */
+article ul,
+article ol {
+  padding-left: 0;
+  list-style-position: outside;
+}
+
+article ul li,
+article ol li {
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+  line-height: 1.7;
+}
+
+article ul {
+  list-style-type: disc;
+}
+
+article ol {
+  list-style-type: decimal;
+}
+
+/* Code block spacing */
+article pre {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+article p + pre,
+article h1 + pre,
+article h2 + pre,
+article h3 + pre,
+article h4 + pre,
+article h5 + pre,
+article h6 + pre {
+  margin-top: 0.75rem;
+}
+
+article strong + pre,
+article em + pre,
+article b + pre {
+  display: block;
+  margin-top: 0.5rem;
+}
+
 @theme inline {
   @keyframes shine {
   0% {

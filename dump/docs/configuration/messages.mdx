@@ -156,13 +156,13 @@ If no channel is set, reminders go to the last bumped channel.
 **Requires:** Manage Channels
 
 **Variables:**
-- `\\{user\\}` - User who last bumped
-- `\\{disboard\\}` - Disboard bot mention
+- `\{user\}` - User who last bumped
+- `\{disboard\}` - Disboard bot mention
 
 **Example:**
-\`\`\`
-;disboard message It's time to bump! Use /bump or \\{disboard\\}
-\`\`\`
+```
+;disboard message It's time to bump! Use /bump or {disboard}
+```
 
 ### Thank You Message
 
@@ -182,9 +182,9 @@ Sent when someone bumps the server.
 - `\\{disboard.user_bumps\\}` - User's bump count
 
 **Example:**
-\`\`\`
-;disboard message thank Thanks \\{user\\} for bump #\\{disboard.user_bumps\\}!
-\`\`\`
+```
+;disboard message thank Thanks {user} for bump #{disboard.user_bumps}!
+```
 
 ### View Settings
 
@@ -229,9 +229,9 @@ Custom messages sent when moderation actions are performed.
 \`\`\`
 
 **Example:**
-\`\`\`
-;invoke kick \\{embed\\}\\{title: Kicked\\}\\{description: \\{user\\} was kicked for \\{reason\\}\\}\\{$end\\}
-\`\`\`
+```
+;invoke kick {embed}{title: Kicked}{description: {user} was kicked for {reason}}{$end}
+```
 
 Use the [embed builder](https://evict.bot/embed) for complex messages.
 
@@ -274,9 +274,9 @@ Display a tag's content.
 **Requires:** Manage Messages
 
 **Example:**
-\`\`\`
-;tags create rules \\{embed\\}\\{title: Server Rules\\}\\{description: 1. Be respectful\\n2. No spam\\}\\{$end\\}
-\`\`\`
+```
+;tags create rules {embed}{title: Server Rules}{description: 1. Be respectful\n2. No spam}{$end}
+```
 
 ### Edit Tag
 

@@ -66,8 +66,9 @@ export default function UpdatesContent() {
       <div className="max-w-[1600px] mx-auto pt-12 lg:pt-20">
         <div className="flex relative gap-6 items-start">
         <aside className="hidden lg:flex w-80 lg:sticky lg:top-24 flex-col max-h-[calc(100vh-8rem)]">
-          <div className="p-2 border-b border-white/10">
-            <div className="relative mb-2">
+          <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 mb-4">
+            <label className="block text-xs font-medium text-white/60 mb-2">Search Updates</label>
+            <div className="relative">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-white/40">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="11" cy="11" r="8"/>
@@ -92,7 +93,7 @@ export default function UpdatesContent() {
                   <button
                     key={update.slug}
                     onClick={() => handleUpdateClick(update.slug)}
-                    className={`w-full flex items-start gap-3 px-3 py-2.5 rounded-full mb-2 transition-colors ${
+                    className={`w-full flex items-start gap-3 px-3 py-2.5 rounded-lg mb-2 transition-colors ${
                       isActive
                         ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-white'
                         : 'hover:bg-[#ccccff]/5 text-white/70 hover:text-white border border-transparent'

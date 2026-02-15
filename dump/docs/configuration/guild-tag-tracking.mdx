@@ -92,16 +92,16 @@ Set where notifications are posted when members add guild tag.
 **Requires:** Manage Messages
 
 **Variables:**
-- `\\{user\\}` - Member who added tag
-- `\\{user.mention\\}` - Mentionable format
-- `\\{server\\}` - Server name
-- `\\{server.name\\}` - Full server name
+- `\{user\}` - Member who added tag
+- `\{user.mention\}` - Mentionable format
+- `\{server\}` - Server name
+- `\{server.name\}` - Full server name
 
 **Examples:**
-\`\`\`
-;tag message Thanks \\{user.mention\\} for adding \\{server\\} to your name!
-;tag message \\{user\\} is now representing \\{server\\}! 🎉
-\`\`\`
+```
+;tag message Thanks {user.mention} for adding {server} to your name!
+;tag message {user} is now representing {server}! 🎉
+```
 
 ### Assign to Existing Members
 
@@ -173,20 +173,20 @@ When tag removed:
 
 ### Clan/Team Representation
 
-\`\`\`
+```
 ;tag role @Clan Member
 ;tag channel #roster
-;tag message Welcome to the clan, \\{user.mention\\}!
-\`\`\`
+;tag message Welcome to the clan, {user.mention}!
+```
 
 ### Community Support
 
 Reward members who represent your community:
-\`\`\`
+```
 ;tag role @Representative
 ;tag channel #growth
-;tag message Thanks \\{user.mention\\} for repping \\{server\\}!
-\`\`\`
+;tag message Thanks {user.mention} for repping {server}!
+```
 
 ### Partner Verification
 
@@ -267,20 +267,20 @@ Examples:
 
 ### Gaming Clan
 
-\`\`\`
+```
 ;tag role @Clan Member
 ;tag channel #clan-roster
-;tag message Welcome \\{user.mention\\} to the clan! You now have access to exclusive scrims and events.
+;tag message Welcome {user.mention} to the clan! You now have access to exclusive scrims and events.
 ;tag give
-\`\`\`
+```
 
 ### Community Server
 
-\`\`\`
+```
 ;tag role @Supporter
 ;tag channel #supporters
-;tag message 🌟 \\{user\\} is now representing \\{server\\}! Thank you for your support!
-\`\`\`
+;tag message 🌟 {user} is now representing {server}! Thank you for your support!
+```
 
 ### Simple Setup
 
@@ -292,11 +292,11 @@ No notifications, just role assignment.
 
 ### Competitive Team
 
-\`\`\`
+```
 ;tag role @Team Member
 ;tag channel #team-updates
-;tag message \\{user.mention\\} joined the official roster! Check out our team in #about!
-\`\`\`
+;tag message {user.mention} joined the official roster! Check out our team in #about!
+```
 
 ---
 
@@ -423,9 +423,9 @@ Combine with auto roles:
 \`\`\`
 
 Create info command:
-\`\`\`
-;tags create howto \\{embed\\}\\{title: Get @Tagged Member Role\\}\\{description: Add [\\{server.name\\}] to your username to get exclusive perks!\\}\\{$end\\}
-\`\`\`
+```
+;tags create howto {embed}{title: Get @Tagged Member Role}{description: Add [{server.name}] to your username to get exclusive perks!}{$end}
+```
 
 ### Name Change Monitoring
 
@@ -452,4 +452,4 @@ Tag tracking automatically monitors all username changes:
 
 - [Vanity Tracking](/docs/configuration/vanity-tracking) - Track vanity URLs
 - [Auto Roles](/docs/configuration/roles#auto-roles) - Automatic role assignment
-- [Server Automation](/docs/configuration/automation) - Automation overview
+- [Ping on Join](/docs/configuration/ping-on-join) - Mention new members
