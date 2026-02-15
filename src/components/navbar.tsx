@@ -27,7 +27,6 @@ export function MainNav() {
             dynamic-island relative flex items-center gap-1 px-2 overflow-hidden
             transition-all duration-500 ease-spring
             rounded-full
-            bg-white/[0.03] backdrop-blur-2xl
             border border-white/[0.08]
             shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]
             [background:linear-gradient(135deg,rgba(255,255,255,0.05)_0%,rgba(255,255,255,0.02)_100%)]
@@ -39,8 +38,8 @@ export function MainNav() {
             after:pointer-events-none
             ${
               isScrolled
-                ? "w-[390px] sm:w-[540px] h-10 sm:h-11"
-                : "w-[360px] sm:w-[680px] h-11 sm:h-12"
+                ? "w-[390px] sm:w-[540px] h-10 sm:h-11 bg-white/[0.03] backdrop-blur-2xl"
+                : "w-[360px] sm:w-[680px] h-11 sm:h-12 bg-white/[0.02] backdrop-blur-3xl"
             }
           `}
         >
@@ -164,7 +163,7 @@ export function MainNav() {
                     Status
                   </span>
                 </span>
-                {pathname === "/status" && (
+                {pathname === "/status" && !isScrolled && (
                   <span className="absolute bottom-0 left-2 right-2 h-[2px] bg-white rounded-full" />
                 )}
                 <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
