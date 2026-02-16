@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import Head from "next/head";
 import { MeshGradient } from "@/components/global/GradientMesh";
 import { Preloader } from "@/components/global/Preloader";
-import { PageTransition } from "@/components/global/PageTransition";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -58,9 +57,7 @@ export default function RootLayout({
         <Preloader />
         <MeshGradient />
         <div className="flex flex-col min-h-screen justify-between">
-          <PageTransition>
-            {children}
-          </PageTransition>
+          {children}
         </div>
       </body>
     </html>
