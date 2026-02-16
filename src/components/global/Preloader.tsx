@@ -14,6 +14,7 @@ export function Preloader({ show, controlled = false }: PreloaderProps = {}) {
   const isLandingPage = pathname === '/';
   const [isLoading, setIsLoading] = useState(!isLandingPage);
   const [fadeOut, setFadeOut] = useState(false);
+  const [hasShown, setHasShown] = useState(false);
 
   useEffect(() => {
     if (controlled) {
@@ -27,6 +28,13 @@ export function Preloader({ show, controlled = false }: PreloaderProps = {}) {
       return;
     }
 
+    // Only show on initial mount, not on route changes
+    if (hasShown) {
+      return;
+    }
+
+    setHasShown(true);
+
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);
     }, 1200);
@@ -39,7 +47,7 @@ export function Preloader({ show, controlled = false }: PreloaderProps = {}) {
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
     };
-  }, [isLandingPage, controlled, show]);
+  }, [isLandingPage, controlled, show, hasShown]);
 
   if (!isLoading) return null;
 

@@ -560,7 +560,6 @@ svg.rough-annotation {
   }
 }
 
-/* Documentation list styling for better alignment */
 article ul,
 article ol {
   padding-left: 0;
@@ -582,7 +581,6 @@ article ol {
   list-style-type: decimal;
 }
 
-/* Code block spacing */
 article pre {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -617,4 +615,12 @@ article b + pre {
     background-position: 0% 0%;
     }
   }
+}
+
+/* Page Transition Optimization */
+[data-framer-motion-container] {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
