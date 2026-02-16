@@ -1,116 +1,161 @@
-# Evict Bot Website
+# Evict
 
-Modern, high-performance website for the Evict Discord bot featuring real-time status monitoring, command documentation, an interactive embed builder, and a stunning animated gradient background.
+Modern, high-performance website for the Evict Discord bot — featuring real-time status monitoring, searchable command documentation, interactive embed builder, and WebGL-powered gradient backgrounds.
+
+## Overview
+
+**Evict** is an advanced Discord bot offering comprehensive moderation tools, robust antinuke protection, and versatile utility features. This repository contains the official website built with Next.js, providing users with full access to documentation, real-time bot statistics, and an interactive embed creation tool.
 
 ## Features
 
-- **Animated Gradient Background** - WebGL-powered gradient mesh with smooth color transitions
-- **Real-time Status Dashboard** - Live cluster and shard monitoring with health metrics
-- **Command Browser** - Searchable, categorized command documentation with 190+ commands
-- **Embed Builder** - Interactive Discord embed creator with live preview and webhook support
-- **POW Protection** - Client-side proof-of-work system for API rate limiting
-- **Responsive Design** - Optimized for all screen sizes with glassmorphism effects
-- **Smooth Animations** - Framer Motion transitions and counter animations
+### Core Features
+- **WebGL Gradient Background** — Hardware-accelerated animated gradient mesh with smooth color transitions
+- **Live Status Dashboard** — Real-time cluster monitoring with shard health metrics and latency tracking
+- **Command Browser** — Searchable, categorized documentation for 190+ bot commands
+- **Embed Builder** — Interactive Discord embed creator with live preview, variable support, and webhook integration
+- **POW Rate Limiting** — Client-side proof-of-work protection for API endpoints
+- **MDX Documentation** — File-based docs with frontmatter support and automatic routing
+
+### Technical Features
+- **App Router** — Next.js 16 with React Server Components
+- **TypeScript** — Full type safety across the entire codebase
+- **Tailwind CSS** — Utility-first styling with custom animations
+- **Framer Motion** — Smooth page transitions and micro-interactions
+- **Redis Caching** — Optional caching layer for improved performance
+- **PostgreSQL** — Command analytics and usage statistics
 
 ## Tech Stack
 
-- **Framework**: Next.js 16.1.0 (App Router)
-- **Runtime**: React 18.3.1
-- **Language**: TypeScript 5
-- **Styling**: Tailwind CSS 3.4
-- **Animations**: Framer Motion 12.27
-- **Graphics**: Custom WebGL gradient shader
-- **Package Manager**: Bun
-- **Process Manager**: PM2
+| Category | Technology |
+|----------|-----------|
+| **Framework** | Next.js 16.1.5 |
+| **UI Library** | React 18.3.1 |
+| **Language** | TypeScript 5.9 |
+| **Styling** | Tailwind CSS 3.4 |
+| **Animations** | Framer Motion 12.27 |
+| **Database** | PostgreSQL |
+| **Cache** | Redis (ioredis) |
+| **Icons** | Lucide React, React Icons |
+| **Runtime** | Bun |
 
 ## Project Structure
 
 ```
-src/
-├── app/                      # Next.js app router pages
-│   ├── api/                  # API routes
-│   │   ├── health/           # Health status proxy
-│   │   ├── pow/              # POW challenge generation
-│   │   └── top-commands/     # Protected command stats
-│   ├── (legal)/              # Legal pages (terms, privacy)
-│   ├── commands/             # Command documentation page
-│   ├── embed/                # Embed builder page
-│   ├── status/               # Status dashboard page
-│   ├── globals.css           # Global styles and animations
-│   └── layout.tsx            # Root layout with gradient
-├── components/               # React components
-│   ├── embed/                # Embed builder components
-│   ├── global/               # Global layout components
-│   ├── ui/                   # Reusable UI components
-│   ├── gradient.js           # WebGL gradient implementation
-│   └── navbar.tsx            # Navigation component
-├── hooks/                    # Custom React hooks
-│   ├── useFetch.ts           # Data fetching hook
-│   ├── useStatsAnimation.ts  # Counter animation hook
-│   └── useVariableAutocomplete.ts
-├── lib/                      # Utilities and helpers
-│   ├── constants.ts          # App-wide constants
-│   ├── embed-utils.ts        # Embed processing utilities
-│   ├── commands.ts           # Command processing
-│   ├── obfuscate.ts          # Content obfuscation
-│   ├── pow/                  # Proof-of-work system
-│   └── utils.tsx             # General utilities
-└── types/                    # TypeScript definitions
-    ├── commands.ts
-    ├── embeds.ts
-    ├── status.ts
-    └── ui.ts
+alina/
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── api/                # API routes
+│   │   │   ├── health/         # Bot health status proxy
+│   │   │   ├── status/         # Cluster status endpoint
+│   │   │   ├── commands/       # Commands JSON endpoint
+│   │   │   ├── pow/            # POW challenge generation
+│   │   │   └── top-commands/   # Protected usage stats
+│   │   ├── (legal)/            # Terms & Privacy pages
+│   │   ├── commands/           # Command documentation UI
+│   │   ├── embed/              # Embed builder tool
+│   │   ├── status/             # Status dashboard
+│   │   ├── updates/            # MDX-based update feed
+│   │   ├── layout.tsx          # Root layout with gradient
+│   │   └── page.tsx            # Landing page
+│   ├── components/
+│   │   ├── embed/              # Embed builder components
+│   │   ├── global/             # Layout components (nav, footer)
+│   │   ├── ui/                 # Reusable UI primitives
+│   │   ├── variable/           # Variable autocomplete
+│   │   └── gradient.js         # WebGL shader implementation
+│   ├── hooks/
+│   │   ├── useFetch.ts         # Data fetching with caching
+│   │   ├── useStatsAnimation.ts # Counter animations
+│   │   ├── useOnClickOutside.ts
+│   │   └── useVariableAutocomplete.ts
+│   ├── lib/
+│   │   ├── constants.ts        # App configuration
+│   │   ├── commands.ts         # Command data processing
+│   │   ├── embed-utils.ts      # Embed validation & export
+│   │   ├── obfuscate.ts        # Content protection
+│   │   ├── redis.ts            # Redis client
+│   │   ├── updates.ts          # MDX update parsing
+│   │   ├── pow/                # Proof-of-work system
+│   │   └── utils.ts            # Helper functions
+│   ├── types/
+│   │   ├── commands.ts         # Command type definitions
+│   │   ├── embeds.ts           # Embed interfaces
+│   │   ├── status.ts           # Status response types
+│   │   └── ui.ts               # UI component types
+│   └── updates/                # MDX update posts
+├── public/
+│   ├── commands.json           # Static command data
+│   └── evict/                  # Assets
+├── ecosystem.config.js         # PM2 configuration
+└── package.json
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Bun 1.0+
-- Node.js 18+ (for compatibility)
-- PM2 (for production deployment)
+- **Bun** 1.0+ (recommended) or Node.js 18+
+- **PostgreSQL** (for command statistics)
+- **Redis** (optional, for caching)
+- **PM2** (for production deployment)
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/EvictServices/alina.git
 cd alina
 
 # Install dependencies
 bun install
 ```
 
-### Environment Variables
+### Environment Setup
 
-Create a `.env.local` file:
+Create `.env.local`:
 
 ```env
-# Database (for command statistics)
-DATABASE_URL="postgresql://user:password@host:port/database"
+# Database
+DATABASE_URL="postgresql://user:password@localhost:5432/evict"
 
-# Optional: Custom API endpoints
+# Redis (optional)
+REDIS_URL="redis://localhost:6379"
+
+# API Configuration
 NEXT_PUBLIC_API_URL="https://elara.evict.bot"
 ```
 
 ### Development
 
 ```bash
-# Start development server
+# Start dev server with Turbopack
 bun run dev
 
-# Build for production
+# Format code
+bun run format
+
+# Lint code
+bun run lint
+```
+
+The dev server runs at `http://localhost:3000`
+
+### Production Build
+
+```bash
+# Standard build
 bun run build
+
+# Production build with obfuscation
+bun run build:prod
 
 # Start production server
 bun run start
 ```
 
-The development server will run on `http://localhost:3000`
-
 ## Deployment
 
-### Using PM2
+### PM2 Process Manager
 
 ```bash
 # Build the application
@@ -119,53 +164,77 @@ bun run build
 # Start with PM2
 pm2 start ecosystem.config.js
 
-# Restart after updates
+# Manage processes
 pm2 restart alina
-
-# View logs
 pm2 logs alina
+pm2 monit
 ```
 
-### Environment Configuration
+**Configuration** (`ecosystem.config.js`):
+- Process name: `alina`
+- Port: `3006`
+- Environment: `production`
 
-The `ecosystem.config.js` file configures:
-- Port: 3001
-- Max memory: 512MB
-- Auto-restart on file changes
-- Log management
+### Environment Variables (Production)
 
-## API Routes
+```env
+NODE_ENV=production
+DATABASE_URL=postgresql://...
+REDIS_URL=redis://...
+PORT=3006
+```
 
-### GET `/api/health`
-Proxies health data from the Evict bot API.
+## API Documentation
+
+### `GET /api/health`
+
+Returns current bot health statistics.
 
 **Response:**
 ```json
 {
-  "guilds": 1000,
-  "users": 500000,
-  "clusters": {...}
+  "guilds": 1500,
+  "users": 750000,
+  "clusters": {
+    "0": { "status": "online", "guilds": 500 }
+  }
 }
 ```
 
-### GET `/api/pow/challenge`
+### `GET /api/status`
+
+Returns detailed cluster and shard information.
+
+**Response:**
+```json
+{
+  "clusters": [...],
+  "totalGuilds": 1500,
+  "totalUsers": 750000
+}
+```
+
+### `GET /api/pow/challenge`
+
 Generates a proof-of-work challenge for rate limiting.
 
 **Response:**
 ```json
 {
   "success": true,
-  "challenge": {...}
+  "challenge": "...",
+  "difficulty": 4
 }
 ```
 
-### POST `/api/top-commands`
-Returns top 10 most-used commands (requires POW solution).
+### `POST /api/top-commands`
+
+Returns top 10 most-used commands (requires POW).
 
 **Request:**
 ```json
 {
-  "solution": "pow_solution_string"
+  "solution": "pow_solution_hash"
 }
 ```
 
@@ -174,142 +243,80 @@ Returns top 10 most-used commands (requires POW solution).
 {
   "success": true,
   "data": [
-    {
-      "command_name": "ban",
-      "invoke_count": 1500
-    }
+    { "command_name": "ban", "invoke_count": 1500 }
   ]
 }
 ```
 
-## Key Features Explained
+## Architecture
 
 ### Proof-of-Work System
 
-Client-side POW protection prevents API abuse by requiring browsers to solve computational challenges before accessing protected endpoints.
+Protects rate-limited endpoints from abuse by requiring computational work.
 
 **Flow:**
 1. Client requests challenge from `/api/pow/challenge`
-2. Client solves SHA-256 hash puzzle
+2. Client solves SHA-256 hash puzzle in browser
 3. Client submits solution with API request
-4. Server validates and rate-limits based on POW
+4. Server validates solution and difficulty
+5. Rate limiting enforced per valid solution
+
+### WebGL Gradient System
+
+Custom fragment shader creates smooth, animated color gradients inspired by Stripe's design.
+
+**Features:**
+- Hardware-accelerated via WebGL
+- Configurable colors via CSS variables
+- Responsive canvas sizing
+- Smooth noise-based animation
 
 ### Embed Builder
 
-Interactive tool for creating Discord embeds with:
-- Real-time preview
-- Variable support (user mentions, server info)
-- Button configuration
-- Export to script format
-- Webhook support
+Interactive tool for creating Discord embeds without code.
 
-### Status Dashboard
-
-Real-time monitoring with:
-- 30-second auto-refresh
-- Cluster/shard breakdown
-- Latency metrics
-- Guild and user counts
-- Top commands (24h)
-
-## Performance Optimizations
-
-- **Code Splitting**: Dynamic imports for routes
-- **Image Optimization**: Next.js Image component
-- **Animation Hooks**: Custom hooks prevent re-renders
-- **Memoization**: Strategic use of React optimization
-- **POW Caching**: Challenge reuse within time window
-- **WebGL Gradient**: Hardware-accelerated background animations
-- **CSS Variables**: Dynamic theming without re-renders
-
-## Design System
-
-### Color Palette
-- Primary gradient: `#8b7a9f → #7a6a8e → #6a5a7e → #5a4a6e`
-- Text colors: White with opacity variants for hierarchy
-- Accent colors: Lavender-based with glassmorphism effects
-
-### Typography
-- Font family: Outfit (100-700 weights)
-- Responsive scaling with Tailwind utilities
-- Custom text animations and shimmer effects
+**Capabilities:**
+- Real-time preview with Discord styling
+- Variable system (`{user.mention}`, `{guild.name}`, etc.)
+- Button support (link, primary, secondary, success, danger)
+- Export to bot script format
+- Webhook URL support
 
 ## Scripts
 
 ```bash
-bun run dev          # Start development server
-bun run build        # Build for production
-bun run start        # Start production server
-bun run lint         # Run linter
+bun run dev           # Start dev server (Turbopack)
+bun run build         # Production build
+bun run build:prod    # Build + obfuscation
+bun run start         # Start production server
+bun run lint          # ESLint
+bun run format        # Prettier format
+bun run format:check  # Check formatting
+bun run mangle        # Obfuscate output
 ```
 
-## Browser Support
+## Performance
 
-- Chrome/Edge 90+
-- Firefox 88+
-- Safari 14+
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## Database Schema
-
-PostgreSQL database for command usage analytics:
-
-```sql
-CREATE TABLE command_stats (
-  id SERIAL PRIMARY KEY,
-  command_name VARCHAR(255) NOT NULL,
-  invoke_count INTEGER DEFAULT 0,
-  last_invoked TIMESTAMP,
-  created_at TIMESTAMP DEFAULT NOW(),
-  INDEX idx_command_name (command_name),
-  INDEX idx_invoke_count (invoke_count DESC)
-);
-```
-
-## Architecture Highlights
-
-### WebGL Gradient System
-- Custom shader implementation for smooth color transitions
-- Based on Stripe's gradient animation
-- Hardware-accelerated rendering
-- Configurable via CSS variables
-
-### Proof-of-Work Flow
-1. Client requests challenge from `/api/pow/challenge`
-2. SHA-256-based computational puzzle
-3. Difficulty-adjusted based on load
-4. Solution validated server-side
-5. Rate limiting enforced per solution
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-This project is proprietary. All rights reserved.
+- **Next.js Image Optimization** — Automatic WebP conversion and lazy loading
+- **Code Splitting** — Route-based dynamic imports
+- **Animation Optimization** — Custom hooks prevent unnecessary re-renders
+- **POW Caching** — Challenge reuse within time window
+- **CSS Variables** — Runtime theming without re-renders
+- **Redis Caching** — Optional response caching layer
 
 ## Links
 
-- **Website**: https://evict.bot
-- **Discord**: https://discord.gg/evict
-- **Documentation**: https://docs.evict.bot
-- **Invite Bot**: [Click here](https://discordapp.com/oauth2/authorize?client_id=1203514684326805524&scope=bot+applications.commands&permissions=8)
+- **Website**: [evict.bot](https://evict.bot)
+- **Discord**: [discord.gg/evict](https://discord.gg/evict)
+- **Documentation**: [docs.evict.bot](https://docs.evict.bot)
+- **Invite Bot**: [Add to Server](https://discordapp.com/oauth2/authorize?client_id=1203514684326805524&scope=bot+applications.commands&permissions=8)
 
-## Acknowledgments
+## License
 
-- Built with Next.js and React
-- Styled with Tailwind CSS
-- Animated with Framer Motion
-- Icons from React Icons
-- Deployed with PM2
+Proprietary. All rights reserved.
 
 ---
 
-**Last Updated**: January 30, 2026  
-**Version**: 2.1.0  
-**Maintained by**: Evict Development Team
+**Version**: 2.2.0  
+**Last Updated**: February 16, 2026  
+**Built by**: Evict Development Team
