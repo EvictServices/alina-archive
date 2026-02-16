@@ -10,6 +10,11 @@ interface PageTransitionProps {
 
 export function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname();
+  
+  // Skip transition for commands page to avoid conflict with loading state
+  if (pathname.startsWith('/commands')) {
+    return <>{children}</>;
+  }
 
   return (
     <AnimatePresence mode="wait">
