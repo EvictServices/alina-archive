@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { Command, CommandsData, RawCommand } from '@/types/commands';
 import { processCommands } from '@/lib/commands';
+import { Preloader } from '@/components/global/Preloader';
 
 const COPY_FEEDBACK_DURATION = 2000;
 import { MdSecurity, MdBuild, MdSettings, MdInfo, MdSportsEsports, MdWavingHand, MdAutoAwesome, MdList } from 'react-icons/md';
@@ -222,11 +223,7 @@ export default function CommandsPage() {
   const displayedCommands = getFilteredCommands();
 
   if (loading) {
-    return (
-      <main className="min-h-screen flex items-center justify-center bg-transparent">
-        <div className="text-white/60 text-lg">Loading commands...</div>
-      </main>
-    );
+    return <Preloader show={true} controlled={true} />;
   }
 
   return (
