@@ -12,9 +12,8 @@ interface PreloaderProps {
 export function Preloader({ show, controlled = false }: PreloaderProps = {}) {
   const pathname = usePathname();
   const isLandingPage = pathname === '/';
-  const [isLoading, setIsLoading] = useState(!isLandingPage);
+  const [isLoading, setIsLoading] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
-  const [hasShown, setHasShown] = useState(false);
 
   useEffect(() => {
     if (controlled) {
@@ -28,26 +27,35 @@ export function Preloader({ show, controlled = false }: PreloaderProps = {}) {
       return;
     }
 
-    // Only show on initial mount, not on route changes
-    if (hasShown) {
+    const hasLoaded = sessionStorage.getItem('contentLoaded') === 'true';
+    
+    if (hasLoaded) {
+      setIsLoading(false);
       return;
     }
 
-    setHasShown(true);
+    setIsLoading(true);
 
-    const fadeTimer = setTimeout(() => {
+    const handleLoad = () => {
+      sessionStorage.setItem('contentLoaded', 'true');
+      
       setFadeOut(true);
-    }, 1200);
-
-    const hideTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-
-    return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(hideTimer);
+      
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 300);
     };
-  }, [isLandingPage, controlled, show, hasShown]);
+
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+      
+      return () => {
+        window.removeEventListener('load', handleLoad);
+      };
+    }
+  }, [isLandingPage, controlled, show]);
 
   if (!isLoading) return null;
 
