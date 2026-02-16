@@ -3,6 +3,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import { MeshGradient } from "@/components/global/GradientMesh";
+import { MainNav } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -54,7 +57,11 @@ export default function RootLayout({
         className={`bg-evict-100 ${inter.className} font-inter leading-line37 tracking-tighterCustom1Point2 flex flex-col min-h-screen justify-between dark font-light`}
       >
         <MeshGradient />
-        {children}
+        <div className="flex flex-col min-h-screen justify-between">
+          <MainNav />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

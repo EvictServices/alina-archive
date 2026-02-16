@@ -4,13 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-import { MdKeyboardCommandKey } from "react-icons/md";
-import { SiStatuspage } from "react-icons/si";
-import { ImEmbed } from "react-icons/im";
-import { SlEnvolope } from "react-icons/sl";
-import { FaDiscord } from "react-icons/fa";
-import { SiDocsdotrs } from "react-icons/si";
-
 import { useFetch } from "@/hooks/useFetch";
 import { useStatsAnimation } from "@/hooks/useStatsAnimation";
 import { API_ENDPOINTS, EXTERNAL_LINKS, APP_INFO } from "@/lib/constants";
@@ -82,15 +75,12 @@ export default function Home() {
           <div className="opacity-0 animate-fade-in-up w-full max-w-md space-y-3 px-4 [animation-delay:0.4s]">
             <div className="grid grid-cols-3 gap-2">
               <Link href="/commands" className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1">
-                <MdKeyboardCommandKey size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Commands</span>
               </Link>
               <Link href="/status" className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1">
-                <SiStatuspage size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Status</span>
               </Link>
               <Link href="/embed" className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1">
-                <ImEmbed size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Embeds</span>
               </Link>
             </div>
@@ -102,7 +92,6 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
               >
-                <SlEnvolope size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Invite</span>
               </a>
               <a
@@ -111,7 +100,6 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
               >
-                <FaDiscord size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Discord</span>
               </a>
               <a
@@ -120,7 +108,6 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
               >
-                <SiDocsdotrs size={14} className="flex-shrink-0" />
                 <span className="whitespace-nowrap">Docs</span>
               </a>
             </div>

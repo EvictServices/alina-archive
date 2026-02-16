@@ -311,7 +311,7 @@ function normalizeColor(hexCode) {
             rotation: 0,
             playing: true
         }, 
-        document.querySelectorAll("canvas").length < 1 ? console.log("DID NOT LOAD HERO STRIPE CANVAS") : (
+        !this.el ? console.warn("Gradient canvas element not found") : !this.el.getContext ? console.warn("Canvas context not available") : (
           
           this.minigl = new MiniGl(this.el, null, null, !0), 
           requestAnimationFrame(() => {
