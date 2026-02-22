@@ -7,6 +7,8 @@ import { useState } from "react";
 import { useFetch } from "@/hooks/useFetch";
 import { useStatsAnimation } from "@/hooks/useStatsAnimation";
 import { API_ENDPOINTS, EXTERNAL_LINKS, APP_INFO } from "@/lib/constants";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 interface HealthData {
   guilds: number;
@@ -48,18 +50,28 @@ export default function Home() {
             </h1>
             
             <div className="flex items-center justify-center gap-6 text-sm md:text-base">
-              <div className="flex flex-col">
+              <div className="flex flex-col items-center min-w-[120px]">
                 <span className="text-2xl md:text-3xl font-semibold text-white">
                   {animatedStats.guilds.toLocaleString()}
                 </span>
-                <span className="text-white/50 uppercase tracking-wider text-xs">Servers</span>
+                <Badge
+                  variant="outline"
+                  className="mt-2 border-white/20 text-white/70 uppercase tracking-wider text-[10px]"
+                >
+                  Servers
+                </Badge>
               </div>
-              <div className="w-px h-12 bg-white/20" />
-              <div className="flex flex-col">
+              <Separator orientation="vertical" className="h-12 bg-white/15" />
+              <div className="flex flex-col items-center min-w-[120px]">
                 <span className="text-2xl md:text-3xl font-semibold text-white">
                   {animatedStats.users.toLocaleString()}
                 </span>
-                <span className="text-white/50 uppercase tracking-wider text-xs">Users</span>
+                <Badge
+                  variant="outline"
+                  className="mt-2 border-white/20 text-white/70 uppercase tracking-wider text-[10px]"
+                >
+                  Users
+                </Badge>
               </div>
             </div>
           </div>
@@ -74,23 +86,25 @@ export default function Home() {
 
           <div className="opacity-0 animate-fade-in-up w-full max-w-md space-y-3 px-4 [animation-delay:0.4s]">
             <div className="grid grid-cols-3 gap-2">
-              <Link href="/commands" className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1">
+              <Link href="/commands" className="flex items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-white/80 transition-colors hover:border-white/25 hover:bg-white/[0.08] hover:text-white">
                 <span className="whitespace-nowrap">Commands</span>
               </Link>
-              <Link href="/status" className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1">
+              <Link href="/status" className="flex items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-white/80 transition-colors hover:border-white/25 hover:bg-white/[0.08] hover:text-white">
                 <span className="whitespace-nowrap">Status</span>
               </Link>
-              <Link href="/embed" className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1">
+              <Link href="/embed" className="flex items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-white/80 transition-colors hover:border-white/25 hover:bg-white/[0.08] hover:text-white">
                 <span className="whitespace-nowrap">Embeds</span>
               </Link>
             </div>
-            
+
+            <Separator className="bg-white/10" />
+
             <div className="grid grid-cols-3 gap-2">
               <a
                 href={EXTERNAL_LINKS.INVITE}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
+                className="flex items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-white/80 transition-colors hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
               >
                 <span className="whitespace-nowrap">Invite</span>
               </a>
@@ -98,7 +112,7 @@ export default function Home() {
                 href={EXTERNAL_LINKS.DISCORD}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
+                className="flex items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-white/80 transition-colors hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
               >
                 <span className="whitespace-nowrap">Discord</span>
               </a>
@@ -106,7 +120,7 @@ export default function Home() {
                 href={EXTERNAL_LINKS.DOCS}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="alina-button py-2 px-3 text-xs flex items-center justify-center gap-1"
+                className="flex items-center justify-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-medium text-white/80 transition-colors hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
               >
                 <span className="whitespace-nowrap">Docs</span>
               </a>

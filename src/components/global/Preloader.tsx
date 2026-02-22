@@ -68,7 +68,7 @@ export function Preloader({ show, controlled = false }: PreloaderProps = {}) {
       <div className="flex flex-col items-center gap-6">
         <div className="relative w-24 h-24 md:w-32 md:h-32">
           <Image
-            src="https://r2.evict.bot/evict.jpeg"
+            src="https://r2.azron.net/evict-rebrand.jpg"
             alt="Loading"
             fill
             className="rounded-2xl object-cover"

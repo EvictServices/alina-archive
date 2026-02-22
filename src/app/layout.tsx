@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#E3E3ED",
+  themeColor: "#172833",
   colorScheme: "dark",
 };
 
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
       "The all-in-one solution for seamless server management — powerful, polished, and visually refined.",
     images: [
       {
-        url: "https://r2.evict.bot/evict.jpeg",
-        width: 500,
-        height: 500,
+        url: "https://r2.azron.net/evict-rebrand.jpg",
+        width: 640,
+        height: 640,
         alt: "evict",
       },
     ],
@@ -49,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <Head>
-        <meta property="theme-color" content="#E3E3ED" />
+        <meta property="theme-color" content="#172833" />
       </Head>
       <body
         className={`bg-evict-100 ${inter.className} font-inter leading-line37 tracking-tighterCustom1Point2 flex flex-col min-h-screen justify-between dark font-light`}

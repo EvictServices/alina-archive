@@ -11,7 +11,7 @@ import type { IconType } from 'react-icons';
 import { FaLastfm } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { MdOutlineFileCopy } from "react-icons/md";
-import { TbInfoSquareRounded } from "react-icons/tb";
+import { Command as CommandIcon } from "lucide-react";
 
 const getCategoryIcon = (category: string): IconType => {
   const iconMap: Record<string, IconType> = {
@@ -160,7 +160,10 @@ export default function CommandsPage() {
 
   const CommandCard = ({ command }: { command: Command }) => {
     return (
-      <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 hover:border-[#ccccff]/40 transition-colors backdrop-blur-md">
+      <div 
+        onClick={() => setSelectedCommand(command)}
+        className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 hover:border-[#ccccff]/40 transition-colors backdrop-blur-md cursor-pointer"
+      >
         <div className="flex items-start justify-between mb-3">
           <h3 className="text-white font-medium bg-[#ccccff]/10 px-3 py-1 rounded-full">
             {command.is_subcommand ? command.qualified_name : command.name}
@@ -168,7 +171,10 @@ export default function CommandsPage() {
           <div className="flex items-center gap-2 text-white">
             <div className="relative">
               <button
-                onClick={() => copyToClipboard(command.is_subcommand ? command.qualified_name : command.name)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  copyToClipboard(command.is_subcommand ? command.qualified_name : command.name);
+                }}
                 className="p-1 hover:bg-[#ccccff]/20 rounded transition-colors"
                 title="Copy command"
               >
@@ -180,13 +186,6 @@ export default function CommandsPage() {
                 </div>
               )}
             </div>
-            <button
-              onClick={() => setSelectedCommand(command)}
-              className="p-1 hover:bg-[#ccccff]/20 rounded transition-colors"
-              title="Command info"
-            >
-              <TbInfoSquareRounded />
-            </button>
           </div>
         </div>
 
@@ -194,28 +193,6 @@ export default function CommandsPage() {
           {command.description}
         </p>
 
-        <div className="space-y-2 text-xs">
-          {command.signature && (
-            <div>
-              <span className="text-white/60">Arguments: </span>
-              <span className="text-white/80">{command.signature}</span>
-            </div>
-          )}
-          {command.signature && (
-            <div>
-              <span className="text-white/60">Syntax: </span>
-              <code className="text-white/80 bg-[#ccccff]/10 px-1 rounded">
-                {command.is_subcommand ? command.qualified_name : command.name} {command.signature}
-              </code>
-            </div>
-          )}
-          {command.aliases && command.aliases.length > 0 && (
-            <div>
-              <span className="text-white/60">Aliases: </span>
-              <span className="text-white/80">{command.aliases.join(', ')}</span>
-            </div>
-          )}
-        </div>
       </div>
     );
   };
@@ -235,23 +212,54 @@ export default function CommandsPage() {
           </h1>
         </div>
 
-        <div className="mb-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
-          <div className="flex items-center gap-2 mb-2">
-            {error ? (
-              <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-            ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="4 17 10 11 4 5" />
-                <line x1="12" y1="19" x2="20" y2="19" />
-              </svg>
-            )}
-            <h2 className="text-lg font-light text-white">
-              {error ? 'Service Unavailable' : `${totalCommands} commands available`}
-            </h2>
+        <div className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
+            <div className="flex items-center gap-2 mb-2">
+              {error ? (
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+              ) : (
+                <CommandIcon size={20} className="text-white" />
+              )}
+              <h2 className="text-lg font-light text-white">
+                {error ? 'Unavailable' : totalCommands}
+              </h2>
+            </div>
+            <p className="text-white/60 text-xs">
+              {error ? 'Service Error' : 'Total Commands'}
+            </p>
           </div>
-          <p className="text-white/60 text-xs">
-            {error ? 'Unable to fetch commands. Please try again later.' : 'Browse all available commands for Evict'}
-          </p>
+
+          <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
+            <div className="flex items-center gap-2 mb-2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect width="7" height="7" x="3" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="14" rx="1" />
+                <rect width="7" height="7" x="3" y="14" rx="1" />
+              </svg>
+              <h2 className="text-lg font-light text-white">
+                {categories.filter(c => c !== 'All').length}
+              </h2>
+            </div>
+            <p className="text-white/60 text-xs">
+              Categories
+            </p>
+          </div>
+
+          <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
+            <div className="flex items-center gap-2 mb-2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+              <h2 className="text-lg font-light text-white">
+                {searchQuery ? displayedCommands.length : '—'}
+              </h2>
+            </div>
+            <p className="text-white/60 text-xs">
+              {searchQuery ? 'Search Results' : 'Search Active'}
+            </p>
+          </div>
         </div>
 
         {error && (
@@ -347,7 +355,7 @@ export default function CommandsPage() {
             </div>
 
             {selectedCategory && (
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {displayedCommands.map((command, index) => (
                   <CommandCard
                     key={`${command.qualified_name || command.name}-${command.category || ''}-${index}`}
@@ -356,7 +364,7 @@ export default function CommandsPage() {
                 ))}
 
                 {displayedCommands.length === 0 && (
-                  <div className="text-center py-12 text-white/50">
+                  <div className="col-span-full text-center py-12 text-white/50">
                     {searchQuery ? `No commands found matching "${searchQuery}"` : 'No commands in this category'}
                   </div>
                 )}
@@ -368,7 +376,7 @@ export default function CommandsPage() {
 
       {selectedCommand && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/70 backdrop-blur-xl md:backdrop-blur-sm flex items-center justify-center z-50 p-4"
           onClick={() => setSelectedCommand(null)}
         >
           <div 
