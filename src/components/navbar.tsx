@@ -174,9 +174,9 @@ export function MainNav() {
           <li className="ml-auto flex items-center gap-1.5 sm:gap-2">
             <Link
               href="/updates"
-              className="w-8 sm:w-9 h-8 sm:h-9 rounded-full bg-[#ccccff]/10 border border-[#ccccff]/20 flex items-center justify-center hover:bg-[#ccccff]/20 transition-colors group"
+              className="w-8 sm:w-9 h-8 sm:h-9 rounded-full bg-[#5f828d]/10 border border-[#5f828d]/20 flex items-center justify-center hover:bg-[#5f828d]/20 transition-colors group"
             >
-              <span className="text-[10px] sm:text-xs font-medium text-[#ccccff] group-hover:text-[#ccccff] transition-colors">
+              <span className="text-[10px] sm:text-xs font-medium text-[#5f828d] group-hover:text-[#5f828d] transition-colors">
                 v5
               </span>
             </Link>
@@ -187,7 +187,7 @@ export function MainNav() {
                   href="https://discord.gg/evict"
                   className={`
                     relative inline-flex items-center justify-center
-                    bg-[#ccccff] text-[#1b1919]
+                    bg-[#5f828d] text-[#1b1919]
                     transition-all duration-300 ease-in-out overflow-hidden
                     hover:brightness-110 hover:scale-[0.98]
                     ${

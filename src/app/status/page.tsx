@@ -121,7 +121,7 @@ export default function StatusPage() {
           </button>
         </div>
 
-        <div className="mb-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
+        <div className="mb-6 bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 backdrop-blur-md">
           <div className="flex items-center gap-2 mb-2">
             <div className={`w-2.5 h-2.5 rounded-full ${loading ? 'bg-yellow-500' : error ? 'bg-red-500' : allClustersOperational ? 'bg-green-500' : 'bg-orange-500'} animate-pulse`} />
             <h2 className="text-lg font-light text-white">
@@ -143,7 +143,7 @@ export default function StatusPage() {
 
         {healthData && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
+            <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="text-white/70 text-xs font-medium">Total Guilds</h3>
               </div>
@@ -152,7 +152,7 @@ export default function StatusPage() {
               </p>
             </div>
 
-            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
+            <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="text-white/70 text-xs font-medium">Total Users</h3>
               </div>
@@ -161,7 +161,7 @@ export default function StatusPage() {
               </p>
             </div>
 
-            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
+            <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-3 backdrop-blur-md">
                 <div className="flex items-center gap-2 mb-1">
                   <h3 className="text-white/70 text-xs font-medium">Total Clusters</h3>
                 </div>
@@ -170,7 +170,7 @@ export default function StatusPage() {
                 </p>
               </div>
 
-            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-3 backdrop-blur-md">
+            <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-3 backdrop-blur-md">
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="text-white/70 text-xs font-medium">Average Latency</h3>
               </div>
@@ -190,11 +190,11 @@ export default function StatusPage() {
               return (
                 <div 
                   key={clusterId}
-                  className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl backdrop-blur-md overflow-hidden"
+                  className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl backdrop-blur-md overflow-hidden"
                 >
                   <button
                     onClick={() => toggleCluster(index)}
-                    className="w-full p-4 flex items-center justify-between hover:border-[#ccccff]/40 transition-colors"
+                    className="w-full p-4 flex items-center justify-between hover:border-[#5f828d]/40 transition-colors"
                   >
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-xl bg-white/[0.05] flex items-center justify-center text-white">
@@ -250,7 +250,7 @@ export default function StatusPage() {
                         {cluster.shards.map(shard => (
                           <div 
                             key={shard.id}
-                            className="bg-[#ccccff]/10 border border-[#ccccff]/20 rounded-xl p-4"
+                            className="bg-[#5f828d]/10 border border-[#5f828d]/20 rounded-xl p-4"
                           >
                             <div className="flex items-center justify-between mb-2">
                               <span className="text-white/80 text-sm">Shard {shard.id}</span>
@@ -280,7 +280,7 @@ export default function StatusPage() {
         )}
 
         {topCommands.length > 0 && (
-          <div className="mt-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
+          <div className="mt-6 bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 backdrop-blur-md">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -299,11 +299,11 @@ export default function StatusPage() {
               {topCommands.map((cmd, index) => (
                 <div 
                   key={cmd.command_name}
-                  className="bg-[#ccccff]/10 border border-[#ccccff]/20 rounded-xl p-3 hover:border-[#ccccff]/40 transition-colors flex-shrink-0 w-48 sm:w-auto"
+                  className="bg-[#5f828d]/10 border border-[#5f828d]/20 rounded-xl p-3 hover:border-[#5f828d]/40 transition-colors flex-shrink-0 w-48 sm:w-auto"
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-[#ccccff]/20 flex items-center justify-center text-white text-xs font-medium">
+                      <div className="w-6 h-6 rounded-full bg-[#5f828d]/20 flex items-center justify-center text-white text-xs font-medium">
                         {index + 1}
                       </div>
                       <span className="text-white text-sm font-medium truncate">

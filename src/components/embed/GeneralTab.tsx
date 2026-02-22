@@ -55,16 +55,16 @@ export const GeneralTab = ({ embed, onChange }: GeneralTabProps) => (
       <div className="flex items-center gap-2">
         <input
           type="color"
-          value={embed.color || "#CCCCFF"}
+          value={embed.color || "#5f828d"}
           onChange={(e) => onChange("color", e.target.value)}
           className="h-10 w-20 bg-white/[0.01] border border-white/5 rounded-md cursor-pointer"
         />
         <input
           type="text"
-          value={embed.color || "#CCCCFF"}
+          value={embed.color || "#5f828d"}
           onChange={(e) => onChange("color", e.target.value)}
           className="flex-1 bg-white/[0.01] border border-white/5 rounded-md px-3 py-2 text-white focus:outline-none focus:border-alina-primary/50 transition-colors"
-          placeholder="#CCCCFF"
+          placeholder="#5f828d"
         />
       </div>
     </div>

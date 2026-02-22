@@ -59,7 +59,7 @@ export const initialEmbed: EmbedData = {
   title: "evict",
   description: "Welcome to the evict embed builder! Create beautiful embeds with ease.",
   url: "",
-  color: "#ccccff",
+  color: "#5f828d",
   timestamp: false,
   thumbnail: "",
   image: "",

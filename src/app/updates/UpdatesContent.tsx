@@ -66,7 +66,7 @@ export default function UpdatesContent() {
       <div className="max-w-[1600px] mx-auto pt-12 lg:pt-20">
         <div className="flex relative gap-6 items-start">
         <aside className="hidden lg:flex w-80 lg:sticky lg:top-24 flex-col max-h-[calc(100vh-8rem)]">
-          <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 mb-4">
+          <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 mb-4">
             <label className="block text-xs font-medium text-white/60 mb-2">Search Updates</label>
             <div className="relative">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-white/40">
@@ -80,7 +80,7 @@ export default function UpdatesContent() {
                 placeholder="Search updates..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-full pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#ccccff]/40 transition-colors"
+                className="w-full bg-white/[0.02] border border-[#5f828d]/20 rounded-full pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#5f828d]/40 transition-colors"
               />
             </div>
           </div>
@@ -95,11 +95,11 @@ export default function UpdatesContent() {
                     onClick={() => handleUpdateClick(update.slug)}
                     className={`w-full flex items-start gap-3 px-3 py-2.5 rounded-lg mb-2 transition-colors ${
                       isActive
-                        ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-white'
-                        : 'hover:bg-[#ccccff]/5 text-white/70 hover:text-white border border-transparent'
+                        ? 'bg-[#5f828d]/20 border border-[#5f828d]/40 text-white'
+                        : 'hover:bg-[#5f828d]/5 text-white/70 hover:text-white border border-transparent'
                     }`}
                   >
-                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#ccccff]/10 flex-shrink-0 mt-0.5">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#5f828d]/10 flex-shrink-0 mt-0.5">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={isActive ? 'text-white' : 'text-white/60'}>
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                         <polyline points="14 2 14 8 20 8"/>
@@ -113,8 +113,8 @@ export default function UpdatesContent() {
                         {update.metadata.version && (
                           <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded-full flex-shrink-0 ${
                             isActive 
-                              ? 'bg-[#ccccff]/20 text-[#ccccff]' 
-                              : 'bg-[#ccccff]/10 text-[#ccccff]/70'
+                              ? 'bg-[#5f828d]/20 text-[#5f828d]' 
+                              : 'bg-[#5f828d]/10 text-[#5f828d]/70'
                           }`}>
                             {update.metadata.version}
                           </span>
@@ -146,12 +146,12 @@ export default function UpdatesContent() {
 
         <div className="flex-1 lg:min-h-0 w-full">
           <div className="lg:hidden max-w-2xl mx-auto space-y-3 mb-6">
-            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4">
+            <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4">
               <label className="block text-xs font-medium text-white/60 mb-2">Select Update</label>
               <select
                 value={selectedSlug || ''}
                 onChange={(e) => handleUpdateClick(e.target.value)}
-                className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-full px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#ccccff]/40 transition-colors appearance-none"
+                className="w-full bg-white/[0.02] border border-[#5f828d]/20 rounded-full px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#5f828d]/40 transition-colors appearance-none"
                 style={{
                   backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4l4 4 4-4' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
                   backgroundRepeat: 'no-repeat',
@@ -167,7 +167,7 @@ export default function UpdatesContent() {
               </select>
             </div>
 
-            <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4">
+            <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4">
               <label className="block text-xs font-medium text-white/60 mb-2">Search Updates</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-white/40">
@@ -181,7 +181,7 @@ export default function UpdatesContent() {
                   placeholder="Search updates..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-full pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#ccccff]/40 transition-colors"
+                  className="w-full bg-white/[0.02] border border-[#5f828d]/20 rounded-full pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-[#5f828d]/40 transition-colors"
                 />
               </div>
             </div>
@@ -199,8 +199,8 @@ export default function UpdatesContent() {
                     <span className="shimmer-text">{selectedUpdate.metadata.title}</span>
                   </h1>
                   {selectedUpdate.metadata.version && (
-                    <div className="px-2 sm:px-2.5 py-1 bg-[#ccccff]/10 border border-[#ccccff]/20 rounded-full">
-                      <span className="text-xs sm:text-sm font-medium text-[#ccccff]">
+                    <div className="px-2 sm:px-2.5 py-1 bg-[#5f828d]/10 border border-[#5f828d]/20 rounded-full">
+                      <span className="text-xs sm:text-sm font-medium text-[#5f828d]">
                         {selectedUpdate.metadata.version}
                       </span>
                     </div>

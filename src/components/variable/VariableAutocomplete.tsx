@@ -10,7 +10,7 @@ type VariableAutocompleteProps = {
   position: { x: number; y: number; width: number; height: number } | null;
   isVisible: boolean;
   onSelect: (variable: string) => void;
-  autocompleteRef: React.RefObject<HTMLDivElement>;
+  autocompleteRef: React.RefObject<HTMLDivElement | null>;
 };
 
 export const VariableAutocomplete = ({

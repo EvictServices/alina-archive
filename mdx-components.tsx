@@ -38,19 +38,19 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </li>
     ),
     code: ({ children }) => (
-      <code className="bg-[#ccccff]/10 text-[#ccccff] px-2 py-1 rounded text-sm">
+      <code className="bg-[#5f828d]/10 text-[#5f828d] px-2 py-1 rounded text-sm">
         {children}
       </code>
     ),
     pre: ({ children }) => (
-      <pre className="bg-white/[0.02] border border-[#ccccff]/20 rounded-xl p-4 overflow-x-auto mb-4">
+      <pre className="bg-white/[0.02] border border-[#5f828d]/20 rounded-xl p-4 overflow-x-auto mb-4">
         {children}
       </pre>
     ),
     a: ({ href, children }) => (
       <a 
         href={href} 
-        className="text-[#ccccff] hover:text-[#ccccff]/80 underline transition-colors"
+        className="text-[#5f828d] hover:text-[#5f828d]/80 underline transition-colors"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -58,7 +58,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </a>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-[#ccccff]/40 pl-4 italic text-white/70 mb-4">
+      <blockquote className="border-l-4 border-[#5f828d]/40 pl-4 italic text-white/70 mb-4">
         {children}
       </blockquote>
     ),

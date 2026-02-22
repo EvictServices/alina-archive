@@ -115,8 +115,8 @@ export const EmbedBuilder = ({
   };
 
   return (
-    <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl shadow-md overflow-hidden backdrop-blur-md">
-      <div className="border-b border-[#ccccff]/10 px-4 py-3 flex justify-between items-center">
+    <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl shadow-md overflow-hidden backdrop-blur-md">
+      <div className="border-b border-[#5f828d]/10 px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <div className="p-1.5 rounded-md bg-alina-primary/10 mr-2">
             <MdCreateNewFolder className="w-4 h-4 text-alina-primary/80" />
@@ -128,21 +128,21 @@ export const EmbedBuilder = ({
         <div className="flex gap-2">
           <button
             onClick={onPreviewOpen}
-            className="p-1.5 text-white/70 hover:text-white hover:bg-[#ccccff]/5 rounded-md transition-colors"
+            className="p-1.5 text-white/70 hover:text-white hover:bg-[#5f828d]/5 rounded-md transition-colors"
             title="Preview"
           >
             <FiEye className="w-4 h-4" />
           </button>
           <button
             onClick={onCopyToClipboard}
-            className="p-1.5 text-white/70 hover:text-white hover:bg-[#ccccff]/5 rounded-md transition-colors"
+            className="p-1.5 text-white/70 hover:text-white hover:bg-[#5f828d]/5 rounded-md transition-colors"
             title="Copy to clipboard"
           >
             <FiCopy className="w-4 h-4" />
           </button>
           <button
             onClick={onDownloadScript}
-            className="p-1.5 text-white/70 hover:text-white hover:bg-[#ccccff]/5 rounded-md transition-colors"
+            className="p-1.5 text-white/70 hover:text-white hover:bg-[#5f828d]/5 rounded-md transition-colors"
             title="Download script"
           >
             <FiDownload className="w-4 h-4" />
@@ -158,14 +158,14 @@ export const EmbedBuilder = ({
           <textarea
             value={content}
             onChange={(e) => onContentChange(e.target.value)}
-            className="w-full bg-[#ccccff]/5 border border-[#ccccff]/20 rounded-md px-3 py-2 text-white focus:outline-none focus:border-[#ccccff]/50 transition-colors"
+            className="w-full bg-[#5f828d]/5 border border-[#5f828d]/20 rounded-md px-3 py-2 text-white focus:outline-none focus:border-[#5f828d]/50 transition-colors"
             placeholder="Hey, welcome to evict!"
             rows={2}
           />
         </div>
 
-        <div className="border-t border-[#ccccff]/10 mb-4 pt-4">
-          <div className="flex border-b border-[#ccccff]/10">
+        <div className="border-t border-[#5f828d]/10 mb-4 pt-4">
+          <div className="flex border-b border-[#5f828d]/10">
             {(["general", "author", "fields", "footer", "buttons"] as const).map((tab) => {
               const isButtonsTab = tab === "buttons";
               const isDisabled = isButtonsTab && webhookUrl;
@@ -174,7 +174,7 @@ export const EmbedBuilder = ({
                   key={tab}
                   className={`px-4 py-2 text-xs transition-colors ${
                     activeTab === tab
-                      ? "text-white border-b-2 border-[#ccccff]"
+                      ? "text-white border-b-2 border-[#5f828d]"
                       : "text-white/70 hover:text-white/90"
                   } ${isDisabled ? "opacity-30 cursor-not-allowed" : ""}`}
                   onClick={() => !isDisabled && onTabChange(tab)}

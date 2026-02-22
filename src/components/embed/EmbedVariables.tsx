@@ -3,8 +3,8 @@
 import { FaSquareRootVariable } from "react-icons/fa6";
 
 export const EmbedVariables = () => (
-  <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl shadow-md overflow-hidden mb-16 backdrop-blur-md text-white">
-    <div className="border-b border-[#ccccff]/10 px-4 py-3">
+  <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl shadow-md overflow-hidden mb-16 backdrop-blur-md text-white">
+    <div className="border-b border-[#5f828d]/10 px-4 py-3">
       <div className="flex items-center">
         <div className="p-1.5 rounded-md bg-white/10 mr-2">
           <FaSquareRootVariable className="w-4 h-4 text-white" />
@@ -15,7 +15,7 @@ export const EmbedVariables = () => (
 
     <div className="p-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div className="bg-white/[0.03] border border-[#ccccff]/20 p-3 rounded-md backdrop-blur-sm">
+        <div className="bg-white/[0.03] border border-[#5f828d]/20 p-3 rounded-md backdrop-blur-sm">
           <h3 className="font-medium mb-2 text-sm text-white">
             User Variables
           </h3>
@@ -53,7 +53,7 @@ export const EmbedVariables = () => (
           </div>
         </div>
 
-        <div className="bg-white/[0.03] border border-[#ccccff]/20 p-3 rounded-md backdrop-blur-sm">
+        <div className="bg-white/[0.03] border border-[#5f828d]/20 p-3 rounded-md backdrop-blur-sm">
           <h3 className="font-medium mb-2 text-sm text-white">
             Server Variables
           </h3>
@@ -91,7 +91,7 @@ export const EmbedVariables = () => (
           </div>
         </div>
 
-        <div className="bg-white/[0.03] border border-[#ccccff]/20 p-3 rounded-md backdrop-blur-sm">
+        <div className="bg-white/[0.03] border border-[#5f828d]/20 p-3 rounded-md backdrop-blur-sm">
           <h3 className="font-medium mb-2 text-sm text-white">
             Channel Variables
           </h3>
@@ -130,7 +130,7 @@ export const EmbedVariables = () => (
         </div>
       </div>
 
-      <div className="mt-6 text-sm bg-white/[0.03] border border-[#ccccff]/20 p-3 rounded-md backdrop-blur-sm text-white">
+      <div className="mt-6 text-sm bg-white/[0.03] border border-[#5f828d]/20 p-3 rounded-md backdrop-blur-sm text-white">
         <p className="mb-2">
           <strong className="text-white">Syntax Examples:</strong>
         </p>

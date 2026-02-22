@@ -10,7 +10,7 @@ export default function Terms() {
           </h1>
         </div>
 
-        <div className="mb-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
+        <div className="mb-6 bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 backdrop-blur-md">
           <p className="text-white/60 text-xs">
             Last updated and effective since: 2025-11-11
           </p>
@@ -35,7 +35,7 @@ export default function Terms() {
             </a>
           </p>
 
-          <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-6 backdrop-blur-md">
+          <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-6 backdrop-blur-md">
             <h2 className="text-xl font-light text-white mb-3">Disclaimer</h2>
             <p className="text-white/80 leading-relaxed">
               You may not use Evict to violate any applicable laws or regulations
@@ -96,7 +96,7 @@ export default function Terms() {
             the terms).
           </p>
 
-          <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-6 backdrop-blur-md">
+          <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-6 backdrop-blur-md">
             <h2 className="text-xl font-light text-white mb-3">Indemnity</h2>
             <p className="text-white/80 leading-relaxed">
               You shall indemnify us against all liabilities, costs, expenses,

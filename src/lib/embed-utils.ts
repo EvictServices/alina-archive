@@ -36,4 +36,4 @@ export const BUTTON_STYLES = {
 
 export const DISCORD_EMBED_BG = "#2b2d31";
 
-export const DEFAULT_EMBED_COLOR = "#CCCCFF";
+export const DEFAULT_EMBED_COLOR = "#5f828d";

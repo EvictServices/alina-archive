@@ -162,10 +162,10 @@ export default function CommandsPage() {
     return (
       <div 
         onClick={() => setSelectedCommand(command)}
-        className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 hover:border-[#ccccff]/40 transition-colors backdrop-blur-md cursor-pointer"
+        className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 hover:border-[#5f828d]/40 transition-colors backdrop-blur-md cursor-pointer"
       >
         <div className="flex items-start justify-between mb-3">
-          <h3 className="text-white font-medium bg-[#ccccff]/10 px-3 py-1 rounded-full">
+          <h3 className="text-white font-medium bg-[#5f828d]/10 px-3 py-1 rounded-full">
             {command.is_subcommand ? command.qualified_name : command.name}
           </h3>
           <div className="flex items-center gap-2 text-white">
@@ -175,13 +175,13 @@ export default function CommandsPage() {
                   e.stopPropagation();
                   copyToClipboard(command.is_subcommand ? command.qualified_name : command.name);
                 }}
-                className="p-1 hover:bg-[#ccccff]/20 rounded transition-colors"
+                className="p-1 hover:bg-[#5f828d]/20 rounded transition-colors"
                 title="Copy command"
               >
                 <MdOutlineFileCopy />
               </button>
               {copiedCommand === (command.is_subcommand ? command.qualified_name : command.name) && (
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#ccccff] text-black text-xs px-2 py-1 rounded whitespace-nowrap animate-fade-in">
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#5f828d] text-black text-xs px-2 py-1 rounded whitespace-nowrap animate-fade-in">
                   Copied!
                 </div>
               )}
@@ -213,7 +213,7 @@ export default function CommandsPage() {
         </div>
 
         <div className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
+          <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 backdrop-blur-md">
             <div className="flex items-center gap-2 mb-2">
               {error ? (
                 <div className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
@@ -229,7 +229,7 @@ export default function CommandsPage() {
             </p>
           </div>
 
-          <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
+          <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 backdrop-blur-md">
             <div className="flex items-center gap-2 mb-2">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect width="7" height="7" x="3" y="3" rx="1" />
@@ -246,7 +246,7 @@ export default function CommandsPage() {
             </p>
           </div>
 
-          <div className="bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
+          <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 backdrop-blur-md">
             <div className="flex items-center gap-2 mb-2">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8" />
@@ -297,13 +297,13 @@ export default function CommandsPage() {
                     onClick={() => setSelectedCategory(category)}
                     className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-full transition-colors ${
                       isActive 
-                        ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-white' 
-                        : 'hover:bg-[#ccccff]/5 text-white/70 hover:text-white border border-transparent'
+                        ? 'bg-[#5f828d]/20 border border-[#5f828d]/40 text-white' 
+                        : 'hover:bg-[#5f828d]/5 text-white/70 hover:text-white border border-transparent'
                     }`}
                   >
                     <Icon size={20} className={isActive ? 'text-white' : 'text-white/70'} />
                     <div className="flex-1 text-left">
-                      <div className="text-sm font-medium bg-[#ccccff]/10 px-2 py-0.5 rounded-full inline-block">{category}</div>
+                      <div className="text-sm font-medium bg-[#5f828d]/10 px-2 py-0.5 rounded-full inline-block">{category}</div>
                       <div className={`text-xs ${isActive ? 'text-white/80' : 'text-white/40'}`}>
                         {categoryCommands.length} commands
                       </div>
@@ -327,8 +327,8 @@ export default function CommandsPage() {
                       onClick={() => setSelectedCategory(category)}
                       className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors flex-shrink-0 ${
                         isActive 
-                          ? 'bg-[#ccccff]/20 border border-[#ccccff]/40 text-white' 
-                          : 'bg-[#ccccff]/5 text-white/70 hover:text-white border border-transparent'
+                          ? 'bg-[#5f828d]/20 border border-[#5f828d]/40 text-white' 
+                          : 'bg-[#5f828d]/5 text-white/70 hover:text-white border border-transparent'
                       }`}
                     >
                       <Icon size={16} className={isActive ? 'text-white' : 'text-white/70'} />
@@ -349,7 +349,7 @@ export default function CommandsPage() {
                   placeholder="Search commands..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-white/[0.02] border border-[#ccccff]/20 rounded-full pl-12 pr-4 py-3 text-white placeholder-[#ccccff]/40 focus:outline-none focus:border-[#ccccff]/50 transition-colors backdrop-blur-md"
+                  className="w-full bg-white/[0.02] border border-[#5f828d]/20 rounded-full pl-12 pr-4 py-3 text-white placeholder-[#5f828d]/40 focus:outline-none focus:border-[#5f828d]/50 transition-colors backdrop-blur-md"
                 />
               </div>
             </div>
@@ -380,12 +380,12 @@ export default function CommandsPage() {
           onClick={() => setSelectedCommand(null)}
         >
           <div 
-            className="bg-white/[0.02] border border-[#ccccff]/30 rounded-xl max-w-md w-full p-6 shadow-2xl backdrop-blur-md"
+            className="bg-white/[0.02] border border-[#5f828d]/30 rounded-xl max-w-md w-full p-6 shadow-2xl backdrop-blur-md"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-[#ccccff] rounded-full" />
+                <div className="w-2 h-2 bg-[#5f828d] rounded-full" />
                 <h2 className="text-white font-semibold">Command Information</h2>
               </div>
               <button
@@ -418,7 +418,7 @@ export default function CommandsPage() {
                     {selectedCommand.permissions.map((perm, idx) => (
                       <span
                         key={`${perm}-${idx}`}
-                        className="bg-[#ccccff]/20 text-white px-3 py-1 rounded-full text-sm"
+                        className="bg-[#5f828d]/20 text-white px-3 py-1 rounded-full text-sm"
                       >
                         {perm}
                       </span>
@@ -437,7 +437,7 @@ export default function CommandsPage() {
               {selectedCommand.signature && (
                 <div>
                   <p className="text-white/60 text-xs uppercase mb-1">Syntax</p>
-                  <code className="text-white/80 bg-[#ccccff]/10 px-3 py-2 rounded block text-sm">
+                  <code className="text-white/80 bg-[#5f828d]/10 px-3 py-2 rounded block text-sm">
                     {selectedCommand.is_subcommand ? selectedCommand.qualified_name : selectedCommand.name} {selectedCommand.signature}
                   </code>
                 </div>

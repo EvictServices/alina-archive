@@ -160,7 +160,7 @@ export default function EmbedPage() {
         <div className="max-w-7xl mx-auto pt-20">
           <EmbedHeader />
 
-          <div className="mb-6 bg-white/[0.02] border border-[#ccccff]/20 rounded-2xl p-4 backdrop-blur-md">
+          <div className="mb-6 bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 backdrop-blur-md">
             <div className="flex items-center gap-2 mb-2">
               <svg
                 width="20"
@@ -194,7 +194,7 @@ export default function EmbedPage() {
                 type="text"
                 value={webhookUrl}
                 onChange={(e) => setWebhookUrl(e.target.value)}
-                className="flex-1 bg-white/[0.02] border border-[#ccccff]/20 rounded-full px-4 py-3 text-white focus:outline-none focus:border-[#ccccff]/50 transition-colors backdrop-blur-md"
+                className="flex-1 bg-white/[0.02] border border-[#5f828d]/20 rounded-full px-4 py-3 text-white focus:outline-none focus:border-[#5f828d]/50 transition-colors backdrop-blur-md"
                 placeholder="https://discord.com/api/webhooks/..."
               />
               <button
@@ -202,12 +202,12 @@ export default function EmbedPage() {
                 disabled={!webhookUrl || sendStatus === "sending"}
                 className={`px-6 py-3 rounded-full font-medium transition-colors ${
                   !webhookUrl
-                    ? "bg-[#ccccff]/5 text-white cursor-not-allowed border border-[#ccccff]/10"
+                    ? "bg-[#5f828d]/5 text-white cursor-not-allowed border border-[#5f828d]/10"
                     : sendStatus === "success"
                     ? "bg-green-500/20 text-white border border-green-500/30"
                     : sendStatus === "error"
                     ? "bg-red-500/20 text-white border border-red-500/30"
-                    : "bg-[#ccccff]/10 hover:bg-[#ccccff]/20 text-white border border-[#ccccff]/30"
+                    : "bg-[#5f828d]/10 hover:bg-[#5f828d]/20 text-white border border-[#5f828d]/30"
                 }`}
               >
                 {sendStatus === "sending"

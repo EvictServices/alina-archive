@@ -28,9 +28,10 @@ export default function Home() {
   const animatedStats = useStatsAnimation(stats);
 
   return (
-    <main className="relative min-h-screen flex items-center justify-center px-4 py-12 z-[1]">
-      <div className="w-full max-w-2xl mx-auto">
-        <div className="flex flex-col items-center text-center space-y-10">
+    <>
+      <main className="relative min-h-screen flex items-center justify-center px-4 py-12 z-[1]">
+        <div className="w-full max-w-2xl mx-auto">
+          <div className="flex flex-col items-center text-center space-y-10">
           
           <div className="opacity-0 animate-fade-in-up [animation-delay:0.1s]">
             <Image
@@ -127,8 +128,50 @@ export default function Home() {
             </div>
           </div>
 
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <section className="relative z-[1] w-full bg-[#091622] px-4 pt-28 pb-20 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.015)_1px,transparent_0)] before:bg-[size:24px_24px] before:opacity-40 before:pointer-events-none">
+        <div className="mx-auto flex max-w-4xl flex-col items-center relative z-10">
+          <div className="opacity-0 animate-fade-in-up w-full max-w-3xl mb-16 [animation-delay:0.1s]">
+            <div className="flex items-center justify-center">
+              <svg
+                viewBox="0 0 800 80"
+                aria-hidden="true"
+                className="h-10 w-full max-w-2xl"
+              >
+                <path
+                  d="M20 40 C 200 10, 300 70, 400 40 S 600 10, 780 40"
+                  className="stroke-white/25"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div className="opacity-0 animate-fade-in-up w-full [animation-delay:0.2s]">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-2xl md:text-3xl font-light text-white">
+                Hop into the future of Discord
+              </h2>
+              <p className="mt-6 text-sm md:text-base text-white/70 max-w-2xl mx-auto">
+                We won't annoy you with the specifics. Just a powerful, polished, and visually refined bot that helps you manage your server and community with ease.
+                See a curated list of features below, or add the bot to your server and explore them yourself.
+              </p>
+            </div>
+            
+            <div className="mt-12 w-full max-w-2xl mx-auto">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md px-8 py-6 text-center">
+                <p className="text-sm md:text-base text-white/60 font-light">
+                  We're still polishing this section. Check back soon for a full breakdown.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
