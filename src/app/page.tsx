@@ -81,7 +81,7 @@ export default function Home() {
           <p className="opacity-0 animate-fade-in-up text-base md:text-lg text-white/70 max-w-lg leading-relaxed px-4 [animation-delay:0.3s]">
             {APP_INFO.DESCRIPTION.split(/\b(moderation|antinuke|utility)\b/).map((part, i) => 
               ['moderation', 'antinuke', 'utility'].includes(part.toLowerCase()) 
-                ? <span key={i} className="text-white/90">{part}</span> 
+                ? <span key={i} className="text-white/90 border-b-[3px] border-[#7ba3b4]/50">{part}</span> 
                 : part
             )}
           </p>
@@ -132,7 +132,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <section className="relative z-[1] w-full px-4 pt-28 pb-20 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.015)_1px,transparent_0)] before:bg-[size:24px_24px] before:opacity-40 before:pointer-events-none">
+      <section className="relative z-[1] w-full px-4 pt-16 pb-20 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.015)_1px,transparent_0)] before:bg-[size:24px_24px] before:opacity-40 before:pointer-events-none">
         <div className="mx-auto flex max-w-4xl flex-col items-center relative z-10">
           <div className="opacity-0 animate-fade-in-up w-full max-w-3xl mb-16 [animation-delay:0.1s]">
             <div className="flex items-center justify-center">
@@ -174,7 +174,7 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="md:col-span-2 md:row-span-2 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-8 py-10 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-xl bg-transparent border border-[#7ba3b4]/20 flex items-center justify-center">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                       </svg>
@@ -188,7 +188,7 @@ export default function Home() {
 
                 <div className="md:col-span-1 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-transparent border border-[#7ba3b4]/20 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="M3 3v18h18"/>
                         <path d="M18 17V9"/>
@@ -205,7 +205,7 @@ export default function Home() {
 
                 <div className="md:col-span-1 md:row-span-2 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-6 py-8 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-transparent border border-[#7ba3b4]/20 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
                         <circle cx="9" cy="7" r="4"/>
@@ -222,7 +222,7 @@ export default function Home() {
 
                 <div className="md:col-span-1 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-transparent border border-[#7ba3b4]/20 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="m7 11 2-2-2-2"/>
                         <path d="M11 13h4"/>
@@ -238,7 +238,7 @@ export default function Home() {
 
                 <div className="md:col-span-2 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-transparent border border-[#7ba3b4]/20 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
                         <path d="m9 12 2 2 4-4"/>
@@ -253,7 +253,7 @@ export default function Home() {
 
                 <div className="md:col-span-2 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-transparent border border-[#7ba3b4]/20 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <circle cx="12" cy="8" r="5"/>
                         <path d="M20 21a8 8 0 0 0-16 0"/>
