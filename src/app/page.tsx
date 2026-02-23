@@ -9,6 +9,7 @@ import { useStatsAnimation } from "@/hooks/useStatsAnimation";
 import { API_ENDPOINTS, EXTERNAL_LINKS, APP_INFO } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Footer } from "@/components/footer";
 
 interface HealthData {
   guilds: number;
@@ -131,7 +132,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <section className="relative z-[1] w-full bg-[#091622] px-4 pt-28 pb-20 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.015)_1px,transparent_0)] before:bg-[size:24px_24px] before:opacity-40 before:pointer-events-none">
+      <section className="relative z-[1] w-full px-4 pt-28 pb-20 before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.015)_1px,transparent_0)] before:bg-[size:24px_24px] before:opacity-40 before:pointer-events-none">
         <div className="mx-auto flex max-w-4xl flex-col items-center relative z-10">
           <div className="opacity-0 animate-fade-in-up w-full max-w-3xl mb-16 [animation-delay:0.1s]">
             <div className="flex items-center justify-center">
@@ -140,9 +141,16 @@ export default function Home() {
                 aria-hidden="true"
                 className="h-10 w-full max-w-2xl"
               >
+                <defs>
+                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#a8d5e2" stopOpacity="0.6" />
+                    <stop offset="50%" stopColor="#c8e5f0" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#b8dfe8" stopOpacity="0.6" />
+                  </linearGradient>
+                </defs>
                 <path
                   d="M20 40 C 200 10, 300 70, 400 40 S 600 10, 780 40"
-                  className="stroke-white/25"
+                  stroke="url(#lineGradient)"
                   strokeWidth="2"
                   fill="none"
                   strokeLinecap="round"
@@ -162,16 +170,134 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="mt-12 w-full max-w-2xl mx-auto">
-              <div className="rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-md px-8 py-6 text-center">
-                <p className="text-sm md:text-base text-white/60 font-light">
-                  We're still polishing this section. Check back soon for a full breakdown.
-                </p>
+            <div className="mt-12 w-full max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="md:col-span-2 md:row-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-8 py-10 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-2xl font-semibold text-white">Advanced Moderation</h3>
+                  </div>
+                  <p className="text-base text-white/60 leading-relaxed">
+                    Comprehensive moderation tools to keep your server safe and organized with automated actions and custom filters.
+                  </p>
+                </div>
+
+                <div className="md:col-span-1 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                        <path d="M3 3v18h18"/>
+                        <path d="M18 17V9"/>
+                        <path d="M13 17V5"/>
+                        <path d="M8 17v-3"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">Server Analytics</h3>
+                  </div>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    Track member activity and engagement.
+                  </p>
+                </div>
+
+                <div className="md:col-span-1 md:row-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-8 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">Welcome System</h3>
+                  </div>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    Greet new members with customizable welcome messages and automated onboarding.
+                  </p>
+                </div>
+
+                <div className="md:col-span-1 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                        <path d="m7 11 2-2-2-2"/>
+                        <path d="M11 13h4"/>
+                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">Custom Commands</h3>
+                  </div>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    Create personalized commands with variables.
+                  </p>
+                </div>
+
+                <div className="md:col-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                        <path d="m9 12 2 2 4-4"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">Anti-Nuke Protection</h3>
+                  </div>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    Protect your server from malicious attacks with intelligent security measures and instant threat detection.
+                  </p>
+                </div>
+
+                <div className="md:col-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                        <circle cx="12" cy="8" r="5"/>
+                        <path d="M20 21a8 8 0 0 0-16 0"/>
+                        <path d="M12 13v8"/>
+                        <path d="M8 17l4 4 4-4"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">Automated Roles</h3>
+                  </div>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    Streamline role management with reaction roles, auto-roles, and role hierarchies for seamless organization.
+                  </p>
+                </div>
               </div>
+            </div>
+          </div>
+
+          <div className="opacity-0 animate-fade-in-up w-full max-w-3xl mt-16 [animation-delay:0.3s]">
+            <div className="flex items-center justify-center">
+              <svg
+                viewBox="0 0 800 80"
+                aria-hidden="true"
+                className="h-10 w-full max-w-2xl"
+              >
+                <defs>
+                  <linearGradient id="lineGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#a8d5e2" stopOpacity="0.6" />
+                    <stop offset="50%" stopColor="#c8e5f0" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#b8dfe8" stopOpacity="0.6" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M20 40 C 200 10, 300 70, 400 40 S 600 10, 780 40"
+                  stroke="url(#lineGradient2)"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </svg>
             </div>
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

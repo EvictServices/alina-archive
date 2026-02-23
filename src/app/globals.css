@@ -5,10 +5,10 @@
 @tailwind utilities;
 
 :root {
-  --gradient-color-1: #172833;
-  --gradient-color-2: #12232F;
-  --gradient-color-3: #0D1C29;
-  --gradient-color-4: #091622;
+  --gradient-color-1: #0a1a24;
+  --gradient-color-2: #1a3d4f;
+  --gradient-color-3: #2a5568;
+  --gradient-color-4: #3a6d7e;
   --aurora-blur: 80px;
   --aurora-opacity: 0.15;
   --aurora-speed: 8s;
@@ -482,10 +482,10 @@ svg.rough-annotation {
   z-index: -1;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  --gradient-color-1: #172833;
-  --gradient-color-2: #12232F;
-  --gradient-color-3: #0D1C29;
-  --gradient-color-4: #091622;
+  --gradient-color-1: #0a1a24;
+  --gradient-color-2: #1a3d4f;
+  --gradient-color-3: #2a5568;
+  --gradient-color-4: #3a6d7e;
 }
 
 #gradient-canvas.gradient-loaded {
