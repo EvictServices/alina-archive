@@ -10,7 +10,6 @@ import { API_ENDPOINTS, EXTERNAL_LINKS, APP_INFO } from "@/lib/constants";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Footer } from "@/components/footer";
-import { MainNav } from "@/components/navbar";
 
 interface HealthData {
   guilds: number;
