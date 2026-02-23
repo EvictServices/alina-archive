@@ -172,7 +172,7 @@ export default function Home() {
             
             <div className="mt-12 w-full max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="md:col-span-2 md:row-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-8 py-10 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-2 md:row-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-8 py-10 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-12 h-12 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
@@ -186,7 +186,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="md:col-span-1 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-1 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
@@ -203,7 +203,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="md:col-span-1 md:row-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-8 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-1 md:row-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-8 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
@@ -220,7 +220,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="md:col-span-1 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-1 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
@@ -236,7 +236,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="md:col-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
@@ -251,7 +251,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="md:col-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-[#5f828d]/40 transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
