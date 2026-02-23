@@ -31,7 +31,6 @@ export default function Home() {
 
   return (
     <>
-      <MainNav />
       <main className="relative min-h-screen flex items-center justify-center px-4 py-12 z-[1]">
         <div className="w-full max-w-2xl mx-auto">
           <div className="flex flex-col items-center text-center space-y-10">
@@ -174,9 +173,9 @@ export default function Home() {
             
             <div className="mt-12 w-full max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="md:col-span-2 md:row-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-8 py-10 hover:border-white transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-2 md:row-span-2 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-8 py-10 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                       </svg>
@@ -188,9 +187,9 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="md:col-span-1 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-1 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="M3 3v18h18"/>
                         <path d="M18 17V9"/>
@@ -205,9 +204,9 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="md:col-span-1 md:row-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-8 hover:border-white transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-1 md:row-span-2 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-6 py-8 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
                         <circle cx="9" cy="7" r="4"/>
@@ -215,47 +214,47 @@ export default function Home() {
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                       </svg>
                     </div>
-                    <h3 className="text-lg font-semibold text-white">Welcome System</h3>
+                    <h3 className="text-lg font-semibold text-white">System Messages</h3>
                   </div>
                   <p className="text-sm text-white/60 leading-relaxed">
-                    Greet new members with customizable welcome messages and automated onboarding.
+                    Greet new members, thank members for boosting with customizable welcome messages and automated onboarding.
                   </p>
                 </div>
 
-                <div className="md:col-span-1 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-1 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="m7 11 2-2-2-2"/>
                         <path d="M11 13h4"/>
                         <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
                       </svg>
                     </div>
-                    <h3 className="text-lg font-semibold text-white">Custom Commands</h3>
+                    <h3 className="text-lg font-semibold text-white">Rewards Systems</h3>
                   </div>
                   <p className="text-sm text-white/60 leading-relaxed">
-                    Create personalized commands with variables.
+                    Thank users for representing your guild tag as well as vanity in their status with customizable rewards and recognition systems.
                   </p>
                 </div>
 
-                <div className="md:col-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-2 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
                         <path d="m9 12 2 2 4-4"/>
                       </svg>
                     </div>
-                    <h3 className="text-lg font-semibold text-white">Anti-Nuke Protection</h3>
+                    <h3 className="text-lg font-semibold text-white">Top Tier Protection</h3>
                   </div>
                   <p className="text-sm text-white/60 leading-relaxed">
-                    Protect your server from malicious attacks with intelligent security measures and instant threat detection.
+                    Protect your server from malicious attacks with intelligent security measures, anti-raid systems and instant threat detection.
                   </p>
                 </div>
 
-                <div className="md:col-span-2 rounded-2xl border border-[#5f828d]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
+                <div className="md:col-span-2 rounded-2xl border border-[#7ba3b4]/20 bg-white/[0.02] backdrop-blur-md px-6 py-6 hover:border-white transition-all duration-300 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#5f828d]/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-[#7ba3b4]/10 flex items-center justify-center">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <circle cx="12" cy="8" r="5"/>
                         <path d="M20 21a8 8 0 0 0-16 0"/>
@@ -311,7 +310,7 @@ export default function Home() {
                   href={EXTERNAL_LINKS.INVITE}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#5f828d] hover:bg-[#5f828d]/90 text-white rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#5f828d]/20 w-full sm:w-auto"
+                  className="group relative inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#7ba3b4] hover:bg-[#7ba3b4]/90 text-white rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#7ba3b4]/20 w-full sm:w-auto"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
