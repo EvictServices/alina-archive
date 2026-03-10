@@ -207,7 +207,7 @@ export default function CommandsPage() {
     <main className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
       <div
         className={`max-w-7xl mx-auto pt-20 transition-[filter] duration-200 ${
-          selectedCommand ? 'blur-xl' : 'blur-0'
+          selectedCommand ? 'blur-lg' : 'blur-0'
         }`}
       >
         <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
@@ -368,7 +368,7 @@ export default function CommandsPage() {
         <div className="fixed inset-0 z-50 p-4" onClick={() => setSelectedCommand(null)}>
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-black/55 backdrop-blur-xl"
+            className="absolute inset-0 bg-black/40 backdrop-blur-lg"
           />
 
           <div className="relative z-10 flex min-h-full items-center justify-center">
