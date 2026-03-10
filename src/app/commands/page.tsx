@@ -205,13 +205,7 @@ export default function CommandsPage() {
 
   return (
     <main className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
-      <div
-        className={`max-w-7xl mx-auto pt-20 transition-[filter,opacity,transform] duration-200 ${
-          selectedCommand
-            ? 'blur-[8px] md:blur-0 opacity-70 md:opacity-100 scale-[0.995] md:scale-100 pointer-events-none select-none'
-            : 'blur-0 opacity-100 scale-100'
-        }`}
-      >
+      <div className="max-w-7xl mx-auto pt-20">
         <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <h1 className="text-3xl sm:text-4xl font-light text-white">
             <span className="shimmer-text">Commands</span>
@@ -367,14 +361,13 @@ export default function CommandsPage() {
       </div>
 
       {selectedCommand && (
-        <div className="fixed inset-0 z-50 p-4">
+        <div className="fixed inset-0 z-50 p-4" onClick={() => setSelectedCommand(null)}>
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[#020616]/50 backdrop-blur-[28px] backdrop-brightness-75 backdrop-saturate-150"
-            onClick={() => setSelectedCommand(null)}
+            className="absolute inset-0 bg-black/55 backdrop-blur-xl"
           />
 
-          <div className="relative flex min-h-full items-center justify-center">
+          <div className="relative z-10 flex min-h-full items-center justify-center">
             <div 
               className="bg-white/[0.02] border border-[#5f828d]/30 rounded-xl max-w-md w-full p-6 shadow-2xl backdrop-blur-md"
               onClick={(e) => e.stopPropagation()}
@@ -385,6 +378,7 @@ export default function CommandsPage() {
                 <h2 className="text-white font-semibold">Command Information</h2>
               </div>
               <button
+                type="button"
                 onClick={() => setSelectedCommand(null)}
                 className="text-white/60 hover:text-white transition-colors"
               >
