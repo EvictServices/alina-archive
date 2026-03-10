@@ -205,7 +205,11 @@ export default function CommandsPage() {
 
   return (
     <main className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto pt-20">
+      <div
+        className={`max-w-7xl mx-auto pt-20 transition-[filter] duration-200 ${
+          selectedCommand ? 'blur-xl' : 'blur-0'
+        }`}
+      >
         <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <h1 className="text-3xl sm:text-4xl font-light text-white">
             <span className="shimmer-text">Commands</span>
