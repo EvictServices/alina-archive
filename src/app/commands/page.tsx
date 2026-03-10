@@ -205,14 +205,20 @@ export default function CommandsPage() {
 
   return (
     <main className="min-h-screen bg-transparent py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto pt-20">
+      <div
+        className={`max-w-7xl mx-auto pt-20 transition-[filter,opacity,transform] duration-200 ${
+          selectedCommand
+            ? 'blur-[8px] md:blur-0 opacity-70 md:opacity-100 scale-[0.995] md:scale-100 pointer-events-none select-none'
+            : 'blur-0 opacity-100 scale-100'
+        }`}
+      >
         <div className="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <h1 className="text-3xl sm:text-4xl font-light text-white">
             <span className="shimmer-text">Commands</span>
           </h1>
         </div>
 
-        <div className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 backdrop-blur-md">
             <div className="flex items-center gap-2 mb-2">
               {error ? (
@@ -246,20 +252,6 @@ export default function CommandsPage() {
             </p>
           </div>
 
-          <div className="bg-white/[0.02] border border-[#5f828d]/20 rounded-2xl p-4 backdrop-blur-md">
-            <div className="flex items-center gap-2 mb-2">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-              <h2 className="text-lg font-light text-white">
-                {searchQuery ? displayedCommands.length : '—'}
-              </h2>
-            </div>
-            <p className="text-white/60 text-xs">
-              {searchQuery ? 'Search Results' : 'Search Active'}
-            </p>
-          </div>
         </div>
 
         {error && (
@@ -341,15 +333,15 @@ export default function CommandsPage() {
 
             <div className="mb-6">
               <div className="relative">
-                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-white/40">
-                  <FaSearch />
+                <div className="absolute inset-y-0 left-4 z-10 flex items-center pointer-events-none text-white">
+                  <FaSearch className="h-4 w-4" />
                 </div>
                 <input
                   type="text"
                   placeholder="Search commands..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-white/[0.02] border border-[#5f828d]/20 rounded-full pl-12 pr-4 py-3 text-white placeholder-[#5f828d]/40 focus:outline-none focus:border-[#5f828d]/50 transition-colors backdrop-blur-md"
+                  className="relative z-0 w-full bg-white/[0.02] border border-[#5f828d]/20 rounded-full pl-12 pr-4 py-3 text-white/95 placeholder:text-white/55 caret-white focus:outline-none focus:border-[#5f828d]/50 transition-colors backdrop-blur-md"
                 />
               </div>
             </div>
@@ -375,14 +367,18 @@ export default function CommandsPage() {
       </div>
 
       {selectedCommand && (
-        <div 
-          className="fixed inset-0 bg-black/70 backdrop-blur-xl md:backdrop-blur-sm flex items-center justify-center z-50 p-4"
-          onClick={() => setSelectedCommand(null)}
-        >
-          <div 
-            className="bg-white/[0.02] border border-[#5f828d]/30 rounded-xl max-w-md w-full p-6 shadow-2xl backdrop-blur-md"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="fixed inset-0 z-50 p-4">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[#020616]/50 backdrop-blur-[28px] backdrop-brightness-75 backdrop-saturate-150"
+            onClick={() => setSelectedCommand(null)}
+          />
+
+          <div className="relative flex min-h-full items-center justify-center">
+            <div 
+              className="bg-white/[0.02] border border-[#5f828d]/30 rounded-xl max-w-md w-full p-6 shadow-2xl backdrop-blur-md"
+              onClick={(e) => e.stopPropagation()}
+            >
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[#5f828d] rounded-full" />
@@ -443,6 +439,7 @@ export default function CommandsPage() {
                 </div>
               )}
             </div>
+          </div>
           </div>
         </div>
       )}
