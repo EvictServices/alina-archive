@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCached, setCached } from '@/lib/shared';
+import { getCached, setCached } from '@/lib/shared/redis';
 
 const EXTERNAL_API_URL = 'https://elara.evict.bot/health';
 const CACHE_KEY = 'status:health';

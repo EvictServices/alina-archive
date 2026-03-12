@@ -1,4 +1,4 @@
 export * from './constants'
 export * from './utils'
 export * from './obfuscate'
-export * from './redis'
+// Redis is server-only, import directly from './redis' where needed

@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { getCached, setCached } from '@/lib/shared'
+import { getCached, setCached } from '@/lib/shared/redis'
 
 const EXTERNAL_API_URL = 'https://elara.evict.bot/commands';
 const CACHE_KEY = 'commands:data';
-const CACHE_DURATION = 300; // 5 minutes
+const CACHE_DURATION = 300;
 
 export async function GET() {
   try {
