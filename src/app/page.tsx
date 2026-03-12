@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react';
-import { useFetch } from '@/hooks/useFetch';
-import { useStatsAnimation } from '@/hooks/useStatsAnimation';
-import { API_ENDPOINTS } from '@/lib/constants';
+import { useFetch, useStatsAnimation } from '@/hooks/shared';
+import { API_ENDPOINTS } from '@/lib/shared';
 import { Footer } from '@/components/footer';
 import {
   HeroStats,

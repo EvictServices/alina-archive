@@ -3,10 +3,10 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineX, HiOutlineClipboard } from "react-icons/hi";
-import { useOnClickOutside } from "@/hooks/useOnClickOutside";
+import { useOnClickOutside } from "@/hooks/shared";
 import { EmbedData } from "@/types/embeds";
 import { DiscordEmbed } from "./DiscordEmbed";
-import { ANIMATION_DURATIONS } from "@/lib/constants";
+import { ANIMATION_DURATIONS } from "@/lib/shared";
 
 interface PreviewModalProps {
   embed: EmbedData;

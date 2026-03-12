@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
-import { EXTERNAL_LINKS } from '@/lib/constants';
+import { EXTERNAL_LINKS } from '@/lib/shared';
 
 const INTERNAL_LINKS = [
   { href: '/commands', label: 'Commands' },

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { HealthData } from '@/types/status';
 import { PowChallenge, solvePow } from '@/lib/pow';
-import { API_ENDPOINTS } from '@/lib/constants';
+import { API_ENDPOINTS } from '@/lib/shared';
 
 const EXTERNAL_API_URL = 'https://elara.evict.bot';
 const REFRESH_INTERVAL = 30000;

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { APP_INFO } from '@/lib/constants';
+import { APP_INFO } from '@/lib/shared';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 

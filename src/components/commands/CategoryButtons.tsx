@@ -1,4 +1,4 @@
-import { getCategoryIcon } from '@/lib/command-constants';
+import { getCategoryIcon } from '@/lib/commands';
 
 interface CategoryButtonsProps {
   categories: string[];

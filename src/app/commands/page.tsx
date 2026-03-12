@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { Command } from '@/types/commands';
 import { Preloader } from '@/components/global/Preloader';
-import { useCommands } from '@/hooks/useCommands';
+import { useCommands } from '@/hooks/commands';
 import {
   flattenCommands,
   getCommandsByCategory,
@@ -11,8 +11,8 @@ import {
   getTotalCommandsCount,
   getFilteredCategories,
   getCommandDisplayName,
-} from '@/lib/command-utils';
-import { COPY_FEEDBACK_DURATION, ITEMS_PER_PAGE } from '@/lib/command-constants';
+} from '@/lib/commands';
+import { COPY_FEEDBACK_DURATION, ITEMS_PER_PAGE } from '@/lib/commands';
 import { CommandCard } from '@/components/commands/CommandCard';
 import { CommandModal } from '@/components/commands/CommandModal';
 import { Pagination } from '@/components/commands/Pagination';

@@ -1,6 +1,6 @@
 import type { Command } from '@/types/commands';
 import { MdOutlineFileCopy } from 'react-icons/md';
-import { getCommandDisplayName } from '@/lib/command-utils';
+import { getCommandDisplayName } from '@/lib/commands';
 
 interface CommandCardProps {
   command: Command;

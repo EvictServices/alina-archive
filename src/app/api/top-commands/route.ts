@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Pool } from 'pg';
 import { powManager } from '@/lib/pow';
 import type { PowSolution } from '@/lib/pow';
-import { getCached, setCached } from '@/lib/redis';
+import { getCached, setCached } from '@/lib/shared';
 
 const pool = new Pool({
   host: process.env.POSTGRES_HOST || 'localhost',

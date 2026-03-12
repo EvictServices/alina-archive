@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from "react"
-import { useStatus } from "@/hooks/useStatus"
-import { formatLatency } from "@/lib/status-utils"
+import { useStatus } from "@/hooks/status"
+import { formatLatency } from "@/lib/status"
 import {
   StatusHeader,
   StatusBanner,

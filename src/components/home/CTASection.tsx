@@ -1,4 +1,4 @@
-import { EXTERNAL_LINKS } from '@/lib/constants';
+import { EXTERNAL_LINKS } from '@/lib/shared';
 
 const AddUserIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

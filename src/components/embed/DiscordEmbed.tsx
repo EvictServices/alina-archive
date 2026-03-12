@@ -1,5 +1,5 @@
 import { EmbedData } from "@/types/embeds";
-import { processVariables, BUTTON_STYLES, DISCORD_EMBED_BG, DEFAULT_EMBED_COLOR } from "@/lib/embed-utils";
+import { processVariables, BUTTON_STYLES, DISCORD_EMBED_BG, DEFAULT_EMBED_COLOR } from "@/lib/embed";
 import { FiExternalLink } from "react-icons/fi";
 
 interface DiscordEmbedProps {

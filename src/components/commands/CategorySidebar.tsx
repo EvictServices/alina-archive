@@ -1,6 +1,6 @@
 import type { CommandsData } from '@/types/commands';
-import { getCategoryIcon } from '@/lib/command-constants';
-import { flattenCommands, getCommandsByCategory } from '@/lib/command-utils';
+import { getCategoryIcon } from '@/lib/commands';
+import { flattenCommands, getCommandsByCategory } from '@/lib/commands';
 
 interface CategorySidebarProps {
   categories: string[];

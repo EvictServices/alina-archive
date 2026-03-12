@@ -1,4 +1,4 @@
-import { useVariableAutocomplete } from "@/hooks/useVariableAutocomplete";
+import { useVariableAutocomplete } from "@/hooks/embed";
 import { VariableAutocomplete } from "./VariableAutocomplete";
 
 type VariableInputProps = {

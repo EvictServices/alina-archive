@@ -1,5 +1,5 @@
 import type { Command } from '@/types/commands';
-import { getCommandDisplayName } from '@/lib/command-utils';
+import { getCommandDisplayName } from '@/lib/commands';
 
 interface CommandModalProps {
   command: Command | null;
