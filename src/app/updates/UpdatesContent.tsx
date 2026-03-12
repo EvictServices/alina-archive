@@ -91,10 +91,4 @@ export default function UpdatesContent() {
     </main>
   )
 }
-          )}
-        </div>
-      </div>
-      </div>
-    </main>
-  )
-}
+
