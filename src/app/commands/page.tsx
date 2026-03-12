@@ -82,7 +82,10 @@ export default function CommandsPage() {
   const categories = error 
     ? Object.keys(commands).filter(cat => cat !== 'No Category' && cat !== 'Developer').sort()
     : ['All', ...Object.keys(commands).filter(cat => cat !== 'No Category' && cat !== 'Developer').sort()];
-  const totalCommands = Object.values(commands).reduce((acc, cmds) => acc + cmds.length, 0);
+  
+    const totalCommands = Object.entries(commands)
+    .filter(([cat]) => cat !== 'Developer' && cat !== 'No Category')
+    .reduce((acc, [_, cmds]) => acc + cmds.length, 0);
 
   useEffect(() => {
     if (categories.length > 0 && !selectedCategory) {
@@ -133,14 +136,22 @@ export default function CommandsPage() {
     if (!searchQuery) {
       let categoryCommands: Command[] = [];
       if (selectedCategory === 'All') {
-        categoryCommands = flattenCommands(Object.values(commands).flat());
+        categoryCommands = flattenCommands(
+          Object.entries(commands)
+            .filter(([cat]) => cat !== 'Developer' && cat !== 'No Category')
+            .flatMap(([_, cmds]) => cmds)
+        );
       } else {
         categoryCommands = flattenCommands(commands[selectedCategory] || []);
       }
       return categoryCommands;
     }
     
-    const allCommands = flattenCommands(Object.values(commands).flat());
+    const allCommands = flattenCommands(
+      Object.entries(commands)
+        .filter(([cat]) => cat !== 'Developer' && cat !== 'No Category')
+        .flatMap(([_, cmds]) => cmds)
+    );
     const searchLower = searchQuery.toLowerCase().trim();
     
     return allCommands.filter(cmd => {
@@ -278,7 +289,11 @@ export default function CommandsPage() {
                 const Icon = getCategoryIcon(category);
                 const isActive = selectedCategory === category;
                 const categoryCommands = category === 'All' 
-                  ? flattenCommands(Object.values(commands).flat())
+                  ? flattenCommands(
+                      Object.entries(commands)
+                        .filter(([cat]) => cat !== 'Developer' && cat !== 'No Category')
+                        .flatMap(([_, cmds]) => cmds)
+                    )
                   : flattenCommands(commands[category] || []);
                 
                 return (
